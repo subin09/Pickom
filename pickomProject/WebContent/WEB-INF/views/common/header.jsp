@@ -88,7 +88,7 @@
         
         <div class="p-2 bd-highlight img" id="mainmypage-div">
           <a href="#" data-toggle="modal" data-target="#exampleModal">
-            <img src="${contextPath}/resources/img/login-logo.jpg" width="100px" height="auto" id="mainmypage" alt="">
+            <img src="${contextPath}/resources/img/mypage.jpg" width="100px" height="auto" id="mainmypage" alt="">
           </a>
         </div>
         
@@ -130,49 +130,43 @@
      </div>
      
 	<!-- Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        로그인
+    </button>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">로그인</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"></span>
-            </button>
-            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">로그인</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
                 <div class="modal-body">
-                 <form class="form-signin" method="POST" action="${contextPath}/member/login" onsubmit="return loginValidate();">
-                    
-                    <input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디" value="">
-                    <br>
-                    <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="비밀번호">
-                    <br>
+                    <form class="form-signin" method="POST" action="#" onsubmit="">
+                        
+                        <input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디" value="">
+                        <br>
+                        <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="비밀번호">
+                        <br>
 
-                    <div class="checkbox mb-3">
+                        <div class="checkbox mb-3">
                             <label> 
                                 <input type="checkbox" name="save" id="save" ${checked}> 아이디 저장
                             </label>
-                    </div>
+                        </div>
 
-              
-                    <c:choose>
-                    	<c:when test="${empty loginMember}">
-                    		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-                    	</c:when>
-                    	
-                    	<c:otherwise>
-                    		 
-                    	</c:otherwise>
-                    
-                    </c:choose>
-                    
-                    <a class="btn btn-lg btn-secondary btn-block" href="${contextPath}/member/signUp">회원가입</a>
-                </form>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+                        
+                        <a class="btn btn-lg btn-secondary btn-block" href="#">회원가입</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="">아이디 찾기</a>
+                    <a class="btn btn-secondary" href="">비밀번호 찾기</a>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">로그인</button>
-            </div>
-        </div>
         </div>
     </div>
 	
