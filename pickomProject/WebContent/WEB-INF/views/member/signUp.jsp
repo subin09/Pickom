@@ -17,8 +17,10 @@
 	}
 </style>
 </head>
+
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	
 	<div class="container">
 		<!-- 
 			상대경로에서 사용하는 기호

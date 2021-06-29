@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<c:set var="contextPath" scope="application"
-	   value="${pageContext.servletContext.contextPath}" />
+<c:set var="contextPath" scope="application" value="${pageContext.servletContext.contextPath}" />
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>Header</title>
 
 <!-- Bootstrap core CSS -->
@@ -21,16 +21,17 @@
  
 <!-- sweetalert API --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- css -->
-<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/header/header.css" >
- 
 
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/01_header.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/03_loginModal.css">
 </head>
 
 <body>
 	<div class="fixed-top" id="navigator">
       <div class="d-flex bd-highlight justify-content-between" id="mainheader">  
         <div class="p-2 bd-highlight img" id="mainlog-div">
+         
           <!-- Button trigger modal -->
             <a href="#">
             <img src="${contextPath}/resources/img/logo.png" width="200px" height="auto" id="mainlogo" alt="">
