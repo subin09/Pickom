@@ -40,18 +40,18 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			
-			String icon = null;
-			String title = null;
-			String text = null;
 	
 			 if(loginMember != null) { 
 				 
-				session.setAttribute("loginMember", loginMember);
+				int memberNo = 0;
 				
-				session.setAttribute("icon", "success"); 
-				session.setAttribute("title", "로그인 성공");
-				session.setAttribute("text", "환영합니다");
-				 
+				if(memberNo  == 1) {
+					session.setAttribute("admin", loginMember);
+				}else {
+					session.setAttribute("loginMember", loginMember);
+				}
+				
+								 
 			 }else { 
 				session.setAttribute("icon", "error"); 
 				session.setAttribute("title", "로그인 실패");

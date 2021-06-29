@@ -69,6 +69,15 @@ public class Member {
 		}
 
 
+	
+
+	public Member(String memberId, String memberEmail) {
+		super();
+		this.memberId = memberId;
+		this.memberEmail = memberEmail;
+		
+	}
+
 
 	public Member(String memberId) {
 		super();

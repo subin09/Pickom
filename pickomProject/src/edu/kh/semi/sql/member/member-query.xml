@@ -19,12 +19,6 @@
 	?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
 	</entry>
 	
-	<!-- 아이디 중복확인 SQL -->
-	<entry key ="idDubCheck">
-	SELECT * FROM MEMBER
-	WHERE MEMBER_ID = ?
-	AND MEMBER_STATUS = 'Y'
-	</entry>
 	
 	
 

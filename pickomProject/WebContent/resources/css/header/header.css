@@ -1,0 +1,37 @@
+div#mainlog,div#mainmypage{
+    text-align: center;
+  }
+  #mainlog-div{
+    margin-left: 10%;
+  }
+  #mainmypage-div{
+    margin-right: 10%;
+  }
+
+  input#mainsearch{
+    width: 500px;
+  }
+
+  #mainheader{
+    background-color: beige;
+  }
+
+  #mainmenutitle{
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    width: 10em;
+  }
+
+  #mainmenutitle:hover{
+    color: orange;
+  }
+
+  #maincustomerservice{
+      margin-left: 10%;
+  }
+
+  body {
+      padding-top: 210px;
+  }
+

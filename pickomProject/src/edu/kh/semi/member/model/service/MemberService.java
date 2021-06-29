@@ -72,6 +72,26 @@ public class MemberService {
 		
 		return result;
 	}
+
+
+	/** 비밀번호찾기 
+	 * @param memberId
+	 * @param memberEmail 
+	 * @return m
+	 * @throws Exception
+	 */
+	public Member searchPw(String memberId, String memberEmail) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
+		Member m = dao.searchPw(conn, memberId,memberEmail);
+		
+		// 커넥션 반환
+		close(conn);
+		
+		return m;
+	}
 	
 	
 

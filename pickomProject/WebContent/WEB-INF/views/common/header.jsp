@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%-- 배포된 웹 애플리케이션의 최상위 주소를 간단히 얻어올 수 있도록 
-     application 범위로 변수를 하나 생성 --%>
+
 <c:set var="contextPath" scope="application"
 	   value="${pageContext.servletContext.contextPath}" />
 
@@ -20,49 +19,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
  
-<!-- sweetalert API 추가 --> 
+<!-- sweetalert API --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
- <style>
- div#mainlog,div#mainmypage{
-        text-align: center;
-      }
-      #mainlog-div{
-        margin-left: 10%;
-      }
-      #mainmypage-div{
-        margin-right: 10%;
-      }
-
-      input#mainsearch{
-        width: 500px;
-      }
-
-      #mainheader{
-        background-color: beige;
-      }
-
-      #mainmenutitle{
-        font-weight: bold;
-        color: black;
-        text-align: center;
-        width: 10em;
-      }
-
-      #mainmenutitle:hover{
-        color: orange;
-      }
-
-      #maincustomerservice{
-          margin-left: 10%;
-      }
-
-      body {
-	      padding-top: 210px;
-      }
-
-
-</style>
- 
+<!-- css -->
+<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/header/header.css" >
  
 
 </head>
@@ -168,10 +128,10 @@
                     <a class="btn btn-lg btn-secondary btn-block" href="${contextPath}/member/signUp">회원가입</a>
                 </form>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">로그인</button>
-            </div>
+            	<div class="modal-footer">
+                    <a class="btn btn-secondary" href="${contextPath}/member/searchId">아이디 찾기</a>
+                    <a class="btn btn-secondary" href="${contextPath}/member/searchPw">비밀번호 찾기</a>
+                </div>
         </div>
         </div>
     </div>
@@ -191,6 +151,42 @@
 		<c:remove var="title" />
 		<c:remove var="text" />
 	</c:if>
+	
+	<script>
+		
+		function loginValidate(){
+			
+			if(  $("#memberId").val().trim().length == 0  ){
+				
+				swal({
+					"icon" : "warning",
+					"title" : "아이디를 입력해주세요"
+				}).then(function(){
+					$("#memberId").focus();
+				});
+				
+				return false;  
+			}
+			
+			
+			if(  $("#memberPw").val().trim().length == 0  ){
+				swal({
+					"icon" : "warning",
+					"title" : "비밀번호를 입력해주세요"
+				}).then(function(){
+					// 아이디 입력창으로 포커스 이동
+					$("#memberPw").focus();
+				});
+				
+				return false;  
+			}
+			
+		}
+		
+	
+	
+	</script>
+	
 	
 </body>
 

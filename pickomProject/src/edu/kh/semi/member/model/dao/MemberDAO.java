@@ -163,6 +163,40 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+
+	public Member searchPw(Connection conn, String memberId, String memberEmail) throws Exception{
+		
+		Member m = null;
+		
+		String sql = prop.getProperty("searchPw");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, memberEmail);
+			
+			// SQL 구문 수행 후 조회 결과인 ResultSet을 rs 변수에 저장
+			rs = pstmt.executeQuery();
+			
+			// 조회 결과가 있는지 확인 후 있으면 Member 객체를 생성하여 조회된 값을 저장
+			// -> 로그인 결과는 없거나 1행만 있음 -> if문으로 검사
+			if(rs.next()) {
+				m= new Member(rs.getString("MEMBER_ID"), 
+							rs.getString("MEMBER_EMAIL"));
+			}
+			
+			
+		}finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return m;
+	}
 	
 	
 
