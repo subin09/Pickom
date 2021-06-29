@@ -1,4 +1,4 @@
-div#mainlog,div#mainmypage{
+  div#mainlog,div#mainmypage{
     text-align: center;
   }
   #mainlog-div{
@@ -27,11 +27,6 @@ div#mainlog,div#mainmypage{
     color: orange;
   }
 
-  #maincustomerservice{
-      margin-left: 10%;
-  }
-
   body {
       padding-top: 210px;
   }
-
