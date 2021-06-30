@@ -1,9 +1,9 @@
 package crawler.run;
 
-import crawler.service.Crawler;
+import crawler.model.service.CrawlerMethod;
 
 public class Run {
 	public static void main(String[] args) {
-		new Crawler();
+		new CrawlerMethod();
 	}
 }
