@@ -1,0 +1,95 @@
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+
+        body{
+            padding-top: 30px;
+           
+        }
+
+
+        
+
+       .movie-info{
+           box-sizing: border-box;
+           display: flex;
+           justify-content: left;
+       }
+
+       .movie-poster img{
+           margin-left: 40px;
+           margin-right:50px;
+           width: 180px;
+           height: 265px;
+       }
+
+       .movie-info-detail{
+        
+       }
+
+       .movie--detail{
+           text-align: center;
+           overflow: scroll;
+       }
+
+       #video{
+           width: 100%;
+           height: 100%;
+           max-width: 1000px;
+           margin: 10px;
+       }
+
+       #title{
+           display: flex;
+           justify-content: space-between;
+          
+       }
+
+       
+
+       /* swipper */
+       .swiper-container {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 50px;
+      }
+
+      .swiper-slide {
+
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 50vh;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      #main-form{
+          padding-bottom: 100px;
+      }
+
+
