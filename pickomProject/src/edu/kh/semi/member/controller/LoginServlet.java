@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 			 if(loginMember != null) { 
 							
 				session.setAttribute("loginMember", loginMember);
-				
+				session.setAttribute("memberGrade", loginMember.getMemberGrade());
 				
 				// 일정 시간 후 세션 만료
 				session.setMaxInactiveInterval(1800);
@@ -64,7 +64,8 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("title", "로그인 실패");
 				session.setAttribute("text", "아이디 또는 비밀번호가 일치하지 않습니다.");					
 			 }
-
+			 System.out.println(loginMember);
+			 
 			 response.sendRedirect(request.getContextPath());
 			 
 		}catch (Exception e) {

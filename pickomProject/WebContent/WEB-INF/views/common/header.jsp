@@ -72,6 +72,10 @@
 								href="${contextPath}/member/mypage"> 마이페이지 </a></li>
 							<li class="nav-item active"><a class="nav-link"
 								href="${contextPath}/member/logout"> 로그아웃 </a></li>
+							<c:if test="${memberGrade.equals('A')}">
+							<li class="nav-item active"><a class="nav-link"
+								href="${contextPath}/crawler"> 임시크롤링버튼 </a></li>
+							</c:if>
 						</ul>
 					</c:otherwise>
 				</c:choose>
