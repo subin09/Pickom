@@ -40,7 +40,7 @@
                 이름 및 정확한 연락처 정보는 수정 화면에서 확인 가능합니다.
                 </p>
               </div>
-            <a href="#" class="btn btn-primary">수정</a>
+            <a href="${contextPath}/member/mypage/infoUpdate" class="btn btn-primary">수정</a>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
               수정 화면에서 프로필 사진과 별명을 변경하세요. <br>
               </p>
             </div>
-            <a href="#" class="btn btn-primary">수정</a>
+            <a href="${contextPath}/member/mypage/profile" class="btn btn-primary">수정</a>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
               주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.
               </p>
             </div>
-            <a href="#" class="btn btn-primary">수정</a>
+            <a href="${contextPath}/member/mypage/changePw" class="btn btn-primary">수정</a>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
               탈퇴 진행이 가능합니다.
               </p>
             </div>
-            <a href="#" class="btn btn-primary">탈퇴하기</a>
+            <a href="${contextPath}/member/mypage/secession" class="btn btn-primary">탈퇴하기</a>
           </div>
         </div>
       </div>

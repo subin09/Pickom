@@ -36,6 +36,10 @@
 	
 	<!-- header.jsp 동적 include -->
 	<jsp:include page="common/header.jsp" />
+
+	
+	<!-- 메인 화면  -->
+
 	
 	<!-- 메인 화면 이미지 -->
 	 <form class="main-form">

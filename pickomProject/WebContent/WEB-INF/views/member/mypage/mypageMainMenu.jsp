@@ -25,9 +25,9 @@
     <div class="mypagemain">
         <div class="text-center" id="mypagemain-menu">
             <div class="d-flex bd-highlight">
-                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="#">| 회원정보 |</a></div>
-                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="#">| 작성글 관리 |</a></div>
-                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="#">| 불편사항(고객센터) |</a></div>
+                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="${contextPath}">| 회원정보 |</a></div>
+                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="${contextPath}">| 작성글 관리 |</a></div>
+                <div class="d-flex p-3 bd-highlight" id="mypagemain-menu"><a href="${contextPath}">| 불편사항(고객센터) |</a></div>
             </div>
         </div>
         <hr>

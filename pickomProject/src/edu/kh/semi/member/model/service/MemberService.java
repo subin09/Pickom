@@ -22,16 +22,12 @@ public class MemberService {
 	 */
 	public Member login(String memberId, String memberPw) throws Exception {
 		
-		// DB 연결 정보를 담고있는 Connection을 얻어옴.
 		Connection conn = getConnection();
 		
-		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
 		Member loginMember = dao.login(conn, memberId, memberPw);
 		
-		// 커넥션 반환
 		close(conn);
 		
-		// 서비스 수행 결과 반환
 		return loginMember;
 	}
 	
@@ -91,6 +87,12 @@ public class MemberService {
 		close(conn);
 		
 		return m;
+	}
+
+
+	public int memberUpdate(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

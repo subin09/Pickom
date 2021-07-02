@@ -10,10 +10,10 @@ public class Member {
 	private String memberPhone;		// 전화번포('-' 포함)
 	private String memberEmail;		// 이메일
 	private String memberAddress;	// 주소
-	private Date signUpDt;	// 가입일
+	private Date signUpDt;			// 가입일
 	private String memberStatus;	// 회원 상태(Y:정상, N:탈퇴)
 	private String memberGrade;		// 회원 등급(A:관리자, G:일반)
-	private String memberNickNm;		// 회원 닉네임
+	private String memberNickNm;	// 회원 닉네임
 
 	public Member() {}
 	
