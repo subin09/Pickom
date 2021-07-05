@@ -1,4 +1,4 @@
-package edu.kh.semi.crawler.servlet;
+package edu.kh.semi.member.controller.connection;
 
 import java.io.IOException;
 
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/crawler/file")
-public class FileCrawlerServlet extends HttpServlet {
+@WebServlet("/member/mypage/secession")
+public class SessesionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/views/crawler/crawler.jsp";
+		String path = "/WEB-INF/views/member/mypage/secession1.jsp";
 		RequestDispatcher view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}

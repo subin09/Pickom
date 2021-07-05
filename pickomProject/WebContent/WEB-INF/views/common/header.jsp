@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,11 +18,11 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/01_header.css">
-<!-- <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/03_loginModal.css"> -->
 
 </head>
 
 <body>
+	<div id="header-body">
 	<div class="fixed-top" id="navigator">
 		<div class="d-flex bd-highlight justify-content-between"
 			id="mainheader">
@@ -60,26 +59,30 @@
 						</a>
 
 					</c:when>
-
-
 					<c:otherwise>
 						<div class="p-2 bd-highlight img" id="mainmypage-div">
 							<img src="${contextPath}/resources/img/login-logo.jpg"
 								width="100px" height="auto" id="mainmypage" alt="">
 						</div>
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item active"><a class="nav-link"
-								href="${contextPath}/member/mypage"> 마이페이지 </a></li>
-							<li class="nav-item active"><a class="nav-link"
-								href="${contextPath}/member/logout"> 로그아웃 </a></li>
-							<c:if test="${memberGrade.equals('A')}">
-							<li class="nav-item active"><a class="nav-link"
-								href="${contextPath}/crawler"> 임시크롤링버튼 </a></li>
-							</c:if>
-						</ul>
+						<div class="p-2 bd-highlight">
+							<ul class="navbar-nav ml-auto">
+								<li class="nav-item active">
+									<a class="nav-link"	href="${contextPath}/member/mypage"  > 마이페이지 </a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="${contextPath}/member/logout"> 로그아웃 </a>
+								</li>
+								<c:if test="${memberGrade.equals('A')}">
+									<li class="nav-item active">
+										<a class="nav-link"	href="${contextPath}/crawler"> 임시크롤링버튼 </a>
+									</li>
+								</c:if>
+							</ul>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
+
 
 		</div>
 
@@ -166,6 +169,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<c:if test="${!empty title }">

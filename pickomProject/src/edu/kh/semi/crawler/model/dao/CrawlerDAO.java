@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,13 +66,195 @@ public class CrawlerDAO {
 			pstmt.setInt(6, Integer.parseInt(arrRuntime.get(0)));
 			pstmt.setString(7, arrMovieDirector.get(0));
 			pstmt.setDate(8, arrMovieOpenDt.get(0));
-			
-			
+
+
 			result = pstmt.executeUpdate();
-			
+
 		} finally {
 			close(pstmt);
 		}
 		return result;
 	}
+
+	/**포스터 삽입 DAO
+	 * @param conn
+	 * @param poster
+	 * @param fileType
+	 * @param fileLv
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertPoster(Connection conn, String poster, String fileType, int fileLv, int movieNo) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("insertFileLink");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, poster);
+			pstmt.setString(2, fileType);
+			pstmt.setInt(3, fileLv);
+			pstmt.setInt(4, movieNo);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	/**스틸컷 삽입 DAO
+	 * @param conn
+	 * @param stillCut
+	 * @param fileType
+	 * @param fileLv
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertStillCut(Connection conn, String stillCut, String fileType, int fileLv, int movieNo) throws Exception{
+		int result = 0;
+
+		String sql = prop.getProperty("insertFileLink");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, stillCut);
+			pstmt.setString(2, fileType);
+			pstmt.setInt(3, fileLv);
+			pstmt.setInt(4, movieNo);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	/**동영상 삽입 DAO
+	 * @param conn
+	 * @param media
+	 * @param fileType
+	 * @param fileLv
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertMedia(Connection conn, String media, String fileType, int fileLv, int movieNo) throws Exception{
+		int result = 0;
+
+		String sql = prop.getProperty("insertFileLink");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, media);
+			pstmt.setString(2, fileType);
+			pstmt.setInt(3, fileLv);
+			pstmt.setInt(4, movieNo);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	/** 영화배우 테이블 삽입 DAO
+	 * @param conn
+	 * @param actorCd
+	 * @param movieNo
+	 * @param actorNmKo
+	 * @param actorNmEn
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertActor(Connection conn, String actorCd, int movieNo, String actorNmKo, String actorNmEn) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("insertActor");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, Integer.parseInt(actorCd));
+			pstmt.setInt(2, movieNo);
+			pstmt.setString(3, actorNmKo);
+			pstmt.setString(4, actorNmEn);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	/**영화별 장르 삽입 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @param genreCd1
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertGenre(Connection conn, int movieNo, String genreCd1) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("insertMovieSort");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			pstmt.setInt(2, Integer.parseInt(genreCd1));
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	/**장르 테이블 삽입 DAO
+	 * @param conn
+	 * @param GenreCd2
+	 * @param GenreNm
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertGenre(Connection conn, String GenreCd2, String GenreNm) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("insertGenre");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, Integer.parseInt(GenreCd2));
+			pstmt.setString(2, GenreNm);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+
+
+	
 }

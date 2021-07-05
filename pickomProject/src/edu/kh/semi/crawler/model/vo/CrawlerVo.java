@@ -1,10 +1,8 @@
 package edu.kh.semi.crawler.model.vo;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -12,34 +10,41 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * @author rlagu
+ *
+ */
 public class CrawlerVo {
 	
 	// 영화 테이블
-	private int movieNo;
 	private ArrayList<String> arrMovieTitleKo = new ArrayList<String>();
 	private ArrayList<String> arrMovieTitleEn = new ArrayList<String>();
 	private ArrayList<String> arrMovieDirector = new ArrayList<String>();
 	private ArrayList<String> arrMovieSummary = new ArrayList<String>();
-	private ArrayList<String> arrGenreCd1 = new ArrayList<String>();
 	private ArrayList<String> arrMovieCountry = new ArrayList<String>();
 	private ArrayList<Date> arrMovieOpenDt = new ArrayList<Date>();
 	private ArrayList<String> arrRuntime = new ArrayList<String>();
-	
-	// 장르이름/번호
-	private ArrayList<String> arrGenreNm;
-	private ArrayList<String> arrGenreCd2;
+	private ArrayList<String> arrGenreCd1 = new ArrayList<String>();
 	
 	// 영화파일
-	private ArrayList<String> arrPoster;
-	private ArrayList<String> arrStillCut;
-	private ArrayList<String> arrMedia;
+	private ArrayList<String> arrPoster = new ArrayList<String>();
+	private ArrayList<String> arrStillCut = new ArrayList<String>();
+	private ArrayList<String> arrMedia = new ArrayList<String>();
+	
+	// 영화배우
+	private ArrayList<String> arrActorNmKo = new ArrayList<String>();
+	private ArrayList<String> arrActorNmEn = new ArrayList<String>();
+	private ArrayList<String> arrActorCd = new ArrayList<String>();
+	
+	// 장르이름/번호
+	private ArrayList<String> arrGenreNm = new ArrayList<String>();
+	private ArrayList<String> arrGenreCd2 = new ArrayList<String>();
+	
 	
 	/** 영화 상세페이지 Crawler[basic]
 	 * @throws Exception
 	 */
-	public void movieTable() throws Exception {
-
-		movieNo = 187310;
+	public void movieTable(int movieNo) throws Exception {
 
 		// 영화 페이지 DOC
 		String urlBasic =  "https://movie.naver.com/movie/bi/mi/basic.nhn?code="+movieNo;
@@ -144,20 +149,20 @@ public class CrawlerVo {
 		System.out.println(arrMovieTitleEn);
 		System.out.println(arrMovieDirector);
 		System.out.println(arrMovieSummary);
+		
+		System.out.println(arrGenreCd1);
 
 	}
 	
 	/** 영화파일 Crawler
 	 * @throws Exception
 	 */
-	private void movieFileLink() throws Exception {
-
-		int i = 187310;
+	public void movieFileLink(int movieNo) throws Exception {
 
 		// 영화 페이지 DOC
-		String urlPicture = "https://movie.naver.com/movie/bi/mi/basic.nhn?code="+i;
-		String urlStillCut = "https://movie.naver.com/movie/bi/mi/photoView.nhn?code="+i;
-		String urlMedia = "https://movie.naver.com/movie/bi/mi/media.nhn?code="+i;
+		String urlPicture = "https://movie.naver.com/movie/bi/mi/basic.nhn?code="+movieNo;
+		String urlStillCut = "https://movie.naver.com/movie/bi/mi/photoView.nhn?code="+movieNo;
+		String urlMedia = "https://movie.naver.com/movie/bi/mi/media.nhn?code="+movieNo;
 
 		Document docPicture = Jsoup.connect(urlPicture).get();
 		Document docStillCut = Jsoup.connect(urlStillCut).get();
@@ -169,7 +174,7 @@ public class CrawlerVo {
 
 		// 포스터
 		String poster = elPoster.attr("src");
-		arrPoster.add(poster);
+		this.arrPoster.add(poster);
 
 		// 스틸컷
 		for(int j=0; j<elStillCut.size(); j++ ) {
@@ -180,7 +185,7 @@ public class CrawlerVo {
 					(0, stillCut.length()-delSize.length());
 			if(!stillCut.matches(delSize)) {
 				stillCut = stillCut+saveSize;
-				arrStillCut.add(stillCut);	
+				this.arrStillCut.add(stillCut);	
 			}
 		}
 
@@ -188,7 +193,7 @@ public class CrawlerVo {
 		for(int j=0; j<elMedia.size(); j++ ) {
 			String mediaAtt = "https://movie.naver.com";
 			String media = mediaAtt + elMedia.get(j).attr("href");
-			arrMedia.add(media);
+			this.arrMedia.add(media);
 		}
 
 		System.out.println(arrPoster);
@@ -199,12 +204,10 @@ public class CrawlerVo {
 	/** 영화배우 Crawler[detail]
 	 * @throws Exception
 	 */
-	private void movieActor() throws Exception {
-
-		int i = 187310;	
+	public void movieActor(int movieNo) throws Exception {
 
 		// 추출 url
-		String url = "https://movie.naver.com/movie/bi/mi/detail.nhn?code="+i;
+		String url = "https://movie.naver.com/movie/bi/mi/detail.nhn?code="+movieNo;
 		Document doc = Jsoup.connect(url).get();
 
 		Elements elActorNmEn = doc.select(".lst_people li .p_info em.e_name");
@@ -213,21 +216,16 @@ public class CrawlerVo {
 		List<Element> liActorNmKo= new ArrayList<Element>(elActorNmKo);
 		List<Element> liActorNmEn= new ArrayList<Element>(elActorNmEn);
 
-		ArrayList<String> arrActorNmKo = new ArrayList<String>();
-		ArrayList<String> arrActorNmEn = new ArrayList<String>();
-		ArrayList<String> arrActorCd = new ArrayList<String>();
-		ArrayList<String> arrMovieNo = new ArrayList<String>();	
-
 		// 영화배우 한글 이름
 		for(int j=0; j<liActorNmKo.size(); j++ ) {
 			String actorNmKo = liActorNmKo.get(j).text().trim();
-			arrActorNmKo.add(actorNmKo);
+			this.arrActorNmKo.add(actorNmKo);
 		}
 
 		// 영화배우 영어 이름
 		for(int j=0; j<liActorNmEn.size(); j++ ) {
 			String actorNmEn = liActorNmEn.get(j).text().trim();
-			arrActorNmEn.add(actorNmEn);
+			this.arrActorNmEn.add(actorNmEn);
 		}
 
 		// 영화배우 코드
@@ -241,30 +239,24 @@ public class CrawlerVo {
 				if(hrefActorCd.contains("code=")) {
 					String actorCd = hrefActorCd.substring
 							(delActor.length());
-					arrActorCd.add(actorCd);
+					this.arrActorCd.add(actorCd);
 				}else {
 					break;
 				}
 				flag = false;
 			}
-		}
-		// 영화번호
-		int movieNo = i;
-		arrMovieNo.add(movieNo+"");
-		
-		
+		}	
 		
 		System.out.println(arrActorNmKo);
 		System.out.println(arrActorNmEn);
 		System.out.println(arrActorCd);
-		System.out.println(arrMovieNo);
 	}
 
 
 	/** 장르 Crawler[단독테이블]
 	 * @throws Exception
 	 */
-	private void movieGenre() throws Exception {
+	public void movieGenre() throws Exception {
 
 		// 추출 url
 		String url = "https://movie.naver.com/movie/sdb/browsing/bmovie_genre.nhn";
@@ -277,20 +269,20 @@ public class CrawlerVo {
 		// 장르이름
 		for(int i=0; i<elGenre.size(); i++ ) {
 			String genreNm = elGenre.get(i).text().trim();
-			arrGenreNm.add(genreNm);
+			this.arrGenreNm.add(genreNm);
 		}
 
 		// 장르번호
 		for(int i=0; i<elGenre.size(); i++ ) {
-			if(0<= i && i <10) {
+			if(0<= i && i < 9) {
 				String hrefGenre = elGenre.get(i).attr("href");
 				String genreCd = hrefGenre.substring(hrefGenre.length()-1);
-				arrGenreCd2.add(genreCd);
+				this.arrGenreCd2.add(genreCd);
 
-			} else if(10<= i) {
+			} else if(9<= i) {
 				String hrefGenre = elGenre.get(i).attr("href");
 				String genreCd = hrefGenre.substring(hrefGenre.length()-2);
-				arrGenreCd2.add(genreCd);
+				this.arrGenreCd2.add(genreCd);
 			}
 		}
 		System.out.println(arrGenreNm);
@@ -301,29 +293,6 @@ public class CrawlerVo {
 	
 	
 	public CrawlerVo() {}
-	
-	public CrawlerVo(int movieNo, ArrayList<String> arrMovieTitleKo, ArrayList<String> arrMovieTitleEn,
-			ArrayList<String> arrMovieDirector, ArrayList<String> arrMovieSummary, ArrayList<String> arrGenreCd1,
-			ArrayList<String> arrMovieCountry, ArrayList<Date> arrMovieOpenDt, ArrayList<String> arrRuntime) {
-		super();
-		this.movieNo = movieNo;
-		this.arrMovieTitleKo = arrMovieTitleKo;
-		this.arrMovieTitleEn = arrMovieTitleEn;
-		this.arrMovieDirector = arrMovieDirector;
-		this.arrMovieSummary = arrMovieSummary;
-		this.arrGenreCd1 = arrGenreCd1;
-		this.arrMovieCountry = arrMovieCountry;
-		this.arrMovieOpenDt = arrMovieOpenDt;
-		this.arrRuntime = arrRuntime;
-	}
-
-	public int getMovieNo() {
-		return movieNo;
-	}
-
-	public void setMovieNo(int movieNo) {
-		this.movieNo = movieNo;
-	}
 
 	public ArrayList<String> getArrMovieTitleKo() {
 		return arrMovieTitleKo;
@@ -357,14 +326,6 @@ public class CrawlerVo {
 		this.arrMovieSummary = arrMovieSummary;
 	}
 
-	public ArrayList<String> getArrGenreCd1() {
-		return arrGenreCd1;
-	}
-
-	public void setArrGenreCd1(ArrayList<String> arrGenreCd1) {
-		this.arrGenreCd1 = arrGenreCd1;
-	}
-
 	public ArrayList<String> getArrMovieCountry() {
 		return arrMovieCountry;
 	}
@@ -389,20 +350,12 @@ public class CrawlerVo {
 		this.arrRuntime = arrRuntime;
 	}
 
-	public ArrayList<String> getArrGenreNm() {
-		return arrGenreNm;
+	public ArrayList<String> getArrGenreCd1() {
+		return arrGenreCd1;
 	}
 
-	public void setArrGenreNm(ArrayList<String> arrGenreNm) {
-		this.arrGenreNm = arrGenreNm;
-	}
-
-	public ArrayList<String> getArrGenreCd2() {
-		return arrGenreCd2;
-	}
-
-	public void setArrGenreCd2(ArrayList<String> arrGenreCd2) {
-		this.arrGenreCd2 = arrGenreCd2;
+	public void setArrGenreCd1(ArrayList<String> arrGenreCd1) {
+		this.arrGenreCd1 = arrGenreCd1;
 	}
 
 	public ArrayList<String> getArrPoster() {
@@ -429,15 +382,54 @@ public class CrawlerVo {
 		this.arrMedia = arrMedia;
 	}
 
+	public ArrayList<String> getArrActorNmKo() {
+		return arrActorNmKo;
+	}
+
+	public void setArrActorNmKo(ArrayList<String> arrActorNmKo) {
+		this.arrActorNmKo = arrActorNmKo;
+	}
+
+	public ArrayList<String> getArrActorNmEn() {
+		return arrActorNmEn;
+	}
+
+	public void setArrActorNmEn(ArrayList<String> arrActorNmEn) {
+		this.arrActorNmEn = arrActorNmEn;
+	}
+
+	public ArrayList<String> getArrActorCd() {
+		return arrActorCd;
+	}
+
+	public void setArrActorCd(ArrayList<String> arrActorCd) {
+		this.arrActorCd = arrActorCd;
+	}
+
+	public ArrayList<String> getArrGenreNm() {
+		return arrGenreNm;
+	}
+
+	public void setArrGenreNm(ArrayList<String> arrGenreNm) {
+		this.arrGenreNm = arrGenreNm;
+	}
+
+	public ArrayList<String> getArrGenreCd2() {
+		return arrGenreCd2;
+	}
+
+	public void setArrGenreCd2(ArrayList<String> arrGenreCd2) {
+		this.arrGenreCd2 = arrGenreCd2;
+	}
+
 	@Override
 	public String toString() {
-		return "CrawlerMethod [movieNo=" + movieNo + ", arrMovieTitleKo=" + arrMovieTitleKo + ", arrMovieTitleEn="
-				+ arrMovieTitleEn + ", arrMovieDirector=" + arrMovieDirector + ", arrMovieSummary=" + arrMovieSummary
-				+ ", arrGenreCd1=" + arrGenreCd1 + ", arrMovieCountry=" + arrMovieCountry + ", arrMovieOpenDt="
-				+ arrMovieOpenDt + ", arrRuntime=" + arrRuntime + ", arrGenreNm=" + arrGenreNm + ", arrGenreCd2="
-				+ arrGenreCd2 + ", arrPoster=" + arrPoster + ", arrStillCut=" + arrStillCut + ", arrMedia=" + arrMedia
-				+ "]";
+		return "CrawlerVo [arrMovieTitleKo=" + arrMovieTitleKo + ", arrMovieTitleEn=" + arrMovieTitleEn
+				+ ", arrMovieDirector=" + arrMovieDirector + ", arrMovieSummary=" + arrMovieSummary
+				+ ", arrMovieCountry=" + arrMovieCountry + ", arrMovieOpenDt=" + arrMovieOpenDt + ", arrRuntime="
+				+ arrRuntime + ", arrGenreCd1=" + arrGenreCd1 + ", arrPoster=" + arrPoster + ", arrStillCut="
+				+ arrStillCut + ", arrMedia=" + arrMedia + ", arrActorNmKo=" + arrActorNmKo + ", arrActorNmEn="
+				+ arrActorNmEn + ", arrActorCd=" + arrActorCd + ", arrGenreNm=" + arrGenreNm + ", arrGenreCd2="
+				+ arrGenreCd2 + "]";
 	}
-	
-	
 }

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 import edu.kh.semi.member.model.vo.Member;
+import edu.kh.semi.member.model.vo.Profile;
 
 public class MemberDAO {
 	
@@ -188,6 +189,63 @@ public class MemberDAO {
 	}
 	
 	
+	/** 회원 정보 수정 DAO
+	 * @param conn
+	 * @param member
+	 * @return result
+	 * @throws Exception
+	 */
+	public int memberUpdate(Connection conn, Member member) throws Exception{
+		int result = 0;
+
+		String sql = prop.getProperty("memberUpdate");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, member.getMemberEmail());
+			pstmt.setString(2, member.getMemberPhone());
+			pstmt.setString(3, member.getMemberAddress());
+			pstmt.setInt(4, member.getMemberNo());
+
+			result = pstmt.executeUpdate();
+
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 
 
+	public int updateNickNm(Connection conn, int memberNo, String memberNickNm) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("updateNickNm");
+
+		try {
+
+
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+
+	public int updateProfile(Connection conn, Profile at) throws Exception {
+		int result = 0;
+
+		String sql = prop.getProperty("updateProfile");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 }

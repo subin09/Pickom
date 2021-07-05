@@ -19,4 +19,13 @@
 	VALUES(SEQ_MNO.NEXTVAL, ?, ?, ?, ?, 
 	?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
 	</entry>
+	
+	<!-- 회원 정보 수정 SQL -->
+	<entry key="memberUpdate">
+		UPDATE MEMBER SET
+			MEMBER_EMAIL = ?,
+			MEMBER_PHONE = ?,
+			MEMBER_ADDR = ?
+		WHERE MEMBER_NO = ?
+	</entry>
 </properties>

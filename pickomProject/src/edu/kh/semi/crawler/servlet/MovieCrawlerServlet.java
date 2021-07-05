@@ -25,11 +25,11 @@ public class MovieCrawlerServlet extends HttpServlet {
 		CrawlerVo craw = new CrawlerVo();
 		
 		try {
-			// 크롤러 실행
-			craw.movieTable();
+			// 1. 영화테이블 크롤러 실행
+			int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+			craw.movieTable(movieNo);			
 			
-			// 변수얻어옴
-			int movieNo = craw.getMovieNo();
+			//  변수
 			ArrayList<String> arrMovieTitleKo = craw.getArrMovieTitleKo();
 			ArrayList<String> arrMovieTitleEn = craw.getArrMovieTitleEn();
 			ArrayList<String> arrMovieDirector = craw.getArrMovieDirector();
@@ -44,16 +44,47 @@ public class MovieCrawlerServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			if(result>0) {
-				session.setAttribute("icon", "success");
-				session.setAttribute("title", "영화 정보 삽입 성공");
-				session.setAttribute("text", "추가 영화는 메소드에서 영화번호 변경 or 메소드 수정요망");
-			} else{
+				// 2. 영화파일
+				craw.movieFileLink(movieNo);
+				
+				ArrayList<String> arrPoster = craw.getArrPoster();
+				ArrayList<String> arrStillCut = craw.getArrStillCut();
+				ArrayList<String> arrMedia = craw.getArrMedia();
+				
+				result = service.insertFile(movieNo, arrPoster, arrStillCut, arrMedia);
+				
+				if(result>0){
+					craw.movieActor(movieNo);
+					
+					ArrayList<String> arrActorNmKo = craw.getArrActorNmKo();
+					ArrayList<String> arrActorNmEn = craw.getArrActorNmEn();
+					ArrayList<String> arrActorCd = craw.getArrActorCd();
+					
+					result = service.insertActor(movieNo, arrActorNmKo, arrActorNmEn, arrActorCd);
+					if(result>0) {
+						
+						ArrayList<String> arrGenreCd1  = craw.getArrGenreCd1();
+						
+						service.insertActor(movieNo, arrGenreCd1);
+						
+						session.setAttribute("icon", "success");
+						session.setAttribute("title", "영화 정보 삽입 성공");
+						session.setAttribute("text", "추가 영화는 메소드에서 영화번호 변경 or 메소드 수정요망");
+					}
+				}
+			}
+			
+			
+			
+			
+			if(result==0){
 				session.setAttribute("icon", "error");
 				session.setAttribute("title", "영화 정보 삽입 실패");
 				session.setAttribute("text", "크롤링 메소드 or 영화번호 확인 요망");
 			}
 			
-			response.sendRedirect(request.getContextPath()+"/crawler");
+			String path = request.getHeader("referer");
+			response.sendRedirect(path);
 			
 		}catch (Exception e) {
 			e.printStackTrace();

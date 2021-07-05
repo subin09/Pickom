@@ -17,12 +17,14 @@
 </head>
 <body>
         <div class="d-flex bd-highlight">
-          <div class='d-flex bd-highlight mr-sm-4'><a href="${contextPath}/crawler/movie" >영화 업데이트</a></div>
-          <div class='d-flex bd-highlight mr-sm-4'><a href="${contextPath}/crawler/file" >파일 업데이트</a></div>
-          <div class='d-flex bd-highlight mr-sm-4'><a href="${contextPath}/crawler/actor" >배우 업데이트</a></div>
+         	<div class='d-flex bd-highlight mr-sm-4'>
+	          	<form method="POST" action="${contextPath}/crawler/movie">
+		          	<input type="text" class="form-control" id="movieNo" name="movieNo" placeholder="영화코드" >
+		          	<button type="submit">영화 업데이트</button>
+	          	</form>
+          	</div>
           <div class='d-flex bd-highlight mr-sm-4'><a href="${contextPath}/crawler/genre" >장르 업데이트</a></div>
         </div>
-        
         	<c:if test="${!empty title }">
 			<script>
 				swal({

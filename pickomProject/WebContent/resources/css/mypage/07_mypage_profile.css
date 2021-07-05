@@ -1,7 +1,36 @@
-
-.profile-outter{
-    display: flex;
+.profile-outter {
+	display: flex;
 }
-.profile-inner{
-    margin: auto;
+
+.profile-inner {
+	margin: auto;
+}
+
+.profile {
+	cursor: pointer;
+	width: 200px;
+	height: 200px;
+	border: 1px solid #ced4da;
+	position: relative;
+}
+
+.thubnail {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+}
+
+.profile>img {
+	max-width: 100%;
+	max-height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+#fileArea {
+	display: none;
 }

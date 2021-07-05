@@ -26,6 +26,8 @@
 </style>
 
 <body>
+	<jsp:include page="../../../views/common/header.jsp" />
+
     <div class="mypagemain">
         <div> <h3>회원 정보</h3> </div>
         <hr>
@@ -99,5 +101,8 @@
             </div>
         </div>
     </div>
+    
+   <jsp:include page="../../../views/common/footer.jsp" />
+    
 </body>
 </html>
