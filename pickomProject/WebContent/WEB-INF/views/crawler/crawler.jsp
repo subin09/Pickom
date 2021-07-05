@@ -25,7 +25,8 @@
           	</div>
           <div class='d-flex bd-highlight mr-sm-4'><a href="${contextPath}/crawler/genre" >장르 업데이트</a></div>
         </div>
-        	<c:if test="${!empty title }">
+        
+        <c:if test="${!empty title }">
 			<script>
 				swal({
 					"icon"  : "${icon}",

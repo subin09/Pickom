@@ -113,6 +113,7 @@ public class MemberDAO {
 			pstmt.setString(7, member.getMemberNickNm());
 			
 			result = pstmt.executeUpdate();
+		
 		} finally {
 			close(pstmt);
 		}
@@ -155,6 +156,13 @@ public class MemberDAO {
 	}
 
 
+	/**
+	 * @param conn
+	 * @param memberId
+	 * @param memberEmail
+	 * @return
+	 * @throws Exception
+	 */
 	public Member searchPw(Connection conn, String memberId, String memberEmail) throws Exception{
 		
 		Member m = null;
@@ -218,13 +226,24 @@ public class MemberDAO {
 	}
 
 
+	/**프로필 닉네임 수정 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param memberNickNm
+	 * @return
+	 * @throws Exception
+	 */
 	public int updateNickNm(Connection conn, int memberNo, String memberNickNm) throws Exception {
 		int result = 0;
 
 		String sql = prop.getProperty("updateNickNm");
 
 		try {
-
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNickNm);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
 
 		}finally {
 			close(pstmt);
@@ -234,6 +253,12 @@ public class MemberDAO {
 	}
 
 
+	/**프로필 사진 수정 DAO
+	 * @param conn
+	 * @param at
+	 * @return
+	 * @throws Exception
+	 */
 	public int updateProfile(Connection conn, Profile at) throws Exception {
 		int result = 0;
 
@@ -241,11 +266,79 @@ public class MemberDAO {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-
+				
+				System.out.println(at.getFileName());
+				System.out.println(at.getFilePath());
+				
+				pstmt.setString(1, at.getFilePath());
+				pstmt.setString(2, at.getFileName());
+				pstmt.setInt(3, at.getMemberNo());
+			
+				result = pstmt.executeUpdate();
 		}finally {
 			close(pstmt);
 		}
 
 		return result;
 	}
+
+
+	/** 프로필 테이블 삽입 DAO
+	 * @param conn
+	 * @param memberId
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertProfile(Connection conn, String memberId) throws Exception{
+		int result = 0;
+
+		String sql = prop.getProperty("insertProfile");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+
+			result = pstmt.executeUpdate();
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+
+	/**기존 프로필 check DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 */
+	public Profile memberPreProfile(Connection conn, int memberNo) throws Exception{
+		
+		Profile memberPreProfile = null;
+		
+		String sql = prop.getProperty("memberPreProfile");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberPreProfile
+				= new Profile(
+							rs.getInt("MEMBER_NO"), 
+							rs.getString("PROFILE_PICTURE"), 
+							rs.getString("PROFILE_PICTURE_NAME")
+							);
+			}			
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return memberPreProfile;
+	}
+
+
 }

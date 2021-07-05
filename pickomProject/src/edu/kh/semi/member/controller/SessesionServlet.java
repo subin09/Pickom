@@ -1,4 +1,4 @@
-package edu.kh.semi.member.controller.connection;
+package edu.kh.semi.member.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.kh.semi.member.model.service.MemberService;
-import edu.kh.semi.member.model.vo.Member;
-
-
-@WebServlet("/member/mypage/memberUpdate")
-public class InfoUpdateServlet extends HttpServlet {
+@WebServlet("/member/mypage/secession")
+public class SessesionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "/WEB-INF/views/member/mypage/memberUpdate.jsp";
+		String path = "/WEB-INF/views/member/mypage/secession1.jsp";
 		RequestDispatcher view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}

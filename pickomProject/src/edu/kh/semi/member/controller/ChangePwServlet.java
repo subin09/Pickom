@@ -1,4 +1,4 @@
-package edu.kh.semi.member.controller.connection;
+package edu.kh.semi.member.controller;
 
 import java.io.IOException;
 
@@ -9,24 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/member/mypage")
-public class MypageServlet extends HttpServlet {
+@WebServlet("/member/mypage/changePwfn")
+public class ChangePwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "/WEB-INF/views/member/mypage/mypageMain.jsp";
+		String path = "/WEB-INF/views/member/mypage/changePw.jsp";
 		RequestDispatcher view = request.getRequestDispatcher(path);
 		view.forward(request, response);
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
 }
-
-

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,7 +32,7 @@
         <div class="row my-6">
             <div class="col-sm-8">
                 <div class="bg-white rounded shadow-sm container p-3">
-                    <form method="POST" action="profilefn" enctype="multipart/form-data" onsubmit="return memberUpdateValidate();" class="form-horizontal" role="form">
+                    <form method="POST" action="profile" enctype="multipart/form-data" onsubmit="return memberUpdateValidate();" class="form-horizontal" role="form">
                         <div class="row mb-3 form-row">
                             <div class="col-sm-3 profile-outter">
                                 <div class="row-sm-2 profile-inner">
@@ -40,9 +40,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-9 text-center">
+                            
+                            	<c:set var="img0" value="${contextPath}/${checkfilePath}${checkfileName}"/>
                             	
                             	<div class="profile thubnail" id="titleImgArea">
-										<img id="profileImgIn">
+									<c:if test="${!empty img0 }"> <img id="profileImgIn" src="${img0}"> </c:if>
+									<c:if test="${empty img0 }"> <img id="profileImgIn"> </c:if>
 								</div>
                                 <div id="fileArea">
 									<input type="file" id="profileImg0" name="profileImg0" onchange="LoadImg(this,0)"> 
@@ -65,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="memberNickNm" name="memberNickNm">
+                                <input type="text" class="form-control" id="memberNickNm" name="memberNickNm" placeholder="${loginMember.memberNickNm}">
                             </div>
                         </div>
 
@@ -93,37 +96,53 @@
     </div>
     
 	<jsp:include page="../../../views/common/footer.jsp" />
-	
+
+	<c:if test="${!empty title }">
+		<script>
+			swal({
+				"icon" : "${icon}",
+				"title" : "${title}",
+				"text" : "${text}"
+			});
+		</script>
+
+
+		<c:remove var="icon" />
+		<c:remove var="title" />
+		<c:remove var="text" />
+	</c:if>
+
 	<script>
-	$(function() {
+		$(function() {
 			$(".profile").on("click", function() {
 				$("#profileImg" + 0).click();
 			});
 		});
 
-    $(function() {
-        $(".profileBtn").on("click", function() {
-            $("#profileImg" + 0).click();
-        });
-    });
-    
-    $(function(){
-        $(".profileResetBtn").on("click", function(){
-            var srcReset = "";
-            $("#profileImgIn").attr("src", srcReset);
-        });
-    });
+		$(function() {
+			$(".profileBtn").on("click", function() {
+				$("#profileImg" + 0).click();
+			});
+		});
 
-	function LoadImg(value, num) {
+		$(function() {
+			$(".profileResetBtn").on("click", function() {
+				var srcReset = "";
+				$("#profileImgIn").attr("src", srcReset);
+			});
+		});
+
+		function LoadImg(value, num) {
 			if (value.files && value.files[0]) {
 				var reader = new FileReader();
-	
+
 				reader.readAsDataURL(value.files[0]);
 
 				reader.onload = function(e) {
 
-					$(".profile").eq(num).children("img").attr("src", e.target.result);
-                    console.log(e.target.result);
+					$(".profile").eq(num).children("img").attr("src",
+							e.target.result);
+					console.log(e.target.result);
 				}
 
 			}

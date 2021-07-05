@@ -3,6 +3,7 @@ package edu.kh.semi.crawler.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,23 +23,32 @@ public class GenreCrawlerServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		CrawlerVo craw = new CrawlerVo();
+		HttpSession session = request.getSession();
 		
 		try {
-			craw.movieGenre();
 			
+			craw.movieGenre();
 			ArrayList<String> arrGenreNm  = craw.getArrGenreNm();
 			ArrayList<String> arrGenreCd2  = craw.getArrGenreCd2();
+			int check = 0;
+			int result = 0;
 			
-			int result = service.insertGenre(arrGenreNm, arrGenreCd2);
-			
-			HttpSession session = request.getSession();
+			for(String checkGenreCd2: arrGenreCd2) {
+				System.out.println(checkGenreCd2);
+				check = service.seachGenre(checkGenreCd2);
+				
+				if(check == 0) {							
+					result = service.insertGenre(arrGenreNm, arrGenreCd2);	
+				} else{
+					session.setAttribute("icon", "error");
+					session.setAttribute("title", "장르 추가 실패");
+				}				
+				
+			}
 			
 			if(result>0) {
 				session.setAttribute("icon", "success");
 				session.setAttribute("title", "장르 정보 삽입 성공");
-			} else{
-				session.setAttribute("icon", "error");
-				session.setAttribute("title", "장르 추가 실패");
 			}
 			
 			String path = request.getHeader("referer");
@@ -46,6 +56,13 @@ public class GenreCrawlerServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			request.setAttribute("errorMsg", "영화 장르 입력중 오류 발생");
+
+			RequestDispatcher view 
+			= request.getRequestDispatcher("/WEB-INF/views/common/error.jsp");
+
+			view.forward(request, response);
 		}
 		
 		

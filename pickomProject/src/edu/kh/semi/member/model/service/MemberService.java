@@ -45,10 +45,12 @@ public class MemberService {
 		int result = dao.signUp(conn, member);
 		
 		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+			String memberId = member.getMemberId();
+			result = dao.insertProfile(conn, memberId);
+			
+			if(result > 0) commit(conn);
+			else rollback(conn);
+		} else rollback(conn);		
 		
 		close(conn);
 		
@@ -112,6 +114,13 @@ public class MemberService {
 	}
 
 
+	/**프로필 수정 Service
+	 * @param memberNo
+	 * @param atList
+	 * @param memberNickNm
+	 * @return result
+	 * @throws Exception
+	 */
 	public int insertProfile(int memberNo, List<Profile> atList, String memberNickNm) throws Exception  {
 		
 		Connection conn = getConnection();
@@ -137,6 +146,22 @@ public class MemberService {
 		
 		close(conn);
 		return result;
+	}
+
+
+	/**기존 프로필 check Service
+	 * @param memberNo
+	 * @return
+	 */
+	public Profile memberPreProfile(int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		Profile memberPreProfile = dao.memberPreProfile(conn, memberNo);
+		
+		close(conn);
+		
+		return memberPreProfile;
 	}
 	
 	

@@ -254,6 +254,57 @@ public class CrawlerDAO {
 	}
 
 
+	/** 영화 테이블 등록 여부 DAO
+	 * @param conn
+	 * @param movieNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int searchMovie(Connection conn, int movieNo) throws Exception{
+		
+		int search = 0;
+		
+		String sql = prop.getProperty("searchMovie");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, movieNo);
+
+			search = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return search;
+	}
+
+
+	/** 장르 테이블 등록 여부 DAO
+	 * @param conn
+	 * @param checkGenreCd2
+	 * @return
+	 * @throws Exception
+	 */
+	public int seachGenre(Connection conn, String checkGenreCd2) throws Exception {
+		int search = 0;
+		
+		String sql = prop.getProperty("seachGenre");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, Integer.parseInt(checkGenreCd2));
+
+			search = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+		return search;
+	}
+
+
 
 
 	
