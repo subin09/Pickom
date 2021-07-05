@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/mypage/changePw")
+@WebServlet("/member/mypage/changePwfn")
 public class ChangePwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  

@@ -11,7 +11,7 @@
   input#mainsearch{
     width: 500px;
   }
-
+  
   #mainheader{
     background-color: beige;
   }
@@ -27,6 +27,6 @@
     color: orange;
   }
 
-  body {
-      padding-top: 210px;
+  #header-body {
+      padding-top: 350px;
   }

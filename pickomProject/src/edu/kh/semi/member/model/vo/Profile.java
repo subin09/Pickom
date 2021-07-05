@@ -1,19 +1,26 @@
 package edu.kh.semi.member.model.vo;
 
 public class Profile {
-	private int MemberNo;
+
+	private int memberNo;
 	private String filePath;
 	private String fileName;
 	
 	public Profile() {}
+	
+	
+	public Profile(int memberNo, String filePath, String fileName) {
+		this.memberNo = memberNo;
+		this.filePath = filePath;
+		this.fileName = fileName;
+	}
 
 	public int getMemberNo() {
-		return MemberNo;
+		return memberNo;
 	}
 
 	public void setMemberNo(int memberNo) {
-		MemberNo = memberNo;
-	}
+		this.memberNo = memberNo;
 
 	public String getFilePath() {
 		return filePath;
@@ -33,8 +40,9 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [MemberNo=" + MemberNo + ", filePath=" + filePath + ", fileName=" + fileName + "]";
+
+		return "Profile [memberNo=" + memberNo + ", filePath=" + filePath + ", fileName=" + fileName + "]";
+
 	}
-	
 	
 }

@@ -1,30 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<!-- 
-	WebContent 폴더 : 프로젝트의 웹 배포 시 최상위 폴더(ContextPath, root, contextRoot)
-					보통 주소상에서 프로젝트명으로 나타남
-					http://localhost:8080/semi/ 이 주소에서     /semi를 나타냄.
-					WebContent 하위에 존재하는 폴더/파일은 주소를 이용한 직접 요청이 가능하지만
-					WEB-INF 폴더는 직접 요청이 불가능하다.
-	WEB-INF 폴더 : 외부(클라이언트)로 부터 직접적인 파일 접근 요청을 차단하는 폴더
-			   (파일 보호 -> 보안성 상승)
-			   Servlet을 이용한 간접 접근만 가능함.
-				
-				
-				
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>html문서 제목</title>
-<!-- sweetalert API --> 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- css -->
-<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/common/header/header.css" >
-	
+<title>main</title>
+
 <!-- swipper -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />   

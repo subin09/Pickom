@@ -2,12 +2,58 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<!-- MOIVE 테이블 삽입 SQL  -->
+	<!-- MOIVE 테이블 삽입 SQL -->
 	<entry key="insertMovie">
 		INSERT INTO MOVIE VALUES(
 		?, ?, ?, ?,
-		DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+		DEFAULT, DEFAULT,
+		DEFAULT, DEFAULT,
 		?, ?, ?, ?
 		)
 	</entry>
+
+	<!-- FileLink 테이블 삽입 SQL -->
+	<entry key="insertFileLink">
+		INSERT INTO MOVIE_LINK VALUES(
+		SEQ_MLN.NEXTVAL, ?, ?,
+		?, ?)
+	</entry>
+
+	<!-- Actor 테이블 삽입 SQL -->
+	<entry key="insertActor">
+		INSERT INTO ACTOR VALUES(
+		?, ?, ?, ?, SEQ_AN.NEXTVAL)
+	</entry>
+
+
+	<!-- MovieSort 테이블 삽입 SQL -->
+	<entry key="insertMovieSort">
+		INSERT INTO MOVIE_SORT VALUES(
+		?, ?
+		)
+	</entry>
+
+	
+	<!-- [단독 1회만 실행]Genre 테이블 삽입 SQL  -->
+	<entry key="insertGenre">
+		INSERT INTO MOVIE_GENRE VALUES(
+		?, ?
+		)
+	</entry>
+	
+	<!-- Movie 테이블 search SQL  -->
+	<entry key="searchMovie">
+		SELECT * FROM MOVIE WHERE MOVIE_NO = ?
+	</entry>
+	
+	<!-- Genre 테이블 search SQL  -->
+	<entry key="seachGenre">
+		SELECT * FROM MOVIE_GENRE WHERE MOVIE_GENRE_CD = ?
+	</entry>
+	
+
+
+	
+	
+	
 </properties>

@@ -19,11 +19,7 @@ public class LoginFilter implements Filter {
 
 	
 	
-	public void destroy() {
-
-		
-		
-	}
+	public void destroy() {}
 
 	
 	

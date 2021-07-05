@@ -19,4 +19,46 @@
 	VALUES(SEQ_MNO.NEXTVAL, ?, ?, ?, ?, 
 	?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
 	</entry>
+	
+	<!-- 회원 정보 수정 SQL -->
+	<entry key="memberUpdate">
+		UPDATE MEMBER SET
+			MEMBER_EMAIL = ?,
+			MEMBER_PHONE = ?,
+			MEMBER_ADDR = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 회원 닉네임 수정 SQL -->
+	<entry key="updateNickNm">
+		UPDATE MEMBER SET
+		MEMBER_NICKNAME = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 프로필 테이블 수정 SQL -->
+	<entry key="updateProfile">
+		UPDATE MEMBER_PROFILE SET
+		PROFILE_PICTURE = ?,
+		PROFILE_PICTURE_NAME = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 프로필 테이블 삽입 SQL -->
+	<entry key="insertProfile">
+		INSERT INTO MEMBER_PROFILE
+		VALUES(
+		(SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_ID = ?),
+		DEFAULT, DEFAULT)
+	</entry>
+	
+	<!-- 프로필 테이블 삽입 SQL -->
+	<entry key="memberPreProfile">
+		SELECT MEMBER_NO, 
+		PROFILE_PICTURE, 
+		PROFILE_PICTURE_NAME
+		FROM MEMBER_PROFILE
+		WHERE MEMBER_NO = ?
+	</entry>
 </properties>
