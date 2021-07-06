@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-sm-9 text-center">
                             
-                            	<c:set var="img0" value="${contextPath}/${checkfilePath}${checkfileName}"/>
+                            	<c:set var="img0" value="${contextPath}/${filePath}${fileName}"/>
                             	
                             	<div class="profile thubnail" id="titleImgArea">
 									<c:if test="${!empty img0 }"> <img id="profileImgIn" src="${img0}"> </c:if>

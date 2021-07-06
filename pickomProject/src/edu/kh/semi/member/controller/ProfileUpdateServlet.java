@@ -37,6 +37,11 @@ public class ProfileUpdateServlet extends HttpServlet {
 			String checkfilePath = memberPreProfile.getFilePath();
 			String checkfileName = memberPreProfile.getFileName();
 			
+			System.out.println(checkfilePath);
+			System.out.println(checkfileName);
+			session.setAttribute("filePath", checkfilePath);
+			session.setAttribute("fileName", checkfileName);
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +58,7 @@ public class ProfileUpdateServlet extends HttpServlet {
 		String icon = null;
 		String title = null;
 		String path = null;
+		String memberNickNm = null;
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		Profile at = new Profile();
@@ -61,24 +67,18 @@ public class ProfileUpdateServlet extends HttpServlet {
 		int result = 0;
 		try {
 			int memberNo = loginMember.getMemberNo();
-			
+			int maxSize = 1024 * 1024 * 20;
+			String root = session.getServletContext().getRealPath("/");
+			String filePath = "resources/img/profileImg/";
 			Profile memberPreProfile = service.memberPreProfile(memberNo);
 			
-			if(memberPreProfile != null) {
-				
-				
-				
-				int maxSize = 1024 * 1024 * 20;
-				String root = session.getServletContext().getRealPath("/");
-				String filePath = "resources/img/profileImg";
-				
-				MultipartRequest mpRequest 
-				= new MultipartRequest(request, root+filePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-				
-				List<Profile> atList = new ArrayList<Profile>();
-				Enumeration<String> images = mpRequest.getFileNames();
-	
-				if(images.hasMoreElements()) {
+			MultipartRequest mpRequest 
+			= new MultipartRequest(request, root+filePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+			
+			List<Profile> atList = new ArrayList<Profile>();
+			Enumeration<String> images = mpRequest.getFileNames();
+			
+			if(images.hasMoreElements()) {
 	
 					String name = images.nextElement();
 					
@@ -90,19 +90,16 @@ public class ProfileUpdateServlet extends HttpServlet {
 					}
 				}
 				
-				String memberNickNm = mpRequest.getParameter("memberNickNm");
-				result = service.insertProfile(memberNo, atList, memberNickNm);
+					memberNickNm = mpRequest.getParameter("memberNickNm");
+					result = service.updateProfile(memberNo, atList, memberNickNm);
 				
 				
-				System.out.println(memberNo);
-				System.out.println(atList);
-				System.out.println(memberNickNm);
-			}else {
-					at.setFilePath(memberPreProfile.getFilePath());
-					at.setFileName(memberPreProfile.getFileName());
-				}
+					// System.out.println("1 :" + memberNo);
+					// System.out.println("1 :" + atList);
+					// System.out.println("1 :" + memberNickNm);
 
-						
+				
+					
 			if(result > 0) {
 				icon = "success";
 				title = "프로필 수정 성공";
