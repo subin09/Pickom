@@ -26,7 +26,7 @@
 <!-- 라이트 박스 끝!ㄴ  -->
 
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 
@@ -283,9 +283,30 @@ body {
 		
 		
 		function dlRequest(addr2){
-			document.requestForm.action= "../eventBoard2/" + addr2;
+		
+			var boardNo = ${board.eventBodNo};
 			
-			document.requestForm.submit();
+			swal({
+				  title: "게시글을 삭제하시겠습니까?",
+				  text: "삭제를 누르시면 게시글이 삭제됩니다.",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					document.requestForm.action= "../eventBoard2/" + addr2+"?no="+boardNo;
+					document.requestForm.submit();
+				  } else {
+				    swal("게시글 삭제가 취소되었습니다.");
+				  }
+				});
+			
+				
+			
+			
+			
+			
 		}
 		
 

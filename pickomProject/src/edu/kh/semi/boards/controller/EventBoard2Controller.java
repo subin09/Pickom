@@ -315,14 +315,12 @@ public class EventBoard2Controller extends HttpServlet {
 				
 				//System.out.println(request.getParameter("boardNo"));
 				
-				int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+				int boardNo=Integer.parseInt(request.getParameter("no"));
 				
 				EventBoard board = new EventBoard();
 				board.setEventBodNo(boardNo);
 				
 				int result = service.deleteEventBoard(board);
-				
-				
 				
 				
 				if(result>0) {
