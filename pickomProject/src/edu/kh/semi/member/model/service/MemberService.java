@@ -121,27 +121,25 @@ public class MemberService {
 	 * @return result
 	 * @throws Exception
 	 */
-	public int insertProfile(int memberNo, List<Profile> atList, String memberNickNm) throws Exception  {
+	public int updateProfile(int memberNo, List<Profile> atList, String memberNickNm) throws Exception  {
 		
 		Connection conn = getConnection();
 		
 		int result = dao.updateNickNm(conn, memberNo, memberNickNm);
 		
 		if(result >0) {
+			
 			for(Profile at : atList) {
-				at.setMemberNo(memberNo);
-				
-				result = dao.updateProfile(conn, at);
-				
+				at.setMemberNo(memberNo);				
+					result = dao.updateProfile(conn, at);
 				if(result==0) {
 					rollback(conn);
 					break;
 				}
 			}
-			
 			if(result>0) commit(conn);
 			else rollback(conn);
-			
+		
 		} else rollback(conn);
 		
 		close(conn);
