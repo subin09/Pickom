@@ -21,7 +21,8 @@ public class Profile {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-
+	}
+	
 	public String getFilePath() {
 		return filePath;
 	}
