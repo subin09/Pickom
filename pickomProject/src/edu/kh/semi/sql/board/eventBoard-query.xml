@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="getEventBoardListCount">
+SELECT COUNT(*)FROM EVENT_BOARD
+</entry>
+
+
+<entry key="selectEventBoardList">
+SELECT * FROM
+(SELECT ROWNUM RNUM, A.* FROM
+    (SELECT * FROM EVENT_BOARD_LIST
+    WHERE EVENT_BOD_STATUS='Y'
+    ORDER BY EVENT_BOD_NO DESC) A)
+    
+WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+<entry key="selectEventBoard">
+	SELECT * FROM EVENT_BOARD_DETAIL
+	WHERE EVENT_BOD_NO = ?
+	AND EVENT_BOD_STATUS='Y'
+</entry>
+
+<entry key="increaseEventBoardReadCount">
+UPDATE EVENT_BOARD
+SET EVENT_BOD_READ_COUNT = EVENT_BOD_READ_COUNT+1
+WHERE EVENT_BOD_NO=?
+</entry>
+
+<entry key="getSearchCount">
+SELECT COUNT(*)FROM EVENT_BOARD_LIST
+WHERE EVENT_BOD_STATUS='Y'
+</entry>
+
+
+<entry key="searchBoardList1">
+SELECT * FROM
+(SELECT ROWNUM RNUM, A.* FROM
+    (SELECT * FROM EVENT_BOARD_LIST
+    WHERE EVENT_BOD_STATUS='Y'
+
+</entry>
+
+
+
+<entry key="searchBoardList2">
+    ORDER BY EVENT_BOD_NO DESC
+    ) A
+    )
+	WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+</properties>

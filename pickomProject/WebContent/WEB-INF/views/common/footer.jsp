@@ -9,7 +9,7 @@
 <title>Footer</title>
 
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/02_footer.css">
-   	
+  
 </head>
 
 <body>

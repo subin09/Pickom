@@ -60,7 +60,7 @@ public class MemberDAO {
 			
 			System.out.println(memberId);
 			System.out.println(memberPw);
-
+			
 			if(rs.next()) {
 				loginMember 
 				= new Member(rs.getInt("MEMBER_NO"), 
