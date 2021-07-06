@@ -54,6 +54,8 @@
 body {
 	padding-top: 210px;
 }
+
+/* style="background: linear-gradient(40deg,#FCA5F1,#B5FFFF)" */
 </style>
 </head>
 <body>
@@ -84,7 +86,7 @@ body {
 				</thead>
 
 				<%-- 게시글 목록 출력 --%>
-				<tbody>
+				<tbody style="background: white; ">
 
 					<c:choose>
 
@@ -106,7 +108,7 @@ body {
 									<td>${board.eventBodNo}</td>
 									<%-- 게시판 제목 --%>
 									<td class ="boardTitle">
-										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}">
+										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}" id="boardTitle">
 										${board.eventBodTitle}
 										</a>
 									</td>
@@ -149,7 +151,7 @@ body {
 		<c:set var="next" value="cp=${pagination.nextPage}" />
 
 
-		<div class="my-5">
+		<div class="my-5" style="width:500px; margin-left: 50%">
 			<ul class="pagination">
 
 				<c:if test="${pagination.currentPage > 10}">
@@ -248,6 +250,12 @@ body {
 	
 	
 	<script>
+	
+	const loginMemberNo = "${loginMember.memberNo}";
+	
+	
+	
+	
 	(function(){
 		var searchKey = "{param.sk}";
 		var searchValue = "${param.sv}";
@@ -261,6 +269,11 @@ body {
 		
 		$("input[name=sv]").val(searchValue);
 	})();
+	
+	
+	
+	
+	
 	</script>
 
 </body>

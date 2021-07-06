@@ -29,12 +29,12 @@
 
 
 <style>
-div {
+/* div {
 	border: 1px solid red;
-}
+} */
 
 body {
-	padding-top: 280px;
+	padding-top: 210px;
 }
 
 .boardImg {
@@ -100,25 +100,23 @@ a:hover {
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 	<div class="container">
 		<h1>행사 게시판 작성</h1>
-		<form action="${contextPath}/eventBoard2/insert" method="post"
+		<hr>
+		<form action="${contextPath}/eventBoard2/insert" id="writeForm" method="post"
 			enctype="multipart/form-data" role="form"
 			onsubmit="return boardValidate();">
 
+
 			<div id="setDate-area">
-				<input type="date" name="startDate"> <label for="">~~~</label> <input
-					type="date" name="finalDate">
+				<label for="startDate">[행사 시작 날짜] : &nbsp</label>
+				<input type="date" id="startDate" name="startDate">
+				<label for=""> &nbsp&nbsp  ~~~ &nbsp&nbsp  </label>
+				<label for="finalDate">[행사 종료 날짜] : &nbsp</label>
+				<input type="date" id="finalDate" name="finalDate">
 			</div>
+			<hr>
 
 
 			<c:if test="${ !empty category}">
@@ -191,10 +189,12 @@ a:hover {
 			<div class="form-group" id="content-title">
 				<label for="exampleFormControlTextarea1">내용</label>
 				<textarea class="form-control exampleFormControlTextarea1"
-					id="boardContent" rows="20" name="boardContent"></textarea>
+					id="boardContent" rows="20" name="boardContent" style="resize: none;"></textarea>
 
 			</div>
-			<input class="btn btn-primary" id="" type="submit" value="등록">
+			<div id="submit-btn-area" style="width:100%; height: 40px; ">
+			<input class="btn btn-primary float-right mr-2" type="submit" value="등록">
+			</div>
 		</form>
 
 	</div>
@@ -232,8 +232,44 @@ a:hover {
 				$("#content").focus();
 				return false;
 			}
+
+			if ($("#startDate").val() == "") {
+				alert("시작날짜를 선택해 주세요.");
+				$("#startDate").focus();
+				return false;
+			}
+			if ($("#finalDate").val() == "") {
+				alert("마지막 날짜를 선택해 주세요.");
+				$("#fianlDate").focus();
+				return false;
+			}
+			
+			
+			
 		}
 
+		$(function(){
+			$("#writeForm").submit(function(){
+				var startDate = $("#startDate").val();
+				var finalDate = $("#finalDate").val();
+				
+				var startArray = startDate.split('-');
+				var finalArray = finalDate.split('-');
+				
+				var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+				var final_date = new Date(finalArray[0], finalArray[1], finalArray[2]);
+				
+				if(start_date.getTime() > final_date.getTime()){
+					alert("시작날짜는 종료날짜보다 작아야 합니다.");
+					return false;
+				}
+				
+			});
+		});
+		
+		
+		
+		
 		// 이미지 영역을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 		$(function() {
 			$(".boardImg").on("click", function() {
@@ -267,6 +303,11 @@ a:hover {
 
 			}
 		}
+		
+		
+		
+		
+		
 	</script>
 
 

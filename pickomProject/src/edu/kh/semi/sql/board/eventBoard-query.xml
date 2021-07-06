@@ -4,6 +4,7 @@
 
 <entry key="getEventBoardListCount">
 SELECT COUNT(*)FROM EVENT_BOARD
+WHERE EVENT_BOD_STATUS='Y'
 </entry>
 
 

@@ -313,9 +313,9 @@ public class EventBoard2Controller extends HttpServlet {
 				// 실제 서버 저장 경로 + 웹상 저장 경로
 				HttpSession session = request.getSession();
 				
-				System.out.println(request.getParameter("boardNo"));
+				//System.out.println(request.getParameter("boardNo"));
 				
-				int boardNo =Integer.parseInt(request.getParameter("boardNo"));
+				int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 				
 				EventBoard board = new EventBoard();
 				board.setEventBodNo(boardNo);
@@ -328,7 +328,7 @@ public class EventBoard2Controller extends HttpServlet {
 				if(result>0) {
 					icon="success";
 					title="게시글 삭제 성공!";
-					path = "/WEB-INF/views/boards/eventBoardList.jsp";
+					path = "../eventBoard/list";
 				}else {
 					icon="error";
 					title="게시글 삭제 실패";
@@ -337,7 +337,7 @@ public class EventBoard2Controller extends HttpServlet {
 				
 				session.setAttribute("icon", icon);
 				session.setAttribute("title", title);
-				response.sendRedirect(path);
+			response.sendRedirect(path);
 			}
 			
 			
