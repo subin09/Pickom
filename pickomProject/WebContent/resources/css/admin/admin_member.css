@@ -1,0 +1,84 @@
+.admin-section {
+  width: 70%;
+}
+
+.admin-member__page-title,
+.admin-member__searchForm-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+
+.admin-member__page-title h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.admin-member__searchForm-container {
+  font-size: 1.3rem;
+  height: 10%;
+  align-items: center;
+  margin: 2rem 0rem;
+}
+
+.admin-member__searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: hsl(225, 17%, 91%);
+}
+
+.admin-member__margin-right {
+  margin-right: 1rem;
+}
+
+.admin-member__table {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.admin-member__table thead tr th {
+  font-weight: bold;
+}
+
+.admin-member__radio {
+  vertical-align: baseline;
+  margin-top: 0.2rem;
+  margin-right: 0.5rem;
+}
+
+.admin-member__label {
+  font-size: 1.3rem;
+}
+
+.admin-member__select {
+  width: 13%;
+  height: 43%;
+  border-radius: 0.5rem;
+  border: 0.05rem solid rgba(0, 0, 0, 0.7);
+}
+.admin-member__search-input {
+  width: 25%;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  border: 0.05rem solid rgba(0, 0, 0, 0.7);
+}
+
+.admin-member__btn {
+  background-color: #51608c;
+  color: rgb(243, 232, 232);
+  font-weight: bold;
+  width: 10%;
+  height: 43%;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.admin-member__btn:hover {
+  background-color: #32416d;
+  transition: background-color 0.2s ease-in-out;
+}

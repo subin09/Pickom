@@ -19,6 +19,11 @@ public class Movie {
 	private String movieDirector;
 	private Date movieOpenDt;
 	
+	// MOVIE_GENRE
+	private List<Integer> movieGenreCode;
+	private List<String> movieGenreNm;
+	private List<MovieGenre> gnList;
+	
 	
 	private List<String> movieLinkNo;
 	private List<String> movieFileLink;
@@ -26,6 +31,36 @@ public class Movie {
 	
 	public Movie() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public List<Integer> getMovieGenreCode() {
+		return movieGenreCode;
+	}
+
+
+	public void setMovieGenreCode(List<Integer> movieGenreCode) {
+		this.movieGenreCode = movieGenreCode;
+	}
+
+
+	public List<String> getMovieGenreNm() {
+		return movieGenreNm;
+	}
+
+
+	public void setMovieGenreNm(List<String> movieGenreNm) {
+		this.movieGenreNm = movieGenreNm;
+	}
+
+
+	public List<MovieGenre> getGnList() {
+		return gnList;
+	}
+
+
+	public void setGnList(List<MovieGenre> gnList) {
+		this.gnList = gnList;
 	}
 
 
@@ -196,8 +231,12 @@ public class Movie {
 				+ ", movieSummary=" + movieSummary + ", movieCount=" + movieCount + ", createDt=" + createDt
 				+ ", modifyDt=" + modifyDt + ", movieStatus=" + movieStatus + ", movieCountry=" + movieCountry
 				+ ", movieRuntime=" + movieRuntime + ", movieDirector=" + movieDirector + ", movieOpenDt=" + movieOpenDt
+				+ ", movieGenreCode=" + movieGenreCode + ", movieGenreNm=" + movieGenreNm + ", gnList=" + gnList
 				+ ", movieLinkNo=" + movieLinkNo + ", movieFileLink=" + movieFileLink + "]";
 	}
+
+
+	
 	
 	
 }

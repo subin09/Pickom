@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<!-- 다음 게시글 번호 조회 -->
+	<entry key="nextBoardNo">
+	SELECT SEQ_FAQNO.NEXTVAL FROM DUAL
+	</entry>
+	
+	<!-- 게시글 삽입 -->
+	<entry key="insertBoard">
+	INSERT INTO FAQ
+	VALUES (?, ?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
+	</entry>
+	
+	<!-- 첨부파일 삽입 -->
+	<entry key="insertAttachment">
+	INSERT INTO FAQ_FILE 
+	VALUES(SEQ_FAQNO.NEXTVAL, ?, ?, ?, ?)
+	</entry>
+	
+	<!-- 게시글 수정 -->
+	<entry key="updateBoard">
+	UPDATE FAQ SET 
+	FAQ_TITLE = ?, 
+	FAQ_CONTENT = ?, 
+	FAQ_MODIFY_DT = SYSTIMESTAMP
+	WHERE FAQ_NO = ?
+	</entry>
+	
+	<!-- 첨부파일 수정 -->
+	<entry key="updateAttachment">
+	UPDATE FAQ_FILE SET 
+	FAQ_FILE_NM = ?
+	WHERE FAQ_NO = ?
+	AND FAQ_FILE_LV = ?
+	</entry>
+</properties>

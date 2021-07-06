@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- 게시글 조회수 증가 -->
+	<entry key="selectCategoryList">
+	SELECT * FROM CS_CATEGORY
+	AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<!-- 다음 게시글 번호 조회 -->
+	<entry key="nextBoardNo">
+	SELECT SEQ_CPNO.NEXTVAL FROM DUAL
+	</entry>
+	
+	<!-- 게시글 삽입 -->
+	<entry key="insertBoard">
+	INSERT INTO COMPLAIN 
+	VALUES (?, ?, ?, DEFAULT, DEFAULT, DEFAULT, DEFAULT, ?, NULL, ?)
+	</entry>
+	
+	<!-- 첨부파일 삽입 -->
+	<entry key="insertAttachment">
+	INSERT INTO COMPLAIN_FILE 
+	VALUES(SEQ_CFNO.NEXTVAL, ?, ?, ?, ?)
+	</entry>
+	
+	<!-- 게시글 수정 -->
+	<entry key="updateBoard">
+	UPDATE COMPLAIN  SET 
+	COMPLAIN_TITLE = ?, 
+	COMPLAIN_CONTENT = ?, 
+	CS_CATEGORY_CD = ?,
+	COMPLAIN_MODIFY_DT = SYSTIMESTAMP
+	WHERE COMPLAIN_NO = ?
+	</entry>
+	
+	<!-- 첨부파일 수정 -->
+	<entry key="updateAttachment">
+	UPDATE COMPLAIN_FILE SET 
+	COMPLAIN_FILE_NM = ?
+	WHERE COMPLAIN_NO = ?
+	AND COMPLAIN_FILE_LV = ?
+	</entry>
+	
+	<!-- 게시글 삭제 -->
+	<entry key="deleteBoard">
+	UPDATE COMPLAIN  SET 
+	COMPLAIN_STATUS = 'N'
+	WHERE COMPLAIN_NO = ?
+	</entry>
+</properties>

@@ -15,6 +15,8 @@ public class Pagination {
 	private int prevPage;				// 이전 페이지 번호 목록 중 끝 번호
 	private int nextPage;				// 다음 페이지 번호 목록 중 시작 번호
 	
+	// 게시판 보드 타입 분류
+	private int boardType;
 	
 	
 	public Pagination(int currentPage, int listCount) {
@@ -23,6 +25,26 @@ public class Pagination {
 		this.listCount = listCount;
 		
 		makePagination();
+	}
+
+
+	public Pagination(int cp, int listCount2, int boardType) {
+		super();
+		this.currentPage = cp;
+		this.listCount = listCount2;
+		this.boardType = boardType;
+		
+		makePagination();
+	}
+	
+
+	public int getBoardType() {
+		return boardType;
+	}
+
+
+	public void setBoardType(int boardType) {
+		this.boardType = boardType;
 	}
 
 
@@ -128,11 +150,13 @@ public class Pagination {
 
 
 	
+
+
 	@Override
 	public String toString() {
 		return "Pagination [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit
 				+ ", pageSize=" + pageSize + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
-				+ endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + "]";
+				+ endPage + ", prevPage=" + prevPage + ", nextPage=" + nextPage + ", boardType=" + boardType + "]";
 	}
 
 

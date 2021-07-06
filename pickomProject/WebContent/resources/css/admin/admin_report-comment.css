@@ -1,0 +1,40 @@
+.admin-comment__section {
+  width: 70%;
+}
+
+.admin-comment__page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+
+.admin-comment__page-title h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.admin-comment__deleteBtn {
+  background-color: #8390b8;
+  margin: 2rem 0rem 1rem 0rem;
+  padding: 0.7em;
+  color: rgb(243, 232, 232);
+  font-weight: bold;
+  width: 7%;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: none;
+}
+.admin-comment__deleteBtn:hover {
+  background-color: #32416d;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.admin-comment__table {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.admin-comment__table thead tr th {
+  font-weight: bold;
+}
