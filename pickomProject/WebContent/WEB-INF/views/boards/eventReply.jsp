@@ -51,11 +51,6 @@
 	padding: 15px 0;
 }
 
-#commentList{
-	width : 100%;
-	height : 300px;
-	overflow:scroll;
-}
 </style>
 
 <div id="reply-area ">
@@ -63,7 +58,8 @@
 	<div class="replyWrite" style="text-align : center;	">
 		<table>
 			<tr>
-				<td id="replyContentArea"><textArea rows="3" id="replyContent" style = "width:500px;"></textArea>
+				<td id="replyContentArea">
+				<textArea rows="3" id="replyContent" style = "width:600px; resize: none;"></textArea>
 				</td>
 				<td id="replyBtnArea">
 					<button class="btn btn-primary" id="addReply" onclick="addReply();">
@@ -82,12 +78,16 @@
 				<li class= "bi bi-person-circle">
 					<div>
 						<p class="rWriter">${reply.memberNm}</p>
+
 						<br>
-						<p class="rDate">
+
+						[<p class="rDate">
 							작성일 :
 							<fmt:formatDate value="${reply.eventReplyCreateDt}"
 								pattern="yyyy년 MM월 dd일 HH:mm" />
-						</p>
+						</p>]
+
+
 					</div>
 
 					<p class="rContent">${reply.eventReplyContent}</p>
