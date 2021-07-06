@@ -4,6 +4,8 @@ public class MovieGenre {
 	
 	private int movieGenreCode;
 	private String movieGenreNM;
+	private String movieTitleEn;
+	private String movieTitleKo;
 	
 	
 	public MovieGenre() {
@@ -14,6 +16,23 @@ public class MovieGenre {
 		super();
 		this.movieGenreCode = movieGenreCode;
 		this.movieGenreNM = movieGenreNM;
+	}
+	
+
+	public String getMovieTitleEn() {
+		return movieTitleEn;
+	}
+
+	public void setMovieTitleEn(String movieTitleEn) {
+		this.movieTitleEn = movieTitleEn;
+	}
+
+	public String getMovieTitleKo() {
+		return movieTitleKo;
+	}
+
+	public void setMovieTitleKo(String movieTitleKo) {
+		this.movieTitleKo = movieTitleKo;
 	}
 
 	public int getMovieGenreCode() {
@@ -34,8 +53,10 @@ public class MovieGenre {
 
 	@Override
 	public String toString() {
-		return "MovieGenre [movieGenreCode=" + movieGenreCode + ", movieGenreNM=" + movieGenreNM + "]";
+		return "MovieGenre [movieGenreCode=" + movieGenreCode + ", movieGenreNM=" + movieGenreNM + ", movieTitleEn="
+				+ movieTitleEn + ", movieTitleKo=" + movieTitleKo + "]";
 	}
+
 	
 	
 	

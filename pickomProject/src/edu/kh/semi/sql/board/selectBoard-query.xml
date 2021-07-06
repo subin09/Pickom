@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- 게시판 내용 가져오기 SQL -->
+	<entry key="getBoardContent">
+	SELECT * FROM ADMIN_EVENT_BOARD
+	</entry>
+	
+	<!-- 고객센터 게시글 목록 -->
+	<entry key ="getMemberListCount">
+	SELECT COUNT(*) FROM MEMBER
+	</entry>
+	
+	<!-- 관리자 회원 검색 게시글 목록 / 아이디 -->
+	<entry key ="getIdListCount">
+	SELECT COUNT(*) FROM MEMBER 
+	WHERE MEMBER_ID LIKE '%'|| ? ||'%'
+	AND MEMBER_STATUS = ?
+	</entry>
+	
+	<!-- 관리자 회원 검색 게시글 목록 / 닉네임  -->
+	<entry key ="getNicknameListCount">
+	SELECT COUNT(*) FROM MEMBER 
+	WHERE MEMBER_NICKNAME LIKE '%'|| ? ||'%'
+	AND MEMBER_STATUS = UPPER(?)
+	</entry>
+	
+	<!-- 게시글 목록 조회(페이징 처리 적용) -->
+	<entry key="selectBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM BOARD_LIST 
+    WHERE BOARD_STATUS = 'Y'
+    AND BOARD_TYPE_NO = ?
+    ORDER BY BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 회원리스트 조회(페이징 처리 적용) -->
+	<entry key="selectMemberList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM MEMBER
+    ORDER BY MEMBER_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	<!-- 회원 검색 리스트 조회(페이징 처리 적용) - 아이디 -->
+	<entry key="selectIdMemberList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM MEMBER
+   WHERE MEMBER_ID LIKE '%' || ? ||'%'
+    AND MEMBER_STATUS = ?
+    ORDER BY MEMBER_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 회원 검색 리스트 조회(페이징 처리 적용) - 닉네임 -->
+	<entry key="selectNicknameMemberList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM MEMBER
+   WHERE MEMBER_NICKNAME LIKE '%' || ? ||'%'
+    AND MEMBER_STATUS = ?
+    ORDER BY MEMBER_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>

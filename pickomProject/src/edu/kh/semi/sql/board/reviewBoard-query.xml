@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 리뷰 게시글 목록 -->
+	<entry key ="getBoardListCount">
+	SELECT COUNT(*) FROM REVIEW_BOARD
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_STATUS = 'Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 리뷰 게시글 목록 - 신고 -->
+	<entry key ="getReportCount">
+	SELECT COUNT(*) FROM REVIEW_BOARD
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE MEMBER_STATUS = 'Y'
+	AND REPORT_NO IS NOT NULL
+	AND REVIEW_BOARD_CONDITION = 'Y'
+	</entry>
+	
+	<!-- 리뷰 게시글 목록 - 신고 -->
+	<entry key ="getReportCommentCount">
+	SELECT COUNT(*) FROM REVIEW_COMMENT R
+	JOIN MEMBER USING(MEMBER_NO)
+    JOIN REVIEW_BOARD USING(REVIEW_BOARD_NO)
+	WHERE MEMBER_STATUS = 'Y'
+	AND R.REPORT_NO IS NOT NULL
+    AND R.REVIEW_COMMENT_STATUS = 'Y'
+    AND REVIEW_BOARD_CONDITION = 'Y'
+	</entry>
+	
+	<!-- 리뷰 게시글(카테고리별) 목록 -->
+	<entry key ="getCategoryListCount">
+	SELECT COUNT(*) FROM REVIEW_BOARD_LIST
+	WHERE MOVIE_GENRE_CD = ?
+	AND REVIEW_BOARD_CONDITION = 'Y'
+	AND MEMBER_STATUS = 'Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 리뷰 게시글  검색(제목) 목록 -->
+	<entry key ="getTitleListCount">
+	SELECT COUNT(*) FROM REVIEW_BOARD
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE REVIEW_BOARD_TITLE LIKE '%' || ? || '%'
+	AND REVIEW_BOARD_CONDITION = 'Y'
+	AND MEMBER_STATUS = 'Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 리뷰 게시글 검색(내용) 목록 -->
+	<entry key ="getContentListCount">
+	SELECT COUNT(*) FROM REVIEW_BOARD
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE REVIEW_BOARD_CONTENT LIKE '%' || ? || '%'
+	AND REVIEW_BOARD_CONDITION = 'Y'
+	AND MEMBER_STATUS = 'Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 리뷰 게시글 검색(영화) 목록 -->
+	<entry key ="getMovieListCount">
+	SELECT COUNT(*) FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD_SEARCH_LIST
+    WHERE MOVIE_TITLE_EN LIKE '%' || ? || '%'
+    OR UPPER(MOVIE_TITLE_KO) LIKE UPPER('%' || ? || '%')
+    AND REVIEW_BOARD_CONDITION = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+    
+	</entry>
+	
+	
+	<!-- 리뷰게시판 전체조회(페이징 처리 적용) -->
+	<entry key="selectReviewBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD_ENTIRE_LIST
+   	WHERE MEMBER_GRADE = 'G'
+   	AND REVIEW_BOARD_CONDITION = 'Y'
+   	AND MEMBER_STATUS = 'Y'
+   	AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 리뷰게시판 신고 전체조회(페이징 처리 적용) -->
+	<entry key="selectReportBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD R
+	JOIN MEMBER USING(MEMBER_NO)
+	JOIN REPORT USING(REPORT_NO)
+	JOIN CS_CATEGORY USING (CS_CATEGORY_CD)
+	JOIN REVIEW_BOARD USING(REPORT_NO)
+    WHERE R.REVIEW_BOARD_CONDITION = 'Y'
+    ORDER BY REPORT_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 리뷰게시판 신고댓글 전체조회(페이징 처리 적용 -->
+	<entry key ="selectReportCommentList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_COMMENT R
+    JOIN REPORT P ON R.REPORT_NO = P.REPORT_NO
+	JOIN REVIEW_BOARD USING(REVIEW_BOARD_NO)
+    JOIN MEMBER USING(MEMBER_NO)
+    JOIN CS_CATEGORY USING(CS_CATEGORY_CD)
+    WHERE REVIEW_BOARD_CONDITION = 'Y'
+    ORDER BY P.REPORT_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 리뷰게시판 카테고리별 조회(페이징 처리 적용) -->
+	<entry key="selectCategoryBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD_CATEGORY_LIST
+    WHERE MEMBER_GRADE = 'G'
+    AND REVIEW_BOARD_CONDITION = 'Y'
+    AND MOVIE_GENRE_CD = ?
+    AND MEMBER_STATUS = 'Y'
+    AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<!-- 리뷰게시판 검색(영화제목) 조회(페이징처리 적용) -->
+	<entry key="selectSearchMovieList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD_SEARCH_LIST
+    WHERE MOVIE_TITLE_EN LIKE '%' || ? || '%'
+    OR MOVIE_TITLE_KO LIKE '%' || ? || '%'
+    AND REVIEW_BOARD_CONDITION = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<!-- 리뷰게시판 검색(제목) 조회(페이징 처리 적용) -->
+	<entry key="selectSearchTitleList">
+	  SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM  REVIEW_BOARD_ENTIRE_LIST
+    WHERE  REVIEW_BOARD_CONTENT LIKE '%' || ? || '%'
+    AND REVIEW_BOARD_CONDITION = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<!-- 리뷰게시판 검색(내용) 조회(페이징 처리 적용) -->
+	<entry key="selectSearchContentList">
+	  SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM  REVIEW_BOARD_ENTIRE_LIST
+    WHERE  REVIEW_BOARD_CONTENT LIKE '%' || ? || '%'
+    AND REVIEW_BOARD_CONDITION = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<!-- 고객센터 공지사항 목록 -->
+	<entry key ="selectReviewNoticeList">
+    SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM REVIEW_BOARD_ENTIRE_LIST
+   	WHERE MEMBER_GRADE = 'A'
+   	AND MEMBER_STATUS = 'Y'
+   	AND REVIEW_BOARD_CONDITION = 'Y'
+   	AND REPORT_NO IS NULL
+    ORDER BY REVIEW_BOARD_NO DESC) A )
+	</entry>
+	
+	<!-- 게시글 상세 조회 -->
+	<entry key="selectBoard">
+	SELECT * FROM REVIEW_BOARD_CATEGORY_LIST
+	WHERE REVIEW_BOARD_NO = ?
+	AND MEMBER_STATUS = 'Y'
+	AND REVIEW_BOARD_CONDITION ='Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 게시글 상세 조회 - 신고-->
+	<entry key="selectReportBoard">
+	SELECT * FROM REVIEW_BOARD_CATEGORY_LIST
+	WHERE REVIEW_BOARD_NO = ?
+	AND MEMBER_STATUS = 'Y'
+	AND REVIEW_BOARD_CONDITION ='Y'
+	AND REPORT_NO IS NOT NULL
+	</entry>
+	
+	<!-- 게시글 조회수 증가 -->
+	<entry key="increaseReadCount">
+	UPDATE REVIEW_BOARD
+	SET REVIEW_BOARD_READ_COUNT = REVIEW_BOARD_READ_COUNT + 1 
+	WHERE REVIEW_BOARD_NO = ?
+	AND REVIEW_BOARD_CONDITION = 'Y'
+	AND REPORT_NO IS NULL
+	</entry>
+	
+	<!-- 리뷰게시판 카테고리 조회 -->
+	<entry key="getCategoryList">
+	SELECT * FROM MOVIE_GENRE
+	
+	</entry>
+	
+	<!--  리뷰게시판 작성 영화 조회 -->
+	<entry key="getMovieList">
+	SELECT MOVIE_TITLE_EN, MOVIE_NO
+	FROM MOVIE 
+	WHERE UPPER(MOVIE_TITLE_KO) LIKE  UPPER('%' || ? || '%')
+    OR MOVIE_TITLE_EN LIKE '%' || ? || '%'
+    
+	</entry>
+	
+	<!-- 리뷰게시판 작성 카테고리 조회 -->
+	<entry key="getCategory">
+	SELECT MOVIE_GENRE_CD, MOVIE_GENRE_NM
+	FROM MOVIE_GENRE
+	JOIN MOVIE_SORT USING(MOVIE_GENRE_CD)
+	JOIN MOVIE USING(MOVIE_NO)
+	WHERE MOVIE_NO = ?
+	</entry>
+	
+
+</properties>

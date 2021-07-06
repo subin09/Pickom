@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 고객센터 게시글 목록 -->
+	<entry key ="getBoardListCount">
+	SELECT COUNT(*) FROM COMPLAIN
+	JOIN MEMBER USING(MEMBER_NO)
+	 WHERE MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<!-- 고객센터 게시글(카테고리별) 목록 -->
+	<entry key ="getCategoryListCount">
+	SELECT COUNT(*) FROM COMPLAIN
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE CS_CATEGORY_CD = ?
+	AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<!-- 고객센터 검색(제목) 목록 -->
+	<entry key ="getTitleListCount">
+	SELECT COUNT(*) FROM COMPLAIN
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE COMPLAIN_TITLE LIKE '%' || ? || '%'
+	AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	<!-- 고객센터 검색(내용) 목록 -->
+	<entry key ="getContentListCount">
+	SELECT COUNT(*) FROM COMPLAIN
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE COMPLAIN_CONTENT LIKE '%' || ? || '%'
+	AND MEMBER_STATUS = 'Y'
+	</entry>
+	
+	
+	
+	<!-- 고객센터 조회(페이징 처리 적용) -->
+	<entry key="selectComplainBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM COMPLAIN_BOARD_LIST
+   	WHERE MEMBER_GRADE = 'G'
+   	AND COMPLAIN_STATUS = 'Y'
+   	AND MEMBER_STATUS = 'Y'
+    ORDER BY COMPLAIN_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 고객센터 카테고리별 조회(페이징 처리 적용) -->
+	<entry key="selectCategoryBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM COMPLAIN_BOARD_LIST
+    WHERE MEMBER_GRADE = 'G'
+    AND COMPLAIN_STATUS = 'Y'
+    AND CS_CATEGORY_CD = ?
+    AND MEMBER_STATUS = 'Y'
+    ORDER BY COMPLAIN_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 고객센터 검색(제목) 조회(페이징 처리 적용) -->
+	<entry key="selectSearchTitleList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM COMPLAIN_BOARD_LIST
+    WHERE COMPLAIN_TITLE LIKE '%' || ? || '%'
+    AND COMPLAIN_STATUS = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    ORDER BY COMPLAIN_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 고객센터 검색(카테고리) 조회(페이징 처리 적용) -->
+	<entry key="selectSearchContentList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM COMPLAIN_BOARD_LIST
+    WHERE COMPLAIN_CONTENT LIKE '%' || ? || '%'
+    AND COMPLAIN_STATUS = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    ORDER BY COMPLAIN_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 고객센터 공지사항 목록 -->
+	<entry key ="selectComplainNoticeList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM COMPLAIN_BOARD_LIST
+    WHERE MEMBER_GRADE = 'A'
+    AND COMPLAIN_STATUS = 'Y'
+    AND MEMBER_STATUS = 'Y'
+    ORDER BY COMPLAIN_NO DESC) A )
+	
+	</entry>
+	
+	<!-- 게시글 상세 조회 -->
+	<entry key="selectBoard">
+	SELECT * FROM COMPLAIN_BOARD_DETAIL 
+	WHERE COMPLAIN_NO = ?
+	AND MEMBER_STATUS = 'Y'
+	AND COMPLAIN_STATUS ='Y'
+	</entry>
+	
+	<!-- 게시글 조회수 증가 -->
+	<entry key="increaseReadCount">
+	UPDATE COMPLAIN 
+	SET COMPLAIN_COUNT = COMPLAIN_COUNT + 1 
+	WHERE COMPLAIN_NO = ?
+	AND COMPLAIN_STATUS = 'Y'
+	</entry>
+</properties>

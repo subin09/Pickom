@@ -77,12 +77,23 @@
 						<div class="p-2 bd-highlight">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item active">
-									<a class="nav-link"	href="${contextPath}/member/mypage"  > 마이페이지 </a>
+								
+								<%-- 마이페이지 관리자/회원 분류 --%>
+								<c:choose>
+									<c:when test="${loginMember.memberGrade == 'A'}">
+										<a class="nav-link"	href="${contextPath}/admin/adminMain"  > 마이페이지 </a>
+									</c:when>
+									<c:otherwise>
+										<a class="nav-link"	href="${contextPath}/member/mypage"  > 마이페이지 </a>
+									</c:otherwise>
+								</c:choose>
+								
+							
 								</li>
 								<li class="nav-item active">
 									<a class="nav-link" href="${contextPath}/member/logout"> 로그아웃 </a>
 								</li>
-								<c:if test="${memberGrade.equals('A')}">
+								<c:if test="${loginMember.memberGrade == 'A'}">
 									<li class="nav-item active">
 										<a class="nav-link"	href="${contextPath}/crawler"> 임시크롤링버튼 </a>
 									</li>
@@ -112,7 +123,7 @@
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
 						href="${contextPath}">일반게시판</a></li>
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
-						href="${contextPath}">리뷰게시판</a></li>
+						href="${contextPath}/reviewBoard/list?type=0">리뷰게시판</a></li>
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
 						href="${contextPath}/eventBoard/list">행사게시판</a></li>
 					<li class="nav-item dropdown" id="customerService"><a
@@ -122,7 +133,7 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" id="FAQ" href="#">FAQ</a> <a
-								class="dropdown-item" id="complainReport" href="#">불편신고</a>
+								class="dropdown-item" id="complainReport" href="${contextPath}/complainBoard/list?type=0">불편신고</a>
 						</div></li>
 				</ul>
 			</div>
