@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+
+<!-- 행사 게시판 카테고리 조회  -->
+<entry key="selectEventCategoryList">
+SELECT * FROM EVENT_CATEGORY
+</entry>
+
+<!-- 게시글 번호 조회  -->
+<entry key="nextBoardNo">
+SELECT SEQ_EBNO.NEXTVAL FROM DUAL
+</entry>
+
+
+<entry key="insertBoard">
+INSERT INTO EVENT_BOARD
+VALUES( ?,?,?,DEFAULT,DEFAULT,DEFAULT,?,?,DEFAULT,?,?)
+</entry>
+
+<entry key="insertEventAttachment">
+INSERT INTO EVENT_FILE
+VALUES(SEQ_EFNO.NEXTVAL,?,?,?,?)
+</entry>
+
+<entry key="updateEventBoard">
+UPDATE EVENT_BOARD SET
+EVENT_BOD_TITLE =?,
+EVENT_BOD_CONTENT=?,
+EVENT_CATEGORY_CD=?,
+START_DATE=?,
+FINAL_DATE=?,
+EVENT_BOD_MODIFY_DT = SYSTIMESTAMP
+WHERE EVENT_BOD_NO= ?
+</entry>
+
+<!-- 첨부파일 수정   -->
+<entry key="updateEventAttachment">
+UPDATE EVENT_FILE SET 
+EVENT_FILE_NM = ?
+WHERE EVENT_BOD_NO = ?
+AND EVENT_FILE_LV = ?
+</entry>
+
+
+<!-- 행사 게시글 삭제  -->
+<entry key="deleteEventBoard">
+UPDATE EVENT_BOARD SET
+EVENT_BOD_STATUS ='N'
+WHERE EVENT_BOD_STATUS ='Y'
+AND EVENT_BOD_NO = ?
+</entry>
+
+</properties>
