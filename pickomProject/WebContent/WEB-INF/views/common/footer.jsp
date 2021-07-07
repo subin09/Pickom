@@ -19,7 +19,7 @@
           <div class='d-flex bd-highlight mr-sm-4'>서비스 이용약관</div>
           <div class='d-flex bd-highlight mr-sm-4'>개인정보처리방침</div>
           <div class='d-flex bd-highlight mr-sm-4'>
-          <a href="${contextPath}/complainBoard/list?type=0">불편사항</a></div>
+          <a href="${contextPath}/complainBoard/list?type=0" id="footerLink">불편사항</a></div>
         </div>
         <hr>
         <pre>
