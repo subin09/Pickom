@@ -20,8 +20,9 @@
 
 <body>
 	<jsp:include page="../../../views/common/header.jsp" />
+	<jsp:include page= "menu/mypageMenu.jsp" />
 	
-            <div class="mypagemain">
+     <div class="mypagemain">
         <div> <h3>회원 정보</h3> </div>
         <hr>
         <div> <h5>프로필 수정</h5> </div>
@@ -68,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="memberNickNm" name="memberNickNm" placeholder="${loginMember.memberNickNm}">
+                                <input type="text" class="form-control" id="memberNickNm" name="memberNickNm" placeholder="${memberNickNm}">
                             </div>
                         </div>
 

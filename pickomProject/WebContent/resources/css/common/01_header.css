@@ -1,19 +1,13 @@
   div#mainlog,div#mainmypage{
     text-align: center;
   }
-  #mainlog-div{
-    margin-left: 10%;
-  }
-  #mainmypage-div{
-    margin-right: 10%;
-  }
 
   input#mainsearch{
     width: 500px;
   }
   
   #mainheader{
-    background-color: beige;
+    background-color: rgba(100, 100, 100, 0.3);
   }
 
   #mainmenutitle{
@@ -28,5 +22,26 @@
   }
 
   #header-body {
-      padding-top: 350px;
+      padding-top: 260px;
+  }
+  
+  #mypageList{
+  	width: 120px;
+  	border: 5px solid rgb(100, 100, 100);
+  	margin-bottom: 3px;
+  	font-weight: bold;
+  }
+  
+  #loginimage{
+  	border: 2px solid gold;
+  	border-radius: 7px;
+  	width: 150px;
+  	height: 150px;
+  }
+  
+  #logoimage{
+  	border: 2px solid black;
+  	border-radius: 100px;
+  	width: 150px;
+  	height: 150px;
   }
