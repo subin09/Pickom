@@ -116,6 +116,7 @@ public class ReviewBoardController extends HttpServlet {
 				
 				// 페이징처리를 위한 pagination 객체, 공지,일반게시글 목록  set
 				request.setAttribute("noticeList", noticeList);
+				System.out.println("noticeList" + noticeList);
 				request.setAttribute("categoryList", categoryList);
 
 

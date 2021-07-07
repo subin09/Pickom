@@ -68,6 +68,7 @@ public class ComplainBoardController extends HttpServlet {
 					// 페이징 처리는 일반게시글만 
 					Pagination pagination = service.getPagination(cp, boardType);
 					request.setAttribute("pagination", pagination);
+					System.out.println("complainList pagination : "+ pagination) ;
 					List<ComplainBoard> boardList = service.selectBoardList(pagination, boardType);
 					request.setAttribute("boardList", boardList);
 				}

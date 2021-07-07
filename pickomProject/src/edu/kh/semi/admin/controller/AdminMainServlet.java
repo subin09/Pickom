@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import edu.kh.semi.admin.controller.model.service.AdminBoardService;
 import edu.kh.semi.boards.model.service.ComplainBoardService;
+import edu.kh.semi.boards.model.service.EventBoardService;
 import edu.kh.semi.boards.model.service.ReviewBoardService;
 import edu.kh.semi.boards.model.vo.ComplainBoard;
+import edu.kh.semi.boards.model.vo.EventBoard;
 import edu.kh.semi.boards.model.vo.Pagination;
 import edu.kh.semi.boards.model.vo.Report;
 import edu.kh.semi.boards.model.vo.ReviewBoard;
@@ -44,9 +46,16 @@ public class AdminMainServlet extends HttpServlet {
 				Integer.parseInt(request.getParameter("cp")); 
 			
 			
+			
+			// 행사게시판 리스트 가져오기
+			EventBoardService eventService = new EventBoardService();
+			Pagination eventPagination = eventService.getPagination(cp);
+			request.setAttribute("eventPagination", eventPagination);
+			List<EventBoard> eventBoardList = eventService.selectEventBoardList(eventPagination);
+			request.setAttribute("eventBoardList", eventBoardList);
+			
 			// 리뷰게시판 리스트 가져오기
 			ReviewBoardService reviewService = new ReviewBoardService();
-			
 			Pagination reviewPagination = reviewService.getPagination(cp, 0);
 			request.setAttribute("reviewPagination", reviewPagination);
 			List<ReviewBoard> reviewBoardList = reviewService.selectBoardList(reviewPagination, 0);
