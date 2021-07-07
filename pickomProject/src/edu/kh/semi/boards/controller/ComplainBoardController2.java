@@ -195,9 +195,7 @@ public class ComplainBoardController2 extends HttpServlet {
 					while(images.hasMoreElements()) { 
 						String name = images.nextElement(); 
 						
-						System.out.println("name : " + name);
-						System.out.println("변경 전 : " + mpRequest.getOriginalFileName(name));
-						System.out.println("변경 후 : " + mpRequest.getFilesystemName(name));
+						
 						
 						if(mpRequest.getFilesystemName(name) != null) { // 값이 안 넘어오면 빈 문자열 : 값이 없다.
 							ComplainAttachment at = new ComplainAttachment();

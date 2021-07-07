@@ -84,7 +84,7 @@ public class FAQBoardController2 extends HttpServlet {
 					//System.out.println(categoryCode);
 					//System.out.println(boardTitle);
 					//System.out.println(boardContent);
-					System.out.println(memberNo);
+
 					
 					// * 문제점 : POST 방식으로 전달된 데이터가 NULL로 표기됨
 					//			  그런데 GET방식 전달 데이터는 잘 넘어옴
@@ -106,13 +106,13 @@ public class FAQBoardController2 extends HttpServlet {
 					
 					// 2. 업로드 되는 파일이 실제로 저장될 서버 경로
 					String root = session.getServletContext().getRealPath("/");
-					System.out.println("root: " + root);
+					
 					
 					String filePath = "resources/img/FAQBoard/";
 
 					
 					// 실제 저장 경로
-					System.out.println("실제 저장 경로 : "+ root+filePath);
+					//System.out.println("실제 저장 경로 : "+ root+filePath);
 					
 					
 					// 3. 저장되는 파일명 변환 작업
@@ -143,9 +143,9 @@ public class FAQBoardController2 extends HttpServlet {
 						
 						// Enumeration.hasMoreElements() : 다음 접근할 요소(값)이 있으면 true 
 						String name = images.nextElement(); // 다음 요소(값) 얻어오기
-						System.out.println("input type=file의 name 속성값 : " + name);
-						System.out.println("변경된 파일명" + mpRequest.getFilesystemName(name));
-						System.out.println("변경전 파일명" + mpRequest.getOriginalFileName(name));
+						//System.out.println("input type=file의 name 속성값 : " + name);
+						//System.out.println("변경된 파일명" + mpRequest.getFilesystemName(name));
+						//System.out.println("변경전 파일명" + mpRequest.getOriginalFileName(name));
 						// input type=file의 name 속성값 : img1
 						// 변경된 파일명 : 20210630111716_10625.jpg
 						// 변경전 파일명 : 2018 冬期日本語・日本文化研修_180206_0072.jpg
@@ -179,9 +179,7 @@ public class FAQBoardController2 extends HttpServlet {
 						} // end if
 					} // end while
 					
-					for(FAQAttachment a : atList) {
-						System.out.println(a);
-					}
+					
 					
 					// 6. 파일 외에 게시글 관련 정보를 MultipartRequest에서 얻어오기
 					String boardTitle = mpRequest.getParameter("boardTitle");
@@ -193,7 +191,7 @@ public class FAQBoardController2 extends HttpServlet {
 					board.setFaqTitle(boardTitle);
 					board.setFaqContent(boardContent);
 					board.setMemberNo(memberNo);
-					 System.out.println("board" + board);
+					
 					// 8. 게시글 정보와 이미지를 삽입하는 Service를 호출
 					int result = service.insertBoard(board, atList);
 					// result 는 insert를 삽입 성공한 boardNo나 0이 담겨있음
@@ -225,9 +223,9 @@ public class FAQBoardController2 extends HttpServlet {
 				else if(command.equals("updateForm")) {
 					// 게시글 수정화면에 수정하려는 게시글의 내용이 미리 작성되어 있어야 함 
 					// --> 게시글 상세 조회 + 카테고리 목록 조회
-					System.out.println(request.getParameter("boardNo"));
+					
 					int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-					System.out.println(boardNo);
+					
 					FAQBoard board = new FAQBoardService().selectBoard(boardNo);
 //					--> 틀린 이유 : boardContent에 줄바꿈 태그가 그대로 보여지게 됨 -> 바꿔서 가져오는 변경작업 필요
 					
@@ -280,10 +278,7 @@ public class FAQBoardController2 extends HttpServlet {
 					while(images.hasMoreElements()) { // 다음 name 속성 값이 있으면
 						String name = images.nextElement(); // name 하나 얻어오기 --> originalFilename fileSystemName => 값이 안 넘어오면 빈 문자열
 						
-						System.out.println("name : " + name);
-						System.out.println("변경 전 : " + mpRequest.getOriginalFileName(name));
-						System.out.println("변경 후 : " + mpRequest.getFilesystemName(name));
-						
+				
 						// 업로드된 파일이 있을 때 
 						if(mpRequest.getFilesystemName(name) != null) {
 							FAQAttachment at = new FAQAttachment();
@@ -308,7 +303,7 @@ public class FAQBoardController2 extends HttpServlet {
 						System.out.println(at);
 					}
 					
-					System.out.println(board);
+				
 					
 					// 게시글 수정 Service 호출
 					int result = service.updateBoard(board, atList);

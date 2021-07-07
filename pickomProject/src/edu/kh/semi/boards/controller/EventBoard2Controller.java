@@ -85,7 +85,7 @@ public class EventBoard2Controller extends HttpServlet {
 				int maxSize = 1024 * 1024 * 20;
 
 				String root = session.getServletContext().getRealPath("/");
-				System.out.println("root : " + root);
+
 
 				String filePath = "resources/img/";
 				filePath += "eventboard/";
@@ -255,9 +255,7 @@ public class EventBoard2Controller extends HttpServlet {
 				while(images.hasMoreElements()) { // 다음 name 속성 값이 있으면
 					
 					String name = images.nextElement(); // name 하나를 얻어온다
-					System.out.println("name : " + name);
-					System.out.println("변경 전 : " + mpRequest.getOriginalFileName(name));
-					System.out.println("변경 후 : " + mpRequest.getFilesystemName(name));
+		
 				
 					// 업로드 된 파일이 있을 때
 					if(mpRequest.getFilesystemName(name) != null) {

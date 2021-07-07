@@ -28,47 +28,7 @@
     <style>
 
 		    
-		}
- 		div {
-            border: 1px solid red;
-        }
-
-        div#mainlog,
-        div#mainmypage {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
-
+	
 
         #normal-board-content {
             width: 100%;
@@ -89,9 +49,7 @@
 			height: 100px;
 		}
 
-        body {
-            padding-top: 210px;
-        }
+
         
         .reportBtn {
         	color: white;
@@ -133,6 +91,9 @@
 			border-top : 1px solid #ccc;
 			padding : 15px 0;
 		}
+		.complainDetail__main h1 {
+       		margin: 70px 0px;
+       }
        
     </style>
 
@@ -147,7 +108,7 @@
 
 
 
-    <div class="container">
+    <div class="container complainDetail__main">
     
         
             <div> <h1>리뷰게시판</h1></div>

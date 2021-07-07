@@ -63,7 +63,7 @@ public class FAQBoardController extends HttpServlet {
 				// pagination, boardList를 request에 속성으로 추가한 후 boardList.jsp로 forward
 				request.setAttribute("pagination", pagination);
 				request.setAttribute("boardList", boardList);
-				System.out.println(boardList);
+
 				path="/WEB-INF/views/boards/FAQBoardList.jsp";
 				view = request.getRequestDispatcher(path);
 				view.forward(request, response);

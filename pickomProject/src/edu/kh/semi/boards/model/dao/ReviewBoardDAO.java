@@ -262,7 +262,7 @@ public class ReviewBoardDAO {
 		List<ReviewBoard> boardList = new ArrayList<ReviewBoard>();
 		
 		String sql = prop.getProperty("selectReviewBoardList");
-		System.out.println("sql은?" + sql);
+
 
 		
 		try {
@@ -275,7 +275,7 @@ public class ReviewBoardDAO {
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			System.out.println(startRow + endRow + "startEndRow는?");
+
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -292,7 +292,7 @@ public class ReviewBoardDAO {
 				board.setReviewStatus(rs.getString("REVIEW_BOARD_CONDITION"));
 				board.setMovieTitleKo(rs.getString("MOVIE_TITLE_EN"));
 				
-				System.out.println("board는?" + board);
+
 				// set 완료된 board를 boardList에 추가
 				boardList.add(board);
 			}
@@ -602,7 +602,7 @@ public class ReviewBoardDAO {
 				// set 완료된 board를 boardList에 추가
 				boardList.add(board);
 			}
-			System.out.println();
+
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -781,7 +781,7 @@ public class ReviewBoardDAO {
 				board.getAtList().add(at);
 				board.getGnList().add(gn);
 			}
-			System.out.println(board+"DAO에서..");
+
 		} finally {
 			close(rs);
 			close(pstmt);

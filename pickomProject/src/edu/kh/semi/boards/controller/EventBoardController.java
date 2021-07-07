@@ -99,7 +99,7 @@ public class EventBoardController extends HttpServlet {
 				
 				List<EventReply> rList = new EventReplyService().selectList(boardNo);
 				
-				 System.out.println(board);
+
 				
 				 request.setAttribute("board", board);
 				 request.setAttribute("rList", rList);

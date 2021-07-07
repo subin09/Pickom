@@ -78,17 +78,26 @@
     .submitBtn {
          	display: flex;
          	justify-content: center;
+         	margin-top: 20px;
          }
     .updateform-group{
          	margin: 20px 0px 0px 0px;
      }
+     
+     #content-title {
+     	padding: 10px;
+     }
+     
+     .complainUpdate__title {
+        	margin: 50px 0px;
+        }
 </style>
 <body>
      <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
   
     <div class="container">
-        <h1>불편사항 작성</h1>
+        <h1 class="complainUpdate__title">불편사항 작성</h1>
         <form action="${contextPath}/complainBoardDML/insert?type=${param.type}" method="post" 
 				  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
 

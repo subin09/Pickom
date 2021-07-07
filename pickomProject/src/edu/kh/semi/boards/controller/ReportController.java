@@ -71,7 +71,7 @@ public class ReportController extends HttpServlet {
 				report.setMemberNo(memberNo);
 				report.setCategoryCd(categoryCd);
 				report.setBoardNo(boardNo);
-				System.out.println(report + "report 잘 넘어옴");
+				//System.out.println(report + "report 잘 넘어옴");
 				
 				int result = service.insertPostReport(report);
 				

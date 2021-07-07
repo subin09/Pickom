@@ -35,25 +35,35 @@
         <h1>신고작성</h1>
         <form action="${contextPath }/report/reportCmInsert?no=${param.no}&cno=${param.cno}" method="POST">
         	<div class="drop-recover__login-area">
-                <label for="4">도배글</label>
+        	
+        		<div>
                 <input type="radio" name="reportType" id="4" value="4" autocomplete="off" checked>
-                <label for="5">광고/홍보</label>
+                <label for="4">도배글</label>
+        		</div>
+        		<div>
                 <input type="radio" name="reportType" id="5" value="5" autocomplete="off">
-                <label for="6">저작권법위반</label>
+                <label for="5">광고/홍보</label>
+        		</div>
+        		<div>
                 <input type="radio" name="reportType" id="6" value="6" autocomplete="off">
-                <label for="7">성희롱/욕설/비방</label>
+                <label for="6">저작권법위반</label>
+        		</div>
+        		<div>
                 <input type="radio" name="reportType" id="7" value="7" autocomplete="off">
+                <label for="7">성희롱/욕설/비방</label>
+        		</div>
             </div>
-            <div class="drop-recover__login-area">
+            <div class="drop-recover__login-area2 first-child">
                 <label for="reportTitle">신고제목</label>
                 <input type="text" name="reportTitle" id="reportTitle" autocomplete="off" required>
             </div>
 
-            <div class="drop-recover__login-area">
+            <div class="drop-recover__login-area2">
                 <label for="reportTitle">신고내용</label>
                 <input type="text" name="reportContent" id="reportTitle" autocomplete="off" required>
             </div>
             
+        		<span>※ 무분별한 신고는 강제탈퇴의 사유가 될 수 있습니다.</span>
             <div class="drop-recover__btn-area">
        
                 <button class="drop-recover__btn" type="button">취소</button>
