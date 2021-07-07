@@ -18,7 +18,7 @@
 <style>
 /*댓글*/
 .replyWrite>table {
-	margin-top: 0px;
+	margin-top: 10px;
 }
 
 .rWriter {
@@ -56,7 +56,7 @@
 <div id="reply-area ">
 	<!-- 댓글 작성 부분 -->
 	<div class="replyWrite" style="text-align : center;	">
-		<table>
+		<table align = "center">
 			<tr>
 				<td id="replyContentArea">
 				<textArea rows="3" id="replyContent" style = "width:600px; resize: none;"></textArea>
