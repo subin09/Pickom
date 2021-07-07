@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>고객센터</title>
+    <title>리뷰게시판</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 <!-- Bootstrap core JS -->
@@ -18,10 +18,14 @@
 <!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"> 
 
 
     <style>
+    
+	    .fa-angle-left:before{
+	    	content: "<";
+	    }
         div {
             /* border: 1px solid black;*/
         }
@@ -62,9 +66,7 @@
             margin-left: 10%;
         }
 
-        body {
-            padding-top: 210px;
-        }
+       
 
         #content-area {
             width: 100%;
@@ -91,16 +93,16 @@
         }
 
 
-        div.page_button {
+        .page_button {
             width: 100%;
             text-align: center;
         }
 
-        div.page li {
+        .page li {
             display: inline-block;
         }
 
-        div .drop-btn {
+        .drop-btn {
             width: 120px;
             background-color: #ffffff;
             color: #151515;
@@ -110,14 +112,14 @@
             font-weight: 500;
         }
 
-        div .drop-btn i {
+        .drop-btn i {
             float: right;
             line-height: 32px;
             font-size: 16px;
             cursor: pointer;
         }
 
-        div .drop-btn li {
+        .drop-btn li {
             color: #151515;
         }
 
@@ -151,12 +153,91 @@
 
         }
 
-        #reviewcontent td {
-            cursor: pointer;
+      
+        .searchForm-review {
+        	display: flex;
+        	justify-content: center;
         }
         
-        i::before {
-        	content=" ";
+        .searchForm-review div {
+        	margin-right: 10px;
+        }
+        
+        .searchForm-review button {
+        	margin-left: 10px;
+        }
+        
+        .review-header {
+         	display: flex;
+         	justify-content: space-between;
+         	align-items : center;
+         	margin-bottom: 20px;
+         	padding: 10px;
+        }
+        
+        .notice-review {
+        	text-align: center;
+        }
+        
+        .review-pagination a{
+        	font-size: 15px;
+        	text-decoration: none;
+        	color: inherit;
+        	border: 1px solid rgba(0,0,0,0.3);
+        	padding: 5px 13px;
+        	margin: 0px 2px;
+        	border-radius: 5px;
+        }
+        
+        .review-pagination a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        .boardTitle a{
+        	text-decoration: none;
+        	color: inherit;
+        }
+        
+        .boardTitle a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        table {
+        	text-align: center;
+        }
+        
+        .focus-page {
+        	font-weight: bold;
+        }
+        
+        .review-category {
+        	display: flex;
+        	align-items: center;
+        	
+        }
+        
+        .review-category label{
+        	 margin: 0px 10px 0px 0px;
+        	font-size: 20px;
+        }
+        
+        .review-category select {
+        	height: 35px;
+        	padding: 0px 5px;
+        	border-radius : 5px;
+        }
+        
+        .review-header__container{
+        	display: flex;
+        	align-items: center;
+        }
+        
+        .fa-file-video {
+        	margin:0px 20px;
         }
     </style>
 </head>
@@ -171,23 +252,37 @@
     
 
         <div class="container">
-            <h1>리뷰게시판</h1>
+            <div class="review-header">
+            	<div class="review-header__container">
+            		<i class="far fa-file-video fa-3x"></i>
+            		<h1>리뷰게시판</h1>
+            	</div>
+	            <c:if test="${ !empty categoryList}"> 
+						<div class="mb-2 review-category">
+							<label>카테고리</label> 
+							<select	id="categoryCode" name="categoryCode" style="width: 150px;" onchange="if(this.value) location.href=(this.value);">
+											<option selected>장르별</option>		
+											<option value="${contextPath}/reviewBoard/list?type=0&cp=1" name="list">전체</option>		
+										<c:forEach items="${categoryList}" var="c">
+											<option value="${contextPath}/reviewBoard/list?type=${c.movieGenreCode }&cp=1" name="${c.movieGenreCode }">${c.movieGenreNM }</option>
+										</c:forEach>
+									
+							</select>
+						</div>
+				</c:if>
+            </div>
             <div id="content-area">
-                <c:if test="${ !empty categoryList}"> 
-					<div class="mb-2">
-						<label>카테고리</label> 
-						<select	id="categoryCode" name="categoryCode" style="width: 150px;" onchange="if(this.value) location.href=(this.value);">
-										<option selected>장르별</option>		
-										<option value="${contextPath}/reviewBoard/list?type=0&cp=1" name="list">전체</option>		
-									<c:forEach items="${categoryList}" var="c">
-										<option value="${contextPath}/reviewBoard/list?type=${c.movieGenreCode }&cp=1" name="${c.movieGenreCode }">${c.movieGenreNM }</option>
-									</c:forEach>
-								
-						</select>
-					</div>
-			</c:if>
+                
                 <div id="reviewcontent">
                     <table class="table table-hover">
+	                    <colgroup>
+	                    <col width="10%"/>
+	                    <col width="22.5%"/>
+	                    <col width="22.5%"/>
+	                    <col width="20%"/>
+	                    <col width="15%"/>
+	                    <col width="10%"/>
+	               		 </colgroup>
                         <thead>
                             <tr>
 
@@ -210,9 +305,7 @@
 								
 								<%-- 조회된 게시글 목록이 없는 경우 --%>
 								<c:when test="${empty noticeList }">
-									<tr>
-										<td colspan="6">공지사항이 존재하지 않습니다</td>
-									</tr>
+									
 									
 								</c:when>
 								<%-- 조회된 게시글 목록이 있는 경우 --%>
@@ -370,19 +463,19 @@
 								<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"></c:set>
 								
 								<div class="my-5">
-									<ul class="pagination">
+									<ul class="review-pagination">
 										
 										<%-- 현재 페이지가 페이지사이즈 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > pagination.pageSize }">
 											<li>
-												<a href="${prev }"><i class="fas fa-angle-left"></a>
+												<a href="${prev }"><i class="fas fa-caret-square-left"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 2페이지 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > 2 }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-angle-left"></a>
+												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-caret-left"></i></a>
 											</li>
 										</c:if>
 										
@@ -393,7 +486,7 @@
 											
 												<c:choose>
 													<c:when test="${p == pagination.currentPage }">
-														<li><a>${p }</a></li>
+														<li><a class="focus-page">${p }</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="${pageURL}&cp=${p}">${p}</a></li>
@@ -410,14 +503,14 @@
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage < pagination.maxPage }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-angle-right"></i></a>
+												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-caret-right"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage - pagination.maxPage + pagination.pageSize < 0 }">
 											<li>
-												<a href="${next}"><i class="fas fa-angle-right"></a>
+												<a href="${next}"><i class="fas fa-caret-square-right"></i></a>
 											</li>
 										</c:if>
 					
@@ -430,7 +523,7 @@
 	
 	
 						<%-- 조건검색 창 --%>
-                        <form action="${contextPath}/reviewBoard/list?type=100&cp=1" method="post" role="form" onsubmit="return searchValidate();">
+                        <form class="searchForm-review" action="${contextPath}/reviewBoard/list?type=100&cp=1" method="post" role="form" onsubmit="return searchValidate();">
 								<div class="mb-2">
 									<label class="input-group-addon mr-3 insert-label">조건검색</label> 
 									<select	class="custom-select" id="searchType" name="searchType" style="width: 150px;">
@@ -453,6 +546,8 @@
 
                             
                         </form>
+                        
+                        
                     </div>
 
 

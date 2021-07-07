@@ -11,6 +11,14 @@
     <title>회원 댓글 작성</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+
+<!-- 라이트 박스 시작!  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<!-- 라이트 박스 끝! -->
+
+
 <!-- Bootstrap core JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
@@ -95,7 +103,7 @@
         
         
         /*댓글 */
-        .commentWrite>table {	margin-top: 100px; }
+        .commentWrite>table {	margin-top: 10px; }
 		.cWriter {
 			display: inline-block;
 			vertical-align: top;
@@ -136,13 +144,28 @@
             <div> <h1>리뷰게시판</h1></div>
             
 
+            <div class = text-right>
+                <a href="#" class="btn btn-primary">이전글</a>
+                <a href="#" class="btn btn-primary">다음글</a>
+                <c:choose>
+					<c:when test="${ !empty searchType}">
+						
+						<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType }&cp=${cp}" class="btn btn-primary">목록</a>
+					</c:when>
+					
+					<c:otherwise>
+						<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary">목록</a>
+					</c:otherwise>
+				</c:choose>
             
+            </div>
             
           	<!-- Category -->
 			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
             
             <hr>                        
-            <h2><span id="event-bod-title">${board.reviewTitle }</span></h2>
+            <h2><span id="event-bod-title">제목 : ${board.reviewTitle }</span></h2>
+            <hr>                        
             
         	<!-- Date -->
 			<p>
@@ -154,16 +177,21 @@
 		 		<span class="float-right">조회수 ${board.readCount } </span>
 			</p>
 			
+            <hr>                        
+
 			<div>
 				<h1>${board.movieTitleEn }</h1>
 			</div>
+			
              <div>
+             <label>영화 장르 :</label>
 	             <c:forEach items="${board.gnList }" var="gn">         
-	             	<span>${gn.movieGenreNM}</span>
+	             <span> [${gn.movieGenreNM}]</span>
 	             </c:forEach>
              </div>
      
-
+				<br>
+				
             <!-- 회원이 글 쓴 내용 -->
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -171,15 +199,12 @@
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
             </svg>
-
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-            
+          
 
 
 
-            <br>
-            <br>
 					<!-- 이미지 출력 -->	
 					<c:forEach items="${board.atList }" var="at">
 						<c:choose>
@@ -207,36 +232,42 @@
 								
 								<!-- img0 변수가 만들어진 경우 -->
 								<c:if test="${!empty img0 }">
+								<a href="${img0}" data-lightbox="example-set">
 									<img id="contentImg0" src="${img0 }">
-									
+								</a>
 								</c:if>
 						</div>
 						<div class="mr-2 boardImg" id="contentImgArea1">
 								<c:if test="${!empty img1 }">
+								<a href="${img1}" data-lightbox="example-set">
 									<img id="contentImg1" src="${img1 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea2">
 								<c:if test="${!empty img2 }">
+								<a href="${img2}" data-lightbox="example-set">
 									<img id="contentImg2" src="${img2 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea3">
 								<c:if test="${!empty img3 }">
+								<a href="${img3}" data-lightbox="example-set">
 									<img id="contentImg3" src="${img3 }">
+								</a>
 								</c:if>
 						</div>
 					</div>	
 					
             <!-- 글 쓴 내용  -->
-            <div id="normal-board-contnent">
+            <div id="normal-board-contnent" style="border: 1px solid black; width: 100%;  height: 400px;">
               ${board.reviewContent }
             </div>
 
 
-            <hr>
 			
 			
 
@@ -260,7 +291,9 @@
 				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
 			</div>
 		
-		
+			<br>
+			<br>
+            <hr>
 			
 		
 		
@@ -270,7 +303,7 @@
 					<table align="center">
 						<tr>
 							<td id="commentContentArea">
-								<textArea rows="3" id="commentContent"></textArea>
+								<textArea rows="3" id="commentContent" style = "width:600px; resize: none;"></textArea>
 							</td>
 							<td id="commentBtnArea">
 								<button class="btn btn-primary" id="addComment" onclick="addComment();">
@@ -314,7 +347,7 @@
 			
 			</div>
 			
-			
+		</div>	
 			
 			
 			
@@ -715,6 +748,14 @@
 					  }
 				});
 		}
+		
+		
+		lightbox.option({
+		    resizeDuration: 200,
+		    wrapAround: true,
+		    disableScrolling: false,
+		    fitImagesInViewport:false
+		})
     </script>
 
 

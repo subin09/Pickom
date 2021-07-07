@@ -29,8 +29,8 @@
 <body class="admin-body">
     <header class="admin-header__main">
         <div class="admin-header__main-container">
-          <img href="${contextPath}" src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo">
-          <img href="#"  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user">
+          <a href="${contextPath}"><img src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo"></a>
+      		<a href="${contextPath}/member/logout"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
         </div>
       </header>
     <main class="admin-main admin-main__member">

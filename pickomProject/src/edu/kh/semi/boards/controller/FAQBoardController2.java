@@ -79,7 +79,7 @@ public class FAQBoardController2 extends HttpServlet {
 					//String boardContent = request.getParameter("boardContent");
 					
 					HttpSession session = request.getSession();
-					int memberNo = ((Member)session.getAttribute("admin")).getMemberNo();
+					int memberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
 					
 					//System.out.println(categoryCode);
 					//System.out.println(boardTitle);
