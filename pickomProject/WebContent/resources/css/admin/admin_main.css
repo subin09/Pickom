@@ -1,8 +1,8 @@
 .admin-section {
-  width: 70%;
+  width: 100%;
   height: 21%;
   display: flex;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 
 .admin-section:first-child {
@@ -16,6 +16,50 @@
 .admin-today,
 .admin-boards {
   justify-content: space-between;
+  display: flex;
+  justify-content : center;
+  align-items: center;
+}
+
+.admin-today__visit {
+  display: flex;
+  justify-content : center;
+  align-items: center;
+}
+
+.admin-today > .admin-boards {
+	height: 3.5rem;
+	display: flex;
+	justify-content: center;
+	align-items : center;
+}
+.updateBox {
+	display: flex;
+	justify-content: center;
+	align-items : center;
+	width: 45%;
+	text-align : center;
+	text-decoration: none;
+	font-size: 1.6rem;
+	background-color: rgba(0,0,0,0.4);
+	height: 100%;
+	color: white;
+	border-radius: 1rem;
+	padding: 0.5rem;
+}
+
+.updateBox:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(0,0,0,0.6);
+	transition: 0.1s ease-in-out;
+}
+
+.update:hover {
+		text-decoration: none;
+	font-weight: bold;
+	color: white;
 }
 
 .admin-today div,
@@ -29,9 +73,52 @@
   padding: 0 0.6rem;
 }
 
-.admin-today span:first-child {
-  font-size: 1.8rem;
-  font-weight: bold;
+.cForm {
+	width: 70%;
+}
+
+.cForm div{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 70%;
+}
+.cForm input {
+	line-height: 4rem;
+	width: 100%;
+	font-size: 1.5rem;
+	text-align: center;
+	border: 0.2rem solid rgba(0,0,0,0.4);
+	border-radius: 2rem;
+}
+.cForm input:focus {
+	outline: none;
+	border: 0.2rem solid rgba(0,0,0,0.7);
+	border-radius: 2rem;
+	transition: 0.2s ease-in-out;
+}
+
+
+.cForm button {
+	width: 50%;
+	border: none;
+	margin-top : 1rem;
+	background-color: rgba(0,0,0,0.4);
+	height: 3rem;
+	color: white;
+	font-size: 1.5rem;
+	border-radius: 1rem;
+}
+
+.cForm button:hover {
+	font-weight: bold;
+	background-color: rgba(0,0,0,0.6);
+	transition: 0.1s ease-in-out;
+}
+
+.admin-board__event {
+	margin-right: 2rem;
 }
 
 .admin-board__event,
@@ -53,20 +140,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0.6rem;
-  margin-bottom: 0.8rem;
+  margin-bottom:1.5rem;
 }
 
 .admin-board__header span:first-child {
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .admin-board__header span a {
   background-color: rgb(89, 89, 247);
   color: white;
-  padding: 0.3rem;
-  font-size: 0.7rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
   border-radius: 0.2rem;
   text-decoration: none;
 }
@@ -81,11 +168,11 @@
   height: 70%;
   margin: 0;
   padding: 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .admin-table td,
 .admin-table th {
-  padding: 0.5rem;
+  padding: 0.7rem 0.5rem;
   text-align: center;
 }

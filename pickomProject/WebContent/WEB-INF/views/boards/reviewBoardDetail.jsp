@@ -136,21 +136,7 @@
             <div> <h1>리뷰게시판</h1></div>
             
 
-            <div class = text-right>
-                <a href="#" class="btn btn-primary">이전글</a>
-                <a href="#" class="btn btn-primary">다음글</a>
-                <c:choose>
-					<c:when test="${ !empty searchType}">
-						
-						<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType }&cp=${cp}" class="btn btn-primary">목록</a>
-					</c:when>
-					
-					<c:otherwise>
-						<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary">목록</a>
-					</c:otherwise>
-				</c:choose>
             
-            </div>
             
           	<!-- Category -->
 			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
@@ -193,9 +179,6 @@
             </svg>
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-          
-
-
 
 					<!-- 이미지 출력 -->	
 					<c:forEach items="${board.atList }" var="at">

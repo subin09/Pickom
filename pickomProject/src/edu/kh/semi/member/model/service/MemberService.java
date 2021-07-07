@@ -161,10 +161,74 @@ public class MemberService {
 		
 		return memberPreProfile;
 	}
-	
-	
 
-	
-	
-	
+
+	/**비밀 번호 변경 service
+	 * @param currentPw
+	 * @param newPw1
+	 * @param memberNo
+	 * @return
+	 */
+	public int changePw(String currentPw, String newPw1, int memberNo) throws Exception {
+		
+		int result = 0;
+		
+		Connection conn = getConnection();
+		
+		result = dao.chagePw(conn, currentPw, newPw1, memberNo);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	/**비밀번호 확인 service
+	 * @param secessionPw
+	 * @return
+	 */
+	public int checkPw(String secessionPw, int memberNo)  throws Exception {
+		int result = 0;
+		
+		Connection conn = getConnection();
+		
+		result = dao.chagePw(conn, secessionPw, memberNo);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	/**회원 탈퇴 Service
+	 * @param memberNo
+	 * @param secessionAgree
+	 * @param secessionReason
+	 * @return
+	 */
+	public int secession(int memberNo, String secessionAgree, String secessionReason) throws Exception{
+		
+		int result = 0;
+		
+		Connection conn = getConnection();
+		
+		result = dao.secession(conn, memberNo);
+		
+		if(result>0) {
+			result = dao.insertDropTable(conn, memberNo, secessionAgree, secessionReason);
+			
+			if(result >0) commit(conn);
+			else rollback(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 }

@@ -156,7 +156,7 @@ public class MemberDAO {
 	}
 
 
-	/**
+	/**비밀번호
 	 * @param conn
 	 * @param memberId
 	 * @param memberEmail
@@ -329,7 +329,8 @@ public class MemberDAO {
 				= new Profile(
 							rs.getInt("MEMBER_NO"), 
 							rs.getString("PROFILE_PICTURE"), 
-							rs.getString("PROFILE_PICTURE_NAME")
+							rs.getString("PROFILE_PICTURE_NAME"),
+							rs.getString("MEMBER_NICKNAME")
 							);
 			}			
 		}finally {
@@ -338,6 +339,105 @@ public class MemberDAO {
 		}
 		
 		return memberPreProfile;
+	}
+
+
+	/**비밀번호 변경 DAO
+	 * @param conn
+	 * @param currentPw
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int chagePw(Connection conn, String currentPw, String newPw1, int memberNo) throws Exception{
+		
+		int result = 0;
+		
+		String sql = prop.getProperty("changePw");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPw1);
+			pstmt.setString(2, currentPw);
+			pstmt.setInt(3, memberNo);
+
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public int chagePw(Connection conn, String secessionPw, int memberNo) throws Exception{
+		int result = 0;
+		
+		String sql = prop.getProperty("checkPw");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, secessionPw);
+			pstmt.setInt(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	/**탈퇴 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @return
+	 * @throws Exception
+	 */
+	public int secession(Connection conn, int memberNo) throws Exception {
+		int result = 0;
+		
+		String sql = prop.getProperty("secession");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	/**Drop 테이블 삽입 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param secessionAgree
+	 * @param secessionReason
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertDropTable(Connection conn, int memberNo, String secessionAgree, String secessionReason) throws Exception{
+		int result = 0;
+		
+		String sql = prop.getProperty("insertDropTable");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, secessionReason);
+			pstmt.setString(3, secessionAgree);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 

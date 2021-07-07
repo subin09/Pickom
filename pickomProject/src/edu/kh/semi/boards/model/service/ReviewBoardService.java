@@ -169,7 +169,7 @@ public class ReviewBoardService {
 		case 3 : boardList= dao.getSearchContentList(conn, pagination, searchType, searchValue); break;
 		}
 		
-
+		
 		
 		close(conn);
 		return boardList;
@@ -184,6 +184,7 @@ public class ReviewBoardService {
 		Connection conn = getConnection();
 		
 		List<ReviewBoard> boardList = dao.selectNoticeList(conn);
+		
 		close(conn);
 		return boardList;
 	}

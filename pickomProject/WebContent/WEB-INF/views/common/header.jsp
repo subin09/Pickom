@@ -15,16 +15,10 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-<!-- Bootstrap core JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
  
-<!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
-
-
 
 
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common/01_header.css">
@@ -34,15 +28,15 @@
 <body>
 	<div id="header-body">
 	<div class="fixed-top" id="navigator">
-		<div class="d-flex bd-highlight justify-content-between"
+		<div class="d-flex bd-highlight justify-content-around"
 			id="mainheader">
 			<div class="p-2 bd-highlight img" id="mainlog-div">
 
 
 
 				<%--mian logo 연결 --%>
-				<a href="${contextPath}"> <img
-					src="${contextPath}/resources/img/logo.png" width="200px"
+				<a href="${contextPath}"> <img id="logoimage"
+					src="${contextPath}/resources/img/logo.jpg" width="150px"
 					height="auto" id="mainlogo" alt="">
 				</a>
 			</div>
@@ -59,43 +53,48 @@
 			</div>
 
 			<%-- loginModal --%>
-			<div class="p-2 bd-highlight img" id="mainmypage-div">
+			<div class="d-flex p-2 bd-highlight img" id="mainmypage-div">
 				<c:choose>
 
 					<c:when test="${empty loginMember}">
-						<a href="#" data-toggle="modal" data-target="#loginModal"> <img
-							src="${contextPath}/resources/img/login-logo.jpg" width="100px"
-							height="auto" id="mainmypage" alt="">
+						<a href="#" data-toggle="modal" data-target="#loginModal">
+							<img id="loginimage"
+							src="${contextPath}/resources/img/login-logo.jpg" alt="">
 						</a>
 
 					</c:when>
 					<c:otherwise>
-						<div class="p-2 bd-highlight img" id="mainmypage-div">
-							<img src="${contextPath}/resources/img/login-logo.jpg"
-								width="100px" height="auto" id="mainmypage" alt="">
+						<div class="p-2 bd-highlight img">
+							<img id="loginimage" 
+							src="${contextPath}/${filePath}${fileName}"
+							 alt="">
 						</div>
 						<div class="p-2 bd-highlight">
 							<ul class="navbar-nav ml-auto">
-								<li class="nav-item active">
+								<li class="nav-item active fixed">
 								
 								<%-- 마이페이지 관리자/회원 분류 --%>
 								<c:choose>
 									<c:when test="${loginMember.memberGrade == 'A'}">
-										<a class="nav-link"	href="${contextPath}/admin/adminMain"  > 마이페이지 </a>
-									</c:when>
+										<a class="btn" id="mypageList"
+											href="${contextPath}/admin/adminMain"> 관리페이지 </a>
+                  </c:when>
 									<c:otherwise>
-										<a class="nav-link"	href="${contextPath}/member/mypage"  > 마이페이지 </a>
+										<a class="btn" id="mypageList"
+											href="${contextPath}/member/mypage"> 마이페이지 </a>
 									</c:otherwise>
 								</c:choose>
 								
 							
 								</li>
 								<li class="nav-item active">
-									<a class="nav-link" href="${contextPath}/member/logout"> 로그아웃 </a>
+									<a class="btn" id="mypageList"
+										href="${contextPath}/member/logout"> 로그아웃 </a>
 								</li>
 								<c:if test="${loginMember.memberGrade == 'A'}">
 									<li class="nav-item active">
-										<a class="nav-link"	href="${contextPath}/crawler"> 임시크롤링버튼 </a>
+										<a class="btn" id="mypageList"
+											href="${contextPath}/crawler"> 임시크롤링버튼 </a>
 									</li>
 								</c:if>
 							</ul>
@@ -121,20 +120,13 @@
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
 						href="${contextPath}">메인</a></li>
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
-						href="${contextPath}">일반게시판</a></li>
+						href="${contextPath}/reviewBoard/list?type=0">리뷰</a></li>
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
-						href="${contextPath}/reviewBoard/list?type=0">리뷰게시판</a></li>
+						href="${contextPath}/eventBoard/list">행사</a></li>
 					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
-						href="${contextPath}/eventBoard/list">행사게시판</a></li>
-					<li class="nav-item dropdown" id="customerService"><a
-						class="nav-link dropdown-toggle" href="#" id="mainmenutitle"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> 고객센터 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" id="FAQ" href="#">FAQ</a> <a
-								class="dropdown-item" id="complainReport" href="${contextPath}/complainBoard/list?type=0">불편신고</a>
-						</div></li>
+						href="${contextPath}/FAQBoard/list">공지</a></li>
+					<li class="nav-item"><a class="nav-link" id="mainmenutitle"
+						href="${contextPath}/complainBoard/list?type=0">불편사항</a></li>
 				</ul>
 			</div>
 

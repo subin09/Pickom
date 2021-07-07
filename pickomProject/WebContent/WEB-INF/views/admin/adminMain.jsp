@@ -27,8 +27,8 @@
 <body class="admin-body">
   <header class="admin-header__main">
     <div class="admin-header__main-container">
-      <img href="${contextPath}" src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo">
-      <img href="#"  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user">
+      <a href="${contextPath}"><img src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo"></a>
+      <a href="${contextPath}/member/logout"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
     </div>
   </header>
   
@@ -36,20 +36,26 @@
        
        <section class="admin-section admin-today">
             <div class="admin-today__visit">
-                <span>방문자 수</span>
-                <span></span>
+                <form class="cForm"method="POST" action="${contextPath}/crawler/movie">
+                	<div>
+	                	<input type="text" id="movieNo" name="movieNo" placeholder="검색할 영화코드 입력">
+	                	<button type="submit">영화 업데이트</button>
+                	</div>
+                </form>
             </div>
-            <div class="admin-today__signUp">
-                <span>회원가입 수</span>
-                <span></span>
-            </div>
+                
+                <div class="admin-section admin-boards">
+                	<div class="updateBox">
+	                	<a class="update"href="${contextPath}/crawler/genre" >장르 업데이트</a>
+                	</div>
+                </div>
 
        </section>
        <section class="admin-section admin-boards ">
            <div class="admin-board__event">
                <div class="admin-board__header">
                     <span>행사게시판</span>
-                    <span><a class="admin-a" href="#">MORE</a></span>
+                    <span><a class="admin-a" href="${contextPath}/eventBoard/list">MORE</a></span>
                </div>
                <!--행사게시판 테이블-->
                <div class="admin-board__table">
@@ -64,16 +70,27 @@
                         <th scope="col">게시글 내용</th>
                       </tr>
                     </thead>
-				<c:forEach var="list" items="" begin="0" end="4" step="1" varStatus="no">
-	                    <tbody>
-	                      <tr>
-	                        <th scope="row"></th>
-	                        <td>
-	                            <a class="admin-a" href="#"></a>
-	                        </td>
-	                      </tr>  
-	                    </tbody>
-				</c:forEach>
+
+	                 <c:forEach items="${eventBoardList }" var="board" varStatus="b" begin="0" end="4">
+	                    <c:choose>
+	                    	<c:when test="${empty eventBoardList }">
+	                    		<tr>
+	                    			<td colspan="2">게시글이 존재하지 않습니다.</td>
+	                    		</tr>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<tr>
+			                        <th scope="row">${b.count }</th>
+			                        <td>
+			                            <a class="admin-a" href="${contextPath }/eventBoard/view?no=${board.eventBodNo}&cp=1">${board.eventBodTitle }</a>
+			                        </td>
+		                        
+		                      </tr>
+	                    	</c:otherwise>
+	                    </c:choose>
+                    </c:forEach>
+	               </tbody>
+
                     
                     
                     
@@ -142,7 +159,7 @@
        <section class="admin-section board">
            <div class="admin-board__report admin-board__report-post">
                 <div class="admin-board__header">
-                	<span>신고게시글 | 신고댓글</span>
+                	<span>신고글</span>
                     <span><a class="admin-a" href="${contextPath }/reviewBoard/list?type=200">MORE</a></span>
                 </div>
                 <!--신고게시글 테이블-->
@@ -179,7 +196,7 @@
 	                    	<c:otherwise>
 	                    		<tr>
 		                        <th scope="row">${b.count }</th>
-		                        <td>
+		                        <td class="reportBtn">
 		                        	<a href="${contextPath }/reviewBoard/view?type=201&no=${board.reviewNo}">처리</a>
 		                        </td>
 		                        <td>${board.reportCdNm }</td>

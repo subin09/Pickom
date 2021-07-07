@@ -70,7 +70,7 @@ public class CrawlerVo {
 		String delTitleEn = ", 0000";
 		String movieTitleEn = elMovieTitleEn.text();
 		movieTitleEn = movieTitleEn.substring
-				(0,movieTitleEn.length()-delTitleEn.length());
+				(0, movieTitleEn.length()-delTitleEn.length());
 		this.arrMovieTitleEn.add(movieTitleEn);
 
 		// 감독
@@ -140,17 +140,17 @@ public class CrawlerVo {
 			}
 		}
 		
-		System.out.println("크롤러까지 연결됬어요~");
-		System.out.println(arrGenreCd1);
-		System.out.println(arrMovieCountry);
-		System.out.println(arrMovieOpenDt);
-		System.out.println(arrRuntime);
-		System.out.println(arrMovieTitleKo);
-		System.out.println(arrMovieTitleEn);
-		System.out.println(arrMovieDirector);
-		System.out.println(arrMovieSummary);
+		//System.out.println("크롤러까지 연결됬어요~");
+		//System.out.println(arrGenreCd1);
+		//System.out.println(arrMovieCountry);
+		//System.out.println(arrMovieOpenDt);
+		//System.out.println(arrRuntime);
+		//System.out.println(arrMovieTitleKo);
+		//System.out.println(arrMovieTitleEn);
+		//System.out.println(arrMovieDirector);
+		//System.out.println(arrMovieSummary);
 		
-		System.out.println(arrGenreCd1);
+		//System.out.println(arrGenreCd1);
 
 	}
 	
@@ -196,9 +196,9 @@ public class CrawlerVo {
 			this.arrMedia.add(media);
 		}
 
-		System.out.println(arrPoster);
-		System.out.println(arrStillCut);
-		System.out.println(arrMedia);
+		//System.out.println(arrPoster);
+		//System.out.println(arrStillCut);
+		//System.out.println(arrMedia);
 	}
 
 	/** 영화배우 Crawler[detail]
@@ -247,9 +247,9 @@ public class CrawlerVo {
 			}
 		}	
 		
-		System.out.println(arrActorNmKo);
-		System.out.println(arrActorNmEn);
-		System.out.println(arrActorCd);
+		//System.out.println(arrActorNmKo);
+		//System.out.println(arrActorNmEn);
+		//System.out.println(arrActorCd);
 	}
 
 
@@ -285,8 +285,8 @@ public class CrawlerVo {
 				this.arrGenreCd2.add(genreCd);
 			}
 		}
-		System.out.println(arrGenreNm);
-		System.out.println(arrGenreCd2);
+		//System.out.println(arrGenreNm);
+		//System.out.println(arrGenreCd2);
 	}
 	
 	
