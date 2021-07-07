@@ -243,8 +243,10 @@ public class ReviewBoardController2 extends HttpServlet {
 				
 					int boardNo = Integer.parseInt(request.getParameter("no"));
 					int boardType = Integer.parseInt(request.getParameter("type"));
-					int result = service.deleteBoard(boardNo);
+					System.out.println("boardNoo은? : "+ boardNo);
 					
+					int result = service.deleteBoard(boardNo);
+					System.out.println("result는? : " +result);
 					
 						
 					

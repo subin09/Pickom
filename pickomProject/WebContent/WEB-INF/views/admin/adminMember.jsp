@@ -23,8 +23,8 @@
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/reset.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_sideBar.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_boardList.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_member.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_member.css">
 </head>
 <body class="admin-body">
     <header class="admin-header__main">
@@ -33,7 +33,7 @@
           <img href="#"  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user">
         </div>
       </header>
-    <main class="admin-main">
+    <main class="admin-main admin-main__member">
         <section class="admin-member__page-title admin-section">
             <h1>회원 관리</h1>
   
