@@ -27,8 +27,8 @@
 <body class="admin-body">
   <header class="admin-header__main">
     <div class="admin-header__main-container">
-      <a href="${contextPath}"><img src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo"></a>
-      <a href="${contextPath}/member/logout"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
+      <a class="admin-logo__img" href="${contextPath}"><img src="${contextPath}/resources/img/logo.jpg" alt="logo" class="admin-header__logo"></a>
+      <a href="${contextPath}/admin/adminMain"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
     </div>
   </header>
   
@@ -36,7 +36,7 @@
        
        <section class="admin-section admin-today">
             <div class="admin-today__visit">
-                <form class="cForm"method="POST" action="${contextPath}/crawler/movie">
+                <form class="cForm" action="${contextPath}/crawler/movie">
                 	<div>
 	                	<input type="text" id="movieNo" name="movieNo" placeholder="검색할 영화코드 입력">
 	                	<button type="submit">영화 업데이트</button>
@@ -46,7 +46,7 @@
                 
                 <div class="admin-section admin-boards">
                 	<div class="updateBox">
-	                	<a class="update"href="${contextPath}/crawler/genre" >장르 업데이트</a>
+	                	<a class="update" href="${contextPath}/crawler/genre" >장르 업데이트</a>
                 	</div>
                 </div>
 
@@ -307,8 +307,8 @@
            <li><a class="admin-a" href="${contextPath }/admin/adminMember/list?type=0">회원관리</a></li>
            <li><a class="admin-a" href="${contextPath }/reviewBoard/list?type=200">신고 게시글</a></li>
            <li><a class="admin-a" href="${contextPath }/reviewBoard/list?type=300">신고 댓글</a></li>
-           <li><a class="admin-a" href="#">행사게시판</a></li>
-           <li><a class="admin-a" href="#">커뮤니티</a></li>
+           <li><a class="admin-a" href="${contextPath}/eventBoard/list">행사게시판</a></li>
+           <li><a class="admin-a" href="${contextPath}/FAQBoard/list">공지사항</a></li>
            <li><a class="admin-a" href="${contextPath}/complainBoard/list?type=0">불편사항</a></li>
        </ul>
    </div>

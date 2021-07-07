@@ -93,6 +93,15 @@
             padding-top: 210px;
         }
         
+        .reportBtn {
+        	color: white;
+       	text-decoration: none;
+        	}
+       .reportBtn:hover{
+       	text-decoration: none;
+       	color: white;
+       }
+        
         #contentImg0, 
         #contentImg1, 
         #contentImg2, 
@@ -144,24 +153,12 @@
             <div> <h1>리뷰게시판</h1></div>
             
 
-            <div class = text-right>
-                <a href="#" class="btn btn-primary">이전글</a>
-                <a href="#" class="btn btn-primary">다음글</a>
-                <c:choose>
-					<c:when test="${ !empty searchType}">
-						
-						<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType }&cp=${cp}" class="btn btn-primary">목록</a>
-					</c:when>
-					
-					<c:otherwise>
-						<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary">목록</a>
-					</c:otherwise>
-				</c:choose>
             
-            </div>
             
-          	<!-- Category -->
-			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
+          	
+			
+			
+			
             
             <hr>                        
             <h2><span id="event-bod-title">제목 : ${board.reviewTitle }</span></h2>
@@ -277,12 +274,15 @@
 						<button id="deleteBtn" class="btn btn-primary float-right mr-2" onclick="deleteRequest();">삭제</button> 
 						<button id="updateBtn" class="btn btn-primary float-right mr-2" onclick="updateRequest('updateForm');">수정</button> 
 					</c:if>
+					
 					<%-- 로그인된 회원과 해당 글 작성자가 다른 경우에만 신고버튼 노출--%>
-					<c:if test="${loginMember.memberGrade == 'A' || loginMember.memberNo != board.memberNo}">
-						<button id="deleteBtn" class="btn btn-primary float-right mr-2">
-							<a href="${contextPath }/report/reportPostForm?type=0&no=${board.reviewNo}">신고</a>
-						</button> 
+					<c:if test="${loginMember.memberNo != board.memberNo && board.memberGrade != 'A' && loginMember.memberGrade != 'A'}">
+								<button id="deleteBtn" class="btn btn-primary float-right mr-2">
+									<a class="reportBtn" href="${contextPath }/report/reportPostForm?type=0&no=${board.reviewNo}">신고</a>
+								</button> 
+							
 					</c:if>
+					
 				</c:if>	
 				
 				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
@@ -521,7 +521,6 @@
 		 	           
 		 	            if(loginMemberNo != ""){
 		 	            	
-		 	            		var cContent = $("<p>").addClass("cContent").html("신고된 댓글입니다.").css({color: "red", fontWeight : "bold"});
 		 	            	
 				 	            if(item.memberNo == loginMemberNo && loginMemberGrade != 'A'){ // 일반회원인데 본인일 때
 				 	               // 신고댓글 아닐 때ㄴ
@@ -533,19 +532,24 @@
 						 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
 						 	               
 						 	               commentBtnArea.append(showUpdate).append(deleteComment);
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 					 	              }
 				 	              }
 				 	            
 								if(item.memberNo != loginMemberNo && loginMemberGrade != 'A'){ //  일반회원인데 본인이 아닐 때
 				 	               
-				 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
-				 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
-				 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo);
-				 	               
-				 	               reportBtn.append(reportLink);
-				 	               commentBtnArea.append(reportBtn);
-				 	              if(item.reportNo != ""){ // 신고댓글일 때
+				 	             	 if(item.reportNo != ""){ // 신고댓글일 때
 					 	            	 var cContent = $("<p>").addClass("cContent").html("신고된 댓글입니다.");
+					 	            } else{
+					 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+					 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
+					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo);
+					 	               
+					 	               reportBtn.append(reportLink);
+					 	               commentBtnArea.append(reportBtn);
+					 	               
+					 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+					 	            	
 					 	            }
 				 	            }
 								
@@ -696,7 +700,7 @@
 				})
 				.then(function(willDelete) { // <=== Only change is here
 					if (willDelete) {
-						var url = "${contextPath}/reviewComment/recoverComment";
+						var url = "${contextPath}/reviewComment/deleteComment";
 						
 						$.ajax({
 							url : url,
@@ -705,7 +709,7 @@
 								if(result > 0){
 									selectCommentList(boardNo);
 									
-									swal({"icon" : "success" , "title" : "댓글 복구 성공"});
+									swal({"icon" : "success" , "title" : "댓글 삭제 성공"});
 								}
 								
 							}, error : function(){

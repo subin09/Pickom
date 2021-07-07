@@ -30,41 +30,6 @@
             /* border: 1px solid black;*/
         }
 
-        div#mainlog,
-        div#main {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
 
        
 
@@ -171,8 +136,7 @@
          	display: flex;
          	justify-content: space-between;
          	align-items : center;
-         	margin-bottom: 20px;
-         	padding: 10px;
+        	padding: 80px 25px 40px 25px;
         }
         
         .notice-review {
@@ -220,6 +184,7 @@
         	
         }
         
+       
         .review-category label{
         	 margin: 0px 10px 0px 0px;
         	font-size: 20px;
@@ -524,7 +489,7 @@
 	
 						<%-- 조건검색 창 --%>
                         <form class="searchForm-review" action="${contextPath}/reviewBoard/list?type=100&cp=1" method="post" role="form" onsubmit="return searchValidate();">
-								<div class="mb-2">
+								<div class="mb-2 ">
 									<label class="input-group-addon mr-3 insert-label">조건검색</label> 
 									<select	class="custom-select" id="searchType" name="searchType" style="width: 150px;">
 											<option value="1">영화 제목</option>

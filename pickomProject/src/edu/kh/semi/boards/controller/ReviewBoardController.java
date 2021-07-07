@@ -70,13 +70,17 @@ public class ReviewBoardController extends HttpServlet {
 					// 검색조건에 맞는 검색목록 페이징 처리
 					Pagination pagination = service.getSearchPagination(cp, boardType, searchType, searchValue);
 					request.setAttribute("pagination", pagination);
-					
+					System.out.println("영화제목으로 검색 pagination" + pagination);
 					// 검색조건에 맞는 게시글 리스트 가져오기
 					List<ReviewBoard> boardList = service.searchBoardList(pagination, searchType, searchValue);
-
+					System.out.println("영화제목으로 검색 boardList" + boardList);
 					request.setAttribute("boardList", boardList);
 					request.setAttribute("searchValue", searchValue);
 					request.setAttribute("searchType", searchType);
+					
+					path="/WEB-INF/views/boards/reviewBoardList.jsp";
+					view = request.getRequestDispatcher(path);
+					view.forward(request, response);
 					
 				}  else if(boardType == 200) {  // 관리자 페이지 신고글 모음 
 					
