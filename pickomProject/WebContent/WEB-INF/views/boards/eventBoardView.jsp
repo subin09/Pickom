@@ -85,9 +85,6 @@
 	height: 100px;
 }
 
-body {
-	padding-top: 210px;
-}
 </style>
 
 

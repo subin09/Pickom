@@ -33,9 +33,6 @@
 	border: 1px solid red;
 } */
 
-body {
-	padding-top: 210px;
-}
 
 .boardImg {
 	cursor: pointer;
