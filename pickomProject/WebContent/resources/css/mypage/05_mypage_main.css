@@ -1,4 +1,17 @@
-.mypage-menu{
-  margin-bottom: 5px;
-  background-color: antiquewhite;
+.mypage-menu {
+	margin-bottom: 5px;
+	background-color: #dadbdb;
+}
+
+#mpMain-p {
+	height: 150px;
+	font-weight: 600;
+}
+
+#mpMain-h5Title{
+	font-weight: bold;
+}
+
+.mp-mainBtn{
+	background-color: white;
 }

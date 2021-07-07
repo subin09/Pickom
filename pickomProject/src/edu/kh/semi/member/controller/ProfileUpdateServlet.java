@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.SendResult;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -124,9 +125,7 @@ public class ProfileUpdateServlet extends HttpServlet {
 			session.setAttribute("icon", icon);
 			session.setAttribute("title", title);
 			
-			RequestDispatcher view = request.getRequestDispatcher(path);
-			view.forward(request, response);
-		
+			response.sendRedirect(path);		
 			
 		} catch (Exception e) {
 			e.printStackTrace();

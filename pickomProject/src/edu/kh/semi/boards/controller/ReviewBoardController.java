@@ -59,7 +59,6 @@ public class ReviewBoardController extends HttpServlet {
 				// 공지,일반게시글 분류를 위한 type 가져오기
 				int boardType = Integer.parseInt(request.getParameter("type"));
 				
-				
 				// 검색했을 때 
 				if(boardType == 100) {
 					// 제목, 내용 중 선택한 값 가져오기 

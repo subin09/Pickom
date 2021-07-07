@@ -25,9 +25,9 @@
 						</a>
 				</div>
                 <div class="d-flex p-3 bd-highlight" id="mypagemain-menu">
-               		 <a href="${contextPath}" id="mypageMenu">
+               		 <a href="${contextPath}/complainBoard/list?type=0" id="mypageMenu">
 	                	<span >
-	                		| 불편사항(고객센터) |
+	                		| 불편사항 |
 	                	</span>
                 	</a>
                 </div>

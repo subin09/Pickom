@@ -42,14 +42,23 @@
 			</div>
 
 			<div class="p-2 bd-highlight align-self-end">
-				<form class="form-inline">
-					<div>
-						<input class="form-control mr-sm-2" id="mainsearch" type="search"
-							placeholder="Search" aria-label="Search">
-					</div>
-					<%--검색 기능--%>
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-				</form>
+
+
+					<form class="form-inline"
+						action="${contextPath}/reviewBoard/list?type=100&cp=1"
+						method="post" role="form" onsubmit="return searchValidate();">
+						
+						<div class="mb-2">
+							<input name="searchType" value="1" type = hidden>
+							<input class="form-control mr-sm-2" type="search"
+							placeholder="Search" aria-label="Search" size="60" name="searchValue">
+						</div>
+						
+						<div class="input-group-append mb-2">
+                        <button class="btn btn-outline-secondary" type="submit"
+                        	 id="button-addon2">검색</button>
+                        </div>
+					</form>
 			</div>
 
 			<%-- loginModal --%>
@@ -63,11 +72,26 @@
 						</a>
 					</c:when>
 					<c:otherwise>
+						
 						<div class="p-2 bd-highlight img">
-							<img id="loginimage" 
-							src="${contextPath}/${filePath}${fileName}"
-							 alt="">
+							<c:choose>
+								<c:when test="${loginMember.memberGrade == 'A'}">
+									<a href="${contextPath}/admin/adminMain">
+										<img id="loginimage" 
+										src="${contextPath}/${filePath}${fileName}"
+										 alt="">
+									 </a>
+								 </c:when>
+								 <c:otherwise>
+								 	<a href="${contextPath}/member/mypage">
+									 <img id="loginimage" 
+										src="${contextPath}/${filePath}${fileName}"
+										 alt="">
+									</a>
+								 </c:otherwise>
+							</c:choose>
 						</div>
+							
 						<div class="p-2 bd-highlight">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item active fixed">
@@ -90,12 +114,6 @@
 									<a class="btn" id="mypageList"
 										href="${contextPath}/member/logout"> 로그아웃 </a>
 								</li>
-								<c:if test="${loginMember.memberGrade == 'A'}">
-									<li class="nav-item active">
-										<a class="btn" id="mypageList"
-											href="${contextPath}/crawler"> 임시크롤링버튼 </a>
-									</li>
-								</c:if>
 							</ul>
 						</div>
 					</c:otherwise>

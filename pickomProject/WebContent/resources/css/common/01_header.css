@@ -7,7 +7,7 @@
   }
   
   #mainheader{
-    background-color: rgba(100, 100, 100, 0.3);
+    background-color: #dadbdb;
   }
 
   #mainlog-div{
@@ -30,7 +30,7 @@
   }
 
   #header-body {
-      padding-top: 260px;
+      padding-top: 210px;
   }
   
   #mypageList{
@@ -48,8 +48,10 @@
   }
   
   #logoimage{
-  	border: 2px solid black;
+  	border: 2px solid grey;
   	border-radius: 100px;
   	width: 150px;
   	height: 150px;
   }
+
+ 

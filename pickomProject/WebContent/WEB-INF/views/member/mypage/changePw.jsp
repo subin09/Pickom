@@ -32,27 +32,29 @@
     <div class="container">
         <div class="row my-6 justify-content-center text-center">
             <div class="col-sm-6">
-                <div>
+                <div class="bg-white rounded shadow-sm container p-3">
                     <form method="POST" action="changePw" onsubmit="return pwdValidate();" class="form-horizontal" role="form">
-                        <div class="row my-2 mx-2">
-                            <div class="col-sm-6">비밀번호 변경</div>
+                        <div class="row my-2 mx-2 form-row">
+                            <div class="col-sm-6" id="changePwTitle"> &lt비밀번호 변경 &gt </div>
                         </div>
-                        <div class="row mb-2 mx-2">
+                        <hr>
+                        <div class="row mb-2 mx-2 form-row">
                             <div class="col-sm-12">
                                 <p>
-		                                    안전한 비밀번호로 내정보를 보호하세요. <br>
-		                                    다른 아이디/사이트에서 사용적 없는 비밀번호 <br>
-		                                    이전에 사용한 적 없는 비밀번호 안전합니다.
+					                                    안전한 비밀번호로 내정보를 보호하세요. <br>
+					                                    다른 아이디/사이트에서 사용적 없는 비밀번호 <br>
+					                                    이전에 사용한 적 없는 비밀번호 안전합니다.
                                 </p>
                             </div>
                         </div>
-                        <div class="row mb-2 mx-2">
+                         <hr>
+                        <div class="row mb-2 mb-5">
                             <div class="col-sm-12">
                                 <input type="password" id="currentPw" name="currentPw" placeholder="현재 비밀번호">
                             </div>
                         </div>
                         <div class="row mb-2 mx-2">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 mb-2">
                                 <input type="password" id="newPw1" name="newPw1" placeholder="새 비밀번호">
                             </div>
                             <div class="col-sm-12">
@@ -60,19 +62,9 @@
                             </div>
                         </div>
                         <div class="row mb-2 mx-2">
-                            <div class="col-sm-8">자동입력방지</div>
-                        </div>
-                        <div class="row mb-2 mx-2">
-                            <jsp:include page="captcha/captcha.jsp"></jsp:include>
-                        </div>
-                        <div class="row mb-2 mx-2">
                             <div class="col-sm-12">
-                                <button>변경하기</button>
-                            </div>
-                        </div>
-                        <div class="row mb-2 mx-2">
-                            <div class="col-sm-12">
-                                <button type="reset">취소</button>
+                                <button class="btn btn-primary mb-2">변경하기</button>
+                                <button class="btn btn-primary mb-2" type="reset">취소</button>
                             </div>
                         </div>
                     </form>
@@ -102,7 +94,6 @@
 				return false;
 			}
 		}
-	
 	</script>
     
     
