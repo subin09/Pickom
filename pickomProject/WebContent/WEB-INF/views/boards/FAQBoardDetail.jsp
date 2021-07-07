@@ -11,6 +11,16 @@
     <title>공지사항 상세</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+
+<!-- 라이트 박스 시작!  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<!-- 라이트 박스 끝! -->
+
+
+
+
 <!-- Bootstrap core JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
@@ -18,45 +28,7 @@
 <!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-        div {
-            border: 1px solid red;
-        }
-
-        div#mainlog,
-        div#mainmypage {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
+       
 
 
         #normal-board-content {
@@ -74,23 +46,40 @@
         }
 
 		.boardImg {
-			width: 100px;
-			height: 100px;
+			width: 200px;
+			height: 200px;
 		}
 
-        body {
-            padding-top: 210px;
-        }
+        
         
         #contentImg0, 
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 100px;
-        height: 100px;
+        width : 200px;
+        height: 200px;
         }
         
+        .noticeBoard_container h1 {
+       		margin: 70px 0px;
+       }
+        
+       .noticeBoard_container p {
+       	margin: 4rem 0;
+       }
        
+       	.noticeBoard_container2 {
+       	margin-bottom: 100px;
+       }
+       
+       #normal-board-contnent {
+       margin: 40px 0;
+       }
+       
+       .title-area{
+       	margin-bottom: 2rem;
+       	height: 200px;
+       }
     </style>
 
 
@@ -103,19 +92,12 @@
 
 
 
-    <div class="container">
+    <div class="container noticeBoard_container">
     
-        <form action="">
-            <div> <h1>리뷰게시판</h1></div>
+        <main class="noticeBoard_container2">
+            <div> <h1>공지사항</h1></div>
             
 
-            <div class = text-right>
-                <a href="#" class="btn btn-primary">이전글</a>
-                <a href="#" class="btn btn-primary">다음글</a>
-                <a href="list?cp=${param.cp}" class="btn btn-primary">목록</a>
-            
-            </div>
-            
             
             <hr>                        
             <h2><span id="event-bod-title">${board.faqTitle }</span></h2>
@@ -142,16 +124,7 @@
 
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-            <i class="bi bi-chat" id="comment-count">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
-                </svg>
-
-                <span>댓글 단 횟수</span>
-            </i>
-
+           
 
 
             <br>
@@ -178,31 +151,38 @@
 					
 
 	
-					<div class="form-inline mb-2">
+					<div class="form-inline mb-2 title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
 								<!-- img0 변수가 만들어진 경우 -->
 								<c:if test="${!empty img0 }">
+									<a href="${img0}" data-lightbox="example-set">
 									<img id="contentImg0" src="${img0 }">
-									
+									</a>
 								</c:if>
 						</div>
 						<div class="mr-2 boardImg" id="contentImgArea1">
 								<c:if test="${!empty img1 }">
+									<a href="${img1}" data-lightbox="example-set">
 									<img id="contentImg1" src="${img1 }">
+									</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea2">
 								<c:if test="${!empty img2 }">
+									<a href="${img2}" data-lightbox="example-set">
 									<img id="contentImg2" src="${img2 }">
+									</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea3">
 								<c:if test="${!empty img3 }">
+									<a href="${img3}" data-lightbox="example-set">
 									<img id="contentImg3" src="${img3 }">
+									</a>
 								</c:if>
 						</div>
 					</div>	
@@ -213,16 +193,9 @@
             </div>
 
 
-            <hr>
+            
 
-            <!-- 댓글 단 닉네임 -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path fill-rule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-            </svg>
-            <i class="bi bi-person-circle"><span>닉네임</span></i>
+            
 
 
             <br>
@@ -232,27 +205,6 @@
 
 
 
-            <!-- 댓글 작성하는 textarea -->
-            <div class="form-group" id="content-title">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" cols="8" style="resize: none;"
-                    placeholder="댓글을 입력해주세요."></textarea>
-                    <div class="text-right">
-                        <input type="submit" value="댓글등록" class= "btn btn-primary" onclick="location.href='#'">
-                            </div>
-            </div>
-
-            <!-- 댓글 목록/ 등록 버튼-->
-            <div class="text-right">
-                <input type="submit" value="글쓰기" class= "btn btn-primary" onclick="location.href='#'">
-              
-              
-            </div>
-        </form>
-    </div>
-	
-	
-	
-					
 	<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
 	<c:if test="${loginMember.memberGrade == 'A'}">
 		<button id="deleteBtn" class="btn btn-primary float-right mr-2">삭제</button> 
@@ -260,6 +212,13 @@
 	</c:if>
 	
 		<a href="list?&cp=${param.cp}" class="btn btn-primary float-right mr-2">목록으로</a>
+           
+        </main>
+    </div>
+	
+	
+	
+					
 	
 
 
@@ -312,6 +271,14 @@
 			document.requestForm.submit();
 
 		}
+     
+		lightbox.option({
+		    resizeDuration: 200,
+		    wrapAround: true,
+		    disableScrolling: false,
+		    fitImagesInViewport:false
+		})
+		
     </script>
 
 
