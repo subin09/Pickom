@@ -85,9 +85,6 @@
 	height: 100px;
 }
 
-body {
-	padding-top: 210px;
-}
 </style>
 
 
@@ -295,7 +292,7 @@ body {
 				})
 				.then((willDelete) => {
 				  if (willDelete) {
-					document.requestForm.action= "../eventBoard2/" + addr2+"?no="+;
+					document.requestForm.action= "../eventBoard2/" + addr2+"?no="+boardNo;
 					document.requestForm.submit();
 				  } else {
 				    swal("게시글 삭제가 취소되었습니다.");

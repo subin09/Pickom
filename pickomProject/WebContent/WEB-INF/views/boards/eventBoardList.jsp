@@ -51,9 +51,9 @@
 	height: 50px;
 }
 
-body {
+/* body {
 	padding-top: 210px;
-}
+} */
 
 /* style="background: linear-gradient(40deg,#FCA5F1,#B5FFFF)" */
 </style>
