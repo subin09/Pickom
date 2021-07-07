@@ -5,7 +5,7 @@
 	<!-- 고객센터 게시글 목록 -->
 	<entry key ="getMemberListCount">
 	SELECT COUNT(*) FROM FAQ
-	AND MEMBER_STATUS = 'Y'
+	WHERE FAQ_STATUS = 'Y'
 	</entry>
 	
 	
@@ -16,7 +16,7 @@
     (SELECT * FROM FAQ_BOARD_DETAIL
     ORDER BY FAQ_NO DESC) A )
 	WHERE RNUM BETWEEN ? AND ?
-	AND MEMBER_STATUS = 'Y'
+	AND FAQ_STATUS = 'Y'
 	</entry>
 	
 	
@@ -25,7 +25,6 @@
 	SELECT * FROM FAQ_BOARD_DETAIL 
 	WHERE FAQ_NO = ?
 	AND FAQ_STATUS ='Y'
-	AND MEMBER_STATUS = 'Y'
 	</entry>
 	
 </properties>

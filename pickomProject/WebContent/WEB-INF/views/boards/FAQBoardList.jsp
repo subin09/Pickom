@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
+    <title>공지사항</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 <!-- Bootstrap core JS -->
@@ -18,10 +18,14 @@
 <!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"> 
 
 
     <style>
+    
+	    .fa-angle-left:before{
+	    	content: "<";
+	    }
         div {
             /* border: 1px solid black;*/
         }
@@ -62,9 +66,7 @@
             margin-left: 10%;
         }
 
-        body {
-            padding-top: 210px;
-        }
+       
 
         #content-area {
             width: 100%;
@@ -91,16 +93,16 @@
         }
 
 
-        div.page_button {
+        .page_button {
             width: 100%;
             text-align: center;
         }
 
-        div.page li {
+        .page li {
             display: inline-block;
         }
 
-        div .drop-btn {
+        .drop-btn {
             width: 120px;
             background-color: #ffffff;
             color: #151515;
@@ -110,14 +112,14 @@
             font-weight: 500;
         }
 
-        div .drop-btn i {
+        .drop-btn i {
             float: right;
             line-height: 32px;
             font-size: 16px;
             cursor: pointer;
         }
 
-        div .drop-btn li {
+        .drop-btn li {
             color: #151515;
         }
 
@@ -151,12 +153,135 @@
 
         }
 
-        #reviewcontent td {
-            cursor: pointer;
+      
+        .searchForm-review {
+        	display: flex;
+        	justify-content: center;
         }
         
-        i::before {
-        	content=" ";
+        .searchForm-review div {
+        	margin-right: 10px;
+        }
+        
+        .searchForm-review button {
+        	margin-left: 10px;
+        }
+        
+        .review-header {
+         	display: flex;
+         	justify-content: space-between;
+         	align-items : center;
+         	margin-bottom: 20px;
+         	padding: 10px;
+        }
+        
+        .notice-review {
+        	text-align: center;
+        }
+        
+        .review-pagination a{
+        	font-size: 15px;
+        	text-decoration: none;
+        	color: inherit;
+        	border: 1px solid rgba(0,0,0,0.3);
+        	padding: 5px 13px;
+        	margin: 0px 2px;
+        	border-radius: 5px;
+        }
+        
+        .review-pagination a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        .boardTitle a{
+        	text-decoration: none;
+        	color: inherit;
+        }
+        
+        .boardTitle a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        table {
+        	text-align: center;
+        }
+        
+        .focus-page {
+        	font-weight: bold;
+        }
+        
+        .review-category {
+        	display: flex;
+        	align-items: center;
+        	
+        }
+        
+        .review-category label{
+        	 margin: 0px 10px 0px 0px;
+        	font-size: 20px;
+        }
+        
+        .review-category select {
+        	height: 35px;
+        	padding: 0px 5px;
+        	border-radius : 5px;
+        }
+        
+        .review-header__container{
+        	display: flex;
+        	align-items: center;
+        }
+        
+        .fa-file-video {
+        	margin:0px 20px;
+        }
+        
+        table {
+        	text-align: center;
+        }
+        
+        table a {
+        	text-decoration: none;
+        	color: inherit;
+        }
+        
+        table a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        .FAQ-pagination a{
+        	font-size: 15px;
+        	text-decoration: none;
+        	color: inherit;
+        	border: 1px solid rgba(0,0,0,0.3);
+        	padding: 5px 13px;
+        	margin: 0px 2px;
+        	border-radius: 5px;
+        }
+        
+        .FAQ-pagination a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        .review-header__container{
+        	display: flex;
+        	align-items: center;
+        }
+        
+        .fa-bell {
+        	margin:0px 20px;
+        }
+        
+        .focus-page {
+        	font-weight: bold;
         }
     </style>
 </head>
@@ -164,21 +289,34 @@
 <body>
 
 
-   <!-- header.jsp 동적 include -->
+     <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
 
 
-    <td onClick="location.href='?page=home'" style="cursor:pointer;">
+    
 
         <div class="container">
-            <h1>FAQ</h1>
+            <div class="review-header">
+            	<div class="review-header__container">
+            		<i class="far fa-bell fa-3x"></i>
+            		<h1>공지사항</h1>
+            	</div>
+	            <c:if test="${ !empty categoryList}"> 
+						<div class="mb-2 review-category">
+							<label>카테고리</label> 
+							<select	id="categoryCode" name="categoryCode" style="width: 150px;" onchange="if(this.value) location.href=(this.value);">
+											<option selected>장르별</option>		
+											<option value="${contextPath}/reviewBoard/list?type=0&cp=1" name="list">전체</option>		
+										<c:forEach items="${categoryList}" var="c">
+											<option value="${contextPath}/reviewBoard/list?type=${c.movieGenreCode }&cp=1" name="${c.movieGenreCode }">${c.movieGenreNM }</option>
+										</c:forEach>
+									
+							</select>
+						</div>
+				</c:if>
+            </div>
             <div id="content-area">
-                <div class="button">
-                    <li><input type="button" value="호러/공포" onclick="location.href='#'"></li>
-                    <li><input type="button" value="드라마/로맨스" onclick="location.href='#'"></li>
-                    <li><input type="button" value="판타지/SF" onclick="location.href='#'"></li>
-                    <li><input type="button" value="액션" onclick="location.href='#'"></li>
-                </div>
+                
                 <div id="reviewcontent">
                     <table class="table table-hover">
                         <thead>
@@ -271,19 +409,19 @@
 								<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"></c:set>
 								
 								<div class="my-5">
-									<ul class="pagination">
+									<ul class="FAQ-pagination">
 										
 										<%-- 현재 페이지가 페이지사이즈 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > pagination.pageSize }">
 											<li>
-												<a href="${prev }"><i class="fas fa-angle-left"></a>
+												<a href="${prev }"><i class="fas fa-caret-square-left"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 2페이지 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > 2 }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-angle-left"></a>
+												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-caret-left"></i></a>
 											</li>
 										</c:if>
 										
@@ -294,7 +432,7 @@
 											
 												<c:choose>
 													<c:when test="${p == pagination.currentPage }">
-														<li><a>${p }</a></li>
+														<li><a class="focus-page">${p }</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="${pageURL}&cp=${p}">${p}</a></li>
@@ -311,14 +449,14 @@
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage < pagination.maxPage }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-angle-right"></i></a>
+												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-caret-right"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage - pagination.maxPage + pagination.pageSize < 0 }">
 											<li>
-												<a href="${next}"><i class="fas fa-angle-right"></a>
+												<a href="${next}"><i class="fas fa-caret-square-right"></i></a>
 											</li>
 										</c:if>
 					
@@ -328,56 +466,8 @@
                            
                         </div>
 
-                        <div id="number_btn2" class="text-right">
-                            <input type="submit" value="글쓰기" onclick="location.href='#'">
-                        </div>
-
-                        <form action="#">
-                            <div id="diverse-button">
-                                <div id="asdasd">
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            전체기간
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#"></a>
-                                            <a class="dropdown-item" href="#">일주일</a>
-                                            <a class="dropdown-item" href="#">한달</a>
-                                            <a class="dropdown-item" href="#">6개월</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div>
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            장르
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">제목</a>
-                                            <a class="dropdown-item" href="#">작성자</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Recipient's username"
-                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="submit"
-                                                id="button-addon2">submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-
+                      
+                        
 
 
 

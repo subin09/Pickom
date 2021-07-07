@@ -173,6 +173,8 @@ public class ComplainBoardService2 {
 			} else {
 				rollback(conn);
 			}
+			
+			close(conn);
 			return result;
 		}
 

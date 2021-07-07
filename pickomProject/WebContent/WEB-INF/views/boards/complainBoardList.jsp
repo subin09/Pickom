@@ -18,8 +18,7 @@
  
 <!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
 
 
     <style>
@@ -63,9 +62,7 @@
             margin-left: 10%;
         }
 
-        body {
-            padding-top: 210px;
-        }
+        
 
         #content-area {
             width: 100%;
@@ -152,12 +149,98 @@
 
         }
 
-        #reviewcontent td {
-            cursor: pointer;
+        table {
+        	text-align: center;
+        }
+        
+        table a {
+        	text-decoration: none;
+        	color: inherit;
+        }
+        
+        table a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
         }
         
         i::before {
-        	content=" ";
+        	content="";
+        }
+        
+        .complain-button a{
+        	text-decoration: none;
+        	font-size: 17px;
+        	padding: 5px 20px;
+        	border: 2px solid rgba(0,0,0,0.3);
+        	margin-left: 10px;
+        	border-radius: 8px;
+        	color: rgba(0,0,0,0.7);
+        }
+        .complain-button a:hover{
+        	text-decoration: none;
+        	color: rgba(0,0,0,0.6);
+        	font-weight: bold;
+        	background-color: rgba(0,0,0,0.005);
+        	transition: 0.1s ease-in-out;
+        	
+        }
+        
+        .complain-button {
+        	list-style: none;
+        	color: inherit;
+        	display: flex;
+        	align-items:center;
+        }
+        
+        
+        .complain-header {
+        	display: flex;
+        	justify-content : space-between;
+        	padding: 25px;
+        }
+        
+        .complain-header__complain {
+        	display: flex;
+        	align-items: center;
+        }
+        
+        .fa-keyboard{
+        margin:0px 20px;
+        }
+        
+        
+        .complain-pagination a{
+        	font-size: 15px;
+        	text-decoration: none;
+        	color: inherit;
+        	border: 1px solid rgba(0,0,0,0.3);
+        	padding: 5px 13px;
+        	margin: 0px 2px;
+        	border-radius: 5px;
+        }
+        
+        .complain-pagination a:hover {
+        	text-decoration: none;
+        	color: inherit;
+        	font-weight: bold;
+        }
+        
+        .searchForm-complain {
+        	display: flex;
+        	justify-content: center;
+        }
+        
+        .searchForm-complain div {
+        	margin-right: 10px;
+        }
+        
+        .searchForm-complain button {
+        	margin-left: 10px;
+        }
+        
+        .focus-page {
+        	font-weight: bold;
         }
     </style>
 </head>
@@ -176,13 +259,19 @@
     <td onClick="location.href='?page=home'" style="cursor:pointer;">
 
         <div class="container">
-            <h1>고객센터</h1>
+            	<div class="complain-header">
+            		<div class="complain-header__complain">
+            			<i class="far fa-keyboard fa-3x"></i>
+            			<h1>고객센터</h1>
+            		</div>
+            		
+	                <div class="complain-button">
+	                    <li><a href="${contextPath}/complainBoard/list?type=0&cp=1">전체</a></li>
+	                    <li><a href="${contextPath}/complainBoard/list?type=1&cp=1">서버</a></li>
+	                    <li><a href="${contextPath}/complainBoard/list?type=2&cp=1">자료</a></li>
+	                </div>
+            	</div>
             <div id="content-area">
-                <div class="button">
-                    <li><a href="${contextPath}/complainBoard/list?type=0&cp=1">전체</a></li>
-                    <li><a href="${contextPath}/complainBoard/list?type=1&cp=1">서버</a></li>
-                    <li><a href="${contextPath}/complainBoard/list?type=2&cp=1">자료</a></li>
-                </div>
                 <div id="reviewcontent">
                     <table class="table table-hover">
                         <thead>
@@ -207,9 +296,7 @@
 								
 								<%-- 조회된 게시글 목록이 없는 경우 --%>
 								<c:when test="${empty noticeList }">
-									<tr>
-										<td colspan="6">공지사항이 존재하지 않습니다</td>
-									</tr>
+									
 									
 								</c:when>
 								<%-- 조회된 게시글 목록이 있는 경우 --%>
@@ -365,19 +452,19 @@
 								<c:set var="next" value="${pageURL}&cp=${pagination.nextPage }"></c:set>
 								
 								<div class="my-5">
-									<ul class="pagination">
+									<ul class="complain-pagination">
 										
 										<%-- 현재 페이지가 페이지사이즈 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > pagination.pageSize }">
 											<li>
-												<a href="${prev }"><i class="fas fa-angle-left"></a>
+												<a href="${prev }"><i class="fas fa-caret-square-left"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 2페이지 초과인 경우 --%>
 										<c:if test="${pagination.currentPage > 2 }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-angle-left"></a>
+												<a href="${pageURL}&cp=${pagination.currentPage-1}"><i class="fas fa-caret-left"></i></a>
 											</li>
 										</c:if>
 										
@@ -388,7 +475,7 @@
 											
 												<c:choose>
 													<c:when test="${p == pagination.currentPage }">
-														<li><a>${p }</a></li>
+														<li><a class="focus-page">${p }</a></li>
 													</c:when>
 													<c:otherwise>
 														<li><a href="${pageURL}&cp=${p}">${p}</a></li>
@@ -405,14 +492,14 @@
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage < pagination.maxPage }">
 											<li>
-												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-angle-right"></i></a>
+												<a href="${pageURL}&cp=${pagination.currentPage+1}"><i class="fas fa-caret-right"></i></a>
 											</li>
 										</c:if>
 										
 										<%-- 현재 페이지가 마지막 페이지 미만인 경우 --%>
 										<c:if test="${pagination.currentPage - pagination.maxPage + pagination.pageSize < 0 }">
 											<li>
-												<a href="${next}"><i class="fas fa-angle-right"></a>
+												<a href="${next}"><i class="fas fa-caret-square-right"></i></i></i></a>
 											</li>
 										</c:if>
 					
@@ -425,7 +512,7 @@
 	
 	
 						<%-- 조건검색 창 --%>
-                        <form action="${contextPath}/complainBoard/list?type=100&cp=1" method="post" role="form" onsubmit="return searchValidate();">
+                        <form class="searchForm-complain" action="${contextPath}/complainBoard/list?type=100&cp=1" method="post" role="form" onsubmit="return searchValidate();">
 								<div class="mb-2">
 									<label class="input-group-addon mr-3 insert-label">조건검색</label> 
 									<select	class="custom-select" id="searchType" name="searchType" style="width: 150px;">

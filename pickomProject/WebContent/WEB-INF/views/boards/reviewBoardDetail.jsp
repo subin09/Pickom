@@ -11,6 +11,14 @@
     <title>회원 댓글 작성</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+
+<!-- 라이트 박스 시작!  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<!-- 라이트 박스 끝! -->
+
+
 <!-- Bootstrap core JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
@@ -136,7 +144,21 @@
             <div> <h1>리뷰게시판</h1></div>
             
 
+            <div class = text-right>
+                <a href="#" class="btn btn-primary">이전글</a>
+                <a href="#" class="btn btn-primary">다음글</a>
+                <c:choose>
+					<c:when test="${ !empty searchType}">
+						
+						<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType }&cp=${cp}" class="btn btn-primary">목록</a>
+					</c:when>
+					
+					<c:otherwise>
+						<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary">목록</a>
+					</c:otherwise>
+				</c:choose>
             
+            </div>
             
           	<!-- Category -->
 			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
@@ -207,25 +229,32 @@
 								
 								<!-- img0 변수가 만들어진 경우 -->
 								<c:if test="${!empty img0 }">
+								<a href="${img0}" data-lightbox="example-set">
 									<img id="contentImg0" src="${img0 }">
-									
+								</a>
 								</c:if>
 						</div>
 						<div class="mr-2 boardImg" id="contentImgArea1">
 								<c:if test="${!empty img1 }">
+								<a href="${img1}" data-lightbox="example-set">
 									<img id="contentImg1" src="${img1 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea2">
 								<c:if test="${!empty img2 }">
+								<a href="${img2}" data-lightbox="example-set">
 									<img id="contentImg2" src="${img2 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea3">
 								<c:if test="${!empty img3 }">
+								<a href="${img3}" data-lightbox="example-set">
 									<img id="contentImg3" src="${img3 }">
+								</a>
 								</c:if>
 						</div>
 					</div>	
@@ -716,6 +745,14 @@
 					  }
 				});
 		}
+		
+		
+		lightbox.option({
+		    resizeDuration: 200,
+		    wrapAround: true,
+		    disableScrolling: false,
+		    fitImagesInViewport:false
+		})
     </script>
 
 

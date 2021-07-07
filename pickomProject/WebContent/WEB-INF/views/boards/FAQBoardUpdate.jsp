@@ -12,7 +12,7 @@
 <!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>공지사항 수정</title>
 <style>
   .insert-label {
     display: inline-block;

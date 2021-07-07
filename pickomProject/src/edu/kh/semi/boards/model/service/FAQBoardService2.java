@@ -160,6 +160,7 @@ public class FAQBoardService2 {
 			} else {
 				rollback(conn);
 			}
+			close(conn);
 			return result;
 		}
 
