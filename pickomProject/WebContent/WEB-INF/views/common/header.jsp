@@ -82,7 +82,7 @@
 								<c:choose>
 									<c:when test="${loginMember.memberGrade == 'A'}">
 										<a class="nav-link"	href="${contextPath}/admin/adminMain"  > 마이페이지 </a>
-									</c:when>
+									</c:when> 
 									<c:otherwise>
 										<a class="nav-link"	href="${contextPath}/member/mypage"  > 마이페이지 </a>
 									</c:otherwise>

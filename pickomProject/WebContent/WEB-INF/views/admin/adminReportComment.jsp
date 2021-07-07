@@ -21,8 +21,8 @@
      <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/reset.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_sideBar.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_boardList.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_report-post.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/admin/admin_report-post.css">
 
 </head>
 <body class="admin-body">
@@ -32,7 +32,7 @@
           <img href="#"  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user">
         </div>
       </header>
-    <main class="admin-main">
+    <main class="admin-main admin-main__member">
         <section class="admin-post__page-title admin-post__section">
             <h1>신고 댓글</h1>
         </section>
@@ -79,9 +79,9 @@
 								<%-- 조회된 게시글 목록이 있는 경우 --%>
 								<c:otherwise>
 									<c:forEach items="${boardList }" var="board" varStatus="b">
-										<tr>
+										<tr >
 											<%-- 처리번호 --%>
-											<th>
+											<th class="reportBtn">
 												
 													<a href="${contextPath }/reviewBoard/view?type=0&no=${board.boardNo}&cp=1">확인</a>
 												

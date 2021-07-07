@@ -190,7 +190,11 @@ public class ReviewBoardService2 {
 			Connection conn = getConnection();
 			
 			int result = dao.deleteBoard(conn, boardNo);
-			
+			if(result>0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
 			close(conn);
 			return result;
 		}
