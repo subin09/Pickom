@@ -80,7 +80,7 @@ public class ReviewCommentDAO {
 				comment.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
 				comment.setMemberGrade(rs.getString("MEMBER_GRADE"));
 				comment.setReportNo(rs.getInt("REPORT_NO"));
-				System.out.println(comment.getMemberGrade());
+
 				list.add(comment);
 			}
 			

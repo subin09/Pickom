@@ -188,7 +188,7 @@ public class ComplainBoardDAO {
 				ComplainBoard board = new ComplainBoard();
 				
 				board.setComplainNo(rs.getInt("COMPLAIN_NO"));
-				System.out.println(rs.getInt("COMPLAIN_NO"));
+				
 				board.setCategoryName(rs.getString("CS_CATEGORY_NM"));
 				board.setComplainTitle(rs.getString("COMPLAIN_TITLE"));
 				board.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
@@ -239,7 +239,6 @@ public class ComplainBoardDAO {
 				ComplainBoard board = new ComplainBoard();
 				
 				board.setComplainNo(rs.getInt("COMPLAIN_NO"));
-				System.out.println(rs.getInt("COMPLAIN_NO"));
 				board.setCategoryName(rs.getString("CS_CATEGORY_NM"));
 				board.setComplainTitle(rs.getString("COMPLAIN_TITLE"));
 				board.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
@@ -292,7 +291,7 @@ public class ComplainBoardDAO {
 				ComplainBoard board = new ComplainBoard();
 				
 				board.setComplainNo(rs.getInt("COMPLAIN_NO"));
-				System.out.println(rs.getInt("COMPLAIN_NO"));
+		
 				board.setCategoryName(rs.getString("CS_CATEGORY_NM"));
 				board.setComplainTitle(rs.getString("COMPLAIN_TITLE"));
 				board.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
@@ -309,7 +308,7 @@ public class ComplainBoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("pickom이 왜 2개나 넘어오지?" + boardList);
+
 		return boardList;
 
 	}
@@ -344,7 +343,6 @@ public class ComplainBoardDAO {
 				ComplainBoard board = new ComplainBoard();
 				
 				board.setComplainNo(rs.getInt("COMPLAIN_NO"));
-				System.out.println(rs.getInt("COMPLAIN_NO"));
 				board.setCategoryName(rs.getString("CS_CATEGORY_NM"));
 				board.setComplainTitle(rs.getString("COMPLAIN_TITLE"));
 				board.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
@@ -389,7 +387,7 @@ public class ComplainBoardDAO {
 				ComplainBoard board = new ComplainBoard();
 				
 				board.setComplainNo(rs.getInt("COMPLAIN_NO"));
-				System.out.println(rs.getInt("COMPLAIN_NO"));
+
 				board.setCategoryName(rs.getString("CS_CATEGORY_NM"));
 				board.setComplainTitle(rs.getString("COMPLAIN_TITLE"));
 				board.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));

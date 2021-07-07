@@ -15,13 +15,19 @@ html {
   height: 100%;
 }
 
+.drop-recover__body span {
+	font-size: bold;
+	color: rgba(0,0,0,0.5);
+}
+
 .drop-recover__body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   flex-direction: column;
-  font-size: 31.25%;
+  font-size: 100%;
+  margin: 40px 0px;
 }
 
 .drop-recover__login-section {
@@ -39,12 +45,37 @@ html {
   text-align: center;
   margin-bottom: 15%;
 }
-
 .drop-recover__login-area {
-  width: 100%;
+	margin-bottom: 10%;
+	padding: 5%;
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 10px;
+}
+.drop-recover__login-area div {
+	margin-bottom: 5%;
 }
 
-.drop-recover__login-area input {
+.drop-recover__login-area div:last-child {
+	margin-bottom: 0;
+}
+
+
+.first-child {
+	margin-top: 2rem;
+}
+
+.drop-recover__login-area2 {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.drop-recover__login-area2 div {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.drop-recover__login-area2 input {
   width: 100%;
   padding: 4%;
   background-color: transparent;
@@ -54,7 +85,7 @@ html {
   outline: none;
 }
 
-.drop-recover__login-area input:focus {
+.drop-recover__login-area2 input:focus {
   border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   transition: 0.2s ease-in-out;
 }

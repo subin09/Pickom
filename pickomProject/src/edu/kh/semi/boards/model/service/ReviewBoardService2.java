@@ -315,7 +315,7 @@ public class ReviewBoardService2 {
 				
 				// 신고테이블 신고행 삭제 
 				result = dao.deleteReport(conn, reportNo);
-				System.out.println(result + "신고행 삭제 결과");
+
 				if(result>0) {
 					 commit(conn);
 				} else {

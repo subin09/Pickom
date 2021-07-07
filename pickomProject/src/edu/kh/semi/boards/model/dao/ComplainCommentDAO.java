@@ -78,7 +78,6 @@ public class ComplainCommentDAO {
 				comment.setMemberNo(rs.getInt("MEMBER_NO"));
 				comment.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
 				comment.setMemberGrade(rs.getString("MEMBER_GRADE"));
-				System.out.println(comment.getMemberGrade());
 				list.add(comment);
 			}
 			

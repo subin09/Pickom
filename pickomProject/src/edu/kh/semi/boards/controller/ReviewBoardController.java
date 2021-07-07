@@ -69,10 +69,10 @@ public class ReviewBoardController extends HttpServlet {
 					// 검색조건에 맞는 검색목록 페이징 처리
 					Pagination pagination = service.getSearchPagination(cp, boardType, searchType, searchValue);
 					request.setAttribute("pagination", pagination);
-					System.out.println("영화제목으로 검색 pagination" + pagination);
+					//System.out.println("영화제목으로 검색 pagination" + pagination);
 					// 검색조건에 맞는 게시글 리스트 가져오기
 					List<ReviewBoard> boardList = service.searchBoardList(pagination, searchType, searchValue);
-					System.out.println("영화제목으로 검색 boardList" + boardList);
+					//System.out.println("영화제목으로 검색 boardList" + boardList);
 					request.setAttribute("boardList", boardList);
 					request.setAttribute("searchValue", searchValue);
 					request.setAttribute("searchType", searchType);
@@ -119,7 +119,7 @@ public class ReviewBoardController extends HttpServlet {
 				
 				// 페이징처리를 위한 pagination 객체, 공지,일반게시글 목록  set
 				request.setAttribute("noticeList", noticeList);
-				System.out.println("noticeList" + noticeList);
+				//System.out.println("noticeList" + noticeList);
 				request.setAttribute("categoryList", categoryList);
 
 
@@ -176,7 +176,7 @@ public class ReviewBoardController extends HttpServlet {
 			
 			String keyword = request.getParameter("keyword");
 			List<Movie> movieList = service.getMovieList(keyword);
-			System.out.println(movieList);
+			//System.out.println(movieList);
 			Gson gson = new Gson();
 			gson.toJson(movieList, response.getWriter());
 		

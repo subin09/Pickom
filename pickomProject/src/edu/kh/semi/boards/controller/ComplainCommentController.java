@@ -37,7 +37,7 @@ public class ComplainCommentController extends HttpServlet {
 				// response.getWriter().print(list); 
 				// 밑에 isnertcomment에서처럼 이렇게 보내면 배열이 아니라 객체의 toString 문자열로 보내져버림
 				// 왜? 요청/응답 시 데이터는 기본적으로 문자열의 형태로 전달이 된다
-				System.out.println(list);
+
 				// 해결 방법이 필요 -> List가 List로 인식될 수 있게 처리작업 필요
 				// List == Object
 				// Ajax == Javascript
