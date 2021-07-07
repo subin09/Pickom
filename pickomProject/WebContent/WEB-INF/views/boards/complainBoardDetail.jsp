@@ -9,7 +9,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세조회</title>
+    
 <link rel="shortcut icon" href="#">
+
+
+<!-- 라이트 박스 시작!  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<!-- 라이트 박스 끝! -->
+
+
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -98,7 +108,7 @@
         
         
         /*댓글 */
-        .commentWrite>table {	margin-top: 100px; }
+        .commentWrite>table {	margin-top: 10px; }
 		.cWriter {
 			display: inline-block;
 			vertical-align: top;
@@ -162,8 +172,6 @@
 			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
             
             <hr>                        
-            <h2><span id="event-bod-title">${board.complainTitle }</span></h2>
-            
         	<!-- Date -->
 			<p>
 				<span class="board-dateArea">
@@ -173,6 +181,10 @@
 				</span>
 		 		<span class="float-right">조회수 ${board.complainCount } </span>
 			</p>
+			
+			<hr>
+            <h2><span id="event-bod-title"> 제목 : ${board.complainTitle }</span></h2>
+            
              
                       
      
@@ -187,15 +199,6 @@
 
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-            <i class="bi bi-chat" id="comment-count">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
-                </svg>
-
-                <span>댓글 단 횟수</span>
-            </i>
 
 
 
@@ -228,42 +231,43 @@
 								
 								<!-- img0 변수가 만들어진 경우 -->
 								<c:if test="${!empty img0 }">
+								<a href="${img0}" data-lightbox="example-set">
 									<img id="contentImg0" src="${img0 }">
-									
+								</a>
 								</c:if>
 						</div>
 						<div class="mr-2 boardImg" id="contentImgArea1">
 								<c:if test="${!empty img1 }">
+								<a href="${img1}" data-lightbox="example-set">
 									<img id="contentImg1" src="${img1 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea2">
 								<c:if test="${!empty img2 }">
+								<a href="${img2}" data-lightbox="example-set">
 									<img id="contentImg2" src="${img2 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea3">
 								<c:if test="${!empty img3 }">
+								<a href="${img3}" data-lightbox="example-set">
 									<img id="contentImg3" src="${img3 }">
+								</a>
 								</c:if>
 						</div>
 					</div>	
 					
             <!-- 글 쓴 내용  -->
-            <div id="normal-board-contnent">
+            <div id="normal-board-contnent" style="border: 1px solid black; width: 100%;  height: 400px;">
               ${board.complainContent }
             </div>
 
 
-            <hr>
-			
-			
-
-
 			<div>
-							
 				<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
 				<c:if test="${loginMember.memberGrade == 'A' || loginMember.memberNo == board.memberNo}">
 					<button id="deleteBtn" class="btn btn-primary float-right mr-2" onclick="deleteRequest();">삭제</button> 
@@ -272,8 +276,13 @@
 				
 				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
 			</div>
+			
+			
+
+
 		
-		
+		<br>
+		<hr>
 			
 		
 		
@@ -283,7 +292,7 @@
 					<table align="center">
 						<tr>
 							<td id="commentContentArea">
-								<textArea rows="3" id="commentContent"></textArea>
+								<textArea rows="3" id="commentContent"  style = "width:600px; resize: none;"></textArea>
 							</td>
 							<td id="commentBtnArea">
 								<button class="btn btn-primary" id="addComment" onclick="addComment();">
@@ -320,6 +329,7 @@
 				</div>
 			
 			</div>
+	</div>
 
 
 	<form action="#" method="post" name="requestForm">
@@ -637,6 +647,16 @@
 				});
 
 		}
+		
+		
+		lightbox.option({
+		    resizeDuration: 200,
+		    wrapAround: true,
+		    disableScrolling: false,
+		    fitImagesInViewport:false
+		})
+		
+		
     </script>
 
 

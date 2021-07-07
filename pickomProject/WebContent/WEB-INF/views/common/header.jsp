@@ -78,7 +78,7 @@
 									<c:when test="${loginMember.memberGrade == 'A'}">
 										<a class="btn" id="mypageList"
 											href="${contextPath}/admin/adminMain"> 관리페이지 </a>
-									</c:when>
+                  </c:when>
 									<c:otherwise>
 										<a class="btn" id="mypageList"
 											href="${contextPath}/member/mypage"> 마이페이지 </a>
