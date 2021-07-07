@@ -36,8 +36,8 @@
 
 				<%--mian logo 연결 --%>
 				<a href="${contextPath}"> <img id="logoimage"
-					src="${contextPath}/resources/img/logo.jpg" width="150px"
-					height="auto" id="mainlogo" alt="">
+					src="${contextPath}/resources/img/logo.jpg"
+					alt="">
 				</a>
 			</div>
 
@@ -61,7 +61,6 @@
 							<img id="loginimage"
 							src="${contextPath}/resources/img/login-logo.jpg" alt="">
 						</a>
-
 					</c:when>
 					<c:otherwise>
 						<div class="p-2 bd-highlight img">

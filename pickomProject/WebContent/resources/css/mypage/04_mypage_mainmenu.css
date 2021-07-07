@@ -3,4 +3,6 @@
     padding-right: 10%;
 }
 
-#mypageMenu
+#mypageMenu{
+	text-decoration: none;
+}

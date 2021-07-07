@@ -10,6 +10,14 @@
     background-color: rgba(100, 100, 100, 0.3);
   }
 
+  #mainlog-div{
+	margin-left:10%
+  }
+  
+  #mainmypage-div{
+	margin-right:10%
+  }
+  
   #mainmenutitle{
     font-weight: bold;
     color: black;
