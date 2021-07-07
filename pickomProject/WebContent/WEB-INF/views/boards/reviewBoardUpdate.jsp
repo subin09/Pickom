@@ -44,9 +44,8 @@
 		margin : auto;
 	}
 	
-	#header-body {
-		padding: 0px;
-	}
+	
+	
 	#fileArea{
 		display : none;
 	}

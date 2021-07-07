@@ -4,7 +4,6 @@
 	<!-- 게시글 조회수 증가 -->
 	<entry key="selectCategoryList">
 	SELECT * FROM CS_CATEGORY
-	AND MEMBER_STATUS = 'Y'
 	</entry>
 	
 	<!-- 다음 게시글 번호 조회 -->

@@ -21,9 +21,7 @@
     div{
         /*border: 1px solid red;*/
     }
-    body{
-        padding: 210px;
-    }
+
     
     .boardImg{
   		cursor : pointer;
@@ -79,20 +77,18 @@
     	display: none;
     }
     
-    .searchContainer {
-            display: flex;
-            width: 100%;
-
- 
-        }
+    
         .searchForm {
             display: flex;
         }
         .movieContainer {
+        	display: flex;
+        	justify-content: flex-start;
+        	align-items: center;
             overflow-y: auto;
-            height: 200px;
-            width: 30%;
-            margin-left: 2rem;
+            height: 100px;
+            width: 50%;
+            margin-left: 1rem;
         }
         .movie {
             width: 100%;
@@ -116,26 +112,115 @@
         .genreContainer {
             display: flex;
             margin-left: 2rem;
+            height: 30%;
         }
 
         .genreContainer span {
-            margin-left: 2rem;
+            margin-left: 1rem;
             background-color: rgb(61, 61, 105);
             color: white;
-            padding: 1rem;
-            height: 1rem;
+            padding: 0.5rem 2rem;
+            border-radius: 1rem;
+ 
         }
 
         .movieList {
             display: flex;
         }
+        
+        .searchContainer {
+            display: flex;
+            width: 100%;
+            align-items : center;
+			flex-direction: column;
+ 
+        }
+        
+        
+        .searchContainer__2{
+        	display: flex;
+        	justify-content: center;
+        	align-items: center;
+        	width: 100%;
+        }
+        
+        .reviewUpdate__title {
+        	margin: 50px 0px;
+        }
+        
+        .searchForm span{
+         	font-size: 18px;
+         	
+         }
+         
+         .searchForm input {
+         	height: 40%;
+         	padding: 6px;
+         	border-radius: 10px;
+         }
+         
+         .searchForm input:focus {
+         	height: 40%;
+         	padding: 6px;
+         	border-radius: 10px;
+         	outline: none;
+         	border: 3px solid rgba(0,0,0,0.7);
+         	transition: 0.1s ease-in-out;
+         }
+         
+
+         
+         .searchForm button {
+         	padding: 3.5px 10px;
+		    border-radius: 8px;
+		    background-color: white;
+		    border: 3.1px solid rgb(61, 61, 105);
+		    color:rgb(61, 61, 105);
+		    font-weight: bold;
+         }
+         
+         .searchForm button:hover {
+         	color: white;
+         	font-weight:: bold;
+         	background-color: rgb(61, 61, 105);
+         	transition: 0.1s ease-in-out;
+         }
+        
+        .searchForm {
+        	width: 50%;
+        	display: flex;
+        	justify-content: flex-end;
+        	align-items: center;
+        	}
+         #movieCategory {
+         	width: 50%;
+         	height: 40%;
+         	padding: 4px;
+         	border-radius: 10px;
+         }
+         
+         #movieCategory:focus {
+         	outline : none;
+         }
+         .submitBtn {
+         	display: flex;
+         	justify-content: center;
+         }
+         
+         #content-title{
+         	padding: 10px;
+         }
+         
+         .updateform-group{
+         	margin: 20px 0px 0px 0px;
+         }
 </style>
 <body>
     <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
   
     <div class="container">
-        <h1>리뷰 게시판 작성</h1>
+        <h1 class="reviewUpdate__title">리뷰 게시판 작성</h1>
         <form action="${contextPath}/reviewBoardDML/insert?type=${param.type}" method="post" 
 				  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
 
@@ -167,25 +252,28 @@
             <!-- 영화 검색 ajax 부분  -->
             <div class="searchContainer">
             
-			        <div class="searchForm">
-
-		                <label for="search">영화검색 : </label>
-		                <input type="text" placeholder="키워드를 입력하세요" id="keyword">
-		                <button type="button" onclick="showMovies();">검색</button>
-
-			        </div>
+			       <div class="searchContainer__1">'
+				        <div class="genreContainer">
+				            <span># 영화장르</span>
+				        </div>
+			       </div>
+			       <div class="searchContainer__2">
+			       		<div class="searchForm">
+	
+			                <span>영화검색 : <span>
+			                <input type="text" placeholder="키워드를 입력하세요" id="keyword">
+			                <button type="button" onclick="showMovies();">검색</button>
+	
+			        	</div>
 			
-			        <div class="movieContainer">
-			             <select name="movieNo" id="movieCategory">
-			                <option selected>검색된 영화가 없습니다.</option>
-			
-			            </select>
-			        </div>
-			        <div class="genreContainer">
-			            <span>코미디</span>
-			            <span>스릴러</span>
-			            <span>서부</span>
-			        </div>
+				        <div class="movieContainer">
+				             <select name="movieNo" id="movieCategory">
+				                <option selected>검색된 영화가 없습니다.</option>
+				
+				            </select>
+				        </div>
+			       
+			       </div>
 
    			</div>
    			
@@ -237,12 +325,16 @@
 				
 				
 				
-            <div class="form-group" id="content-title">
-                <label for="exampleFormControlTextarea1">내용</label>
+            <div class="updateform-group" id="content-title">
+                <span>내용<span>
+            </div>
                 <textarea class="form-control exampleFormControlTextarea1" id="boardContent" rows="20" name="boardContent"></textarea>
                 
-              </div>
-              <input class="btn btn-primary" id="" type="submit" value="등록">
+             
+             <div class="submitBtn">
+             
+	              <input class="btn btn-primary" id="" type="submit" value="등록">
+             </div>
         </form>
 
       </div>
@@ -378,7 +470,7 @@
 		 	         $.each(gnList, function(index, item){
 
 
-		 	            var span = $("<span>").text(item.movieGenreNM);
+		 	            var span = $("<span>").text("# "+item.movieGenreNM);
 		 	         	
 		 	           $(".genreContainer").append(span);
 		 	      
