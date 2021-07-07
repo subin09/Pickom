@@ -37,7 +37,7 @@ public class CrawlerService {
 		result = dao.insertMovie(conn, movieNo, arrMovieTitleKo, arrMovieTitleEn, arrMovieDirector, arrMovieSummary,
 				arrMovieCountry, arrMovieOpenDt, arrRuntime );
 
-		if(result>1) commit(conn);
+		if(result>0) commit(conn);
 		else rollback(conn);
 
 		close(conn);

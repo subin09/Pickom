@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="selectMain">
+SELECT*FROM MOVIE_MAIN
+</entry>
+
+<entry key="selectDetail">
+SELECT*FROM MOVIE_DETAIL
+WHERE MOVIE_NO = ?
+</entry>
+
+<entry key="selectActor">
+SELECT*FROM ACTOR
+WHERE MOVIE_NO=?
+</entry>
+</properties>
