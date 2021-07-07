@@ -28,11 +28,7 @@ public class Movie {
 	private String movieGenreNM;
 	
 	
-
-	public Movie() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public Movie() {}
 
 	
 	public Movie(int movieNo, String movieTitleEn, String movieTitleKo, String movieSummary, int movieCount,
