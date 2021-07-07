@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
-<!-- 라이트 박스 끝!ㄴ  -->
+<!-- 라이트 박스 끝! -->
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
