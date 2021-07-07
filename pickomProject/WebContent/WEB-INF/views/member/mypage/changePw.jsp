@@ -18,15 +18,9 @@
     
 </head>
 
-<style>
-    div{
-        border: 1px solid red;
-    }
-
-</style>
-
 <body>
 	<jsp:include page="../../../views/common/header.jsp" />
+	<jsp:include page= "menu/mypageMenu.jsp" />
 
     <div class="mypagemain">
         <div> <h3>회원 정보</h3> </div>
@@ -39,7 +33,7 @@
         <div class="row my-6 justify-content-center text-center">
             <div class="col-sm-6">
                 <div>
-                    <form method="POST" action="memberUpdatefn" onsubmit="return pwdValidate();" class="form-horizontal" role="form">
+                    <form method="POST" action="changePw" onsubmit="return pwdValidate();" class="form-horizontal" role="form">
                         <div class="row my-2 mx-2">
                             <div class="col-sm-6">비밀번호 변경</div>
                         </div>
@@ -66,25 +60,10 @@
                             </div>
                         </div>
                         <div class="row mb-2 mx-2">
-                            <div class="col-sm-8">인증글자</div>
+                            <div class="col-sm-8">자동입력방지</div>
                         </div>
                         <div class="row mb-2 mx-2">
-                            <div class="col-sm-8">
-                                <img src="" alt="no file">
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-12">
-                                    <button>새로고침</button>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button>음성</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2 mx-2">
-                            <div class="col-sm-12">
-                                <input type="text" placeholder="인증 글자 입력란">
-                            </div>
+                            <jsp:include page="captcha/captcha.jsp"></jsp:include>
                         </div>
                         <div class="row mb-2 mx-2">
                             <div class="col-sm-12">

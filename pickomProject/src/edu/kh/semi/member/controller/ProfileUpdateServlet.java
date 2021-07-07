@@ -36,11 +36,14 @@ public class ProfileUpdateServlet extends HttpServlet {
 			
 			String checkfilePath = memberPreProfile.getFilePath();
 			String checkfileName = memberPreProfile.getFileName();
-			
+			String checkMemberNickNm = memberPreProfile.getMemberNickNm();
+					
 			System.out.println(checkfilePath);
 			System.out.println(checkfileName);
+			
 			session.setAttribute("filePath", checkfilePath);
 			session.setAttribute("fileName", checkfileName);
+			session.setAttribute("memberNickNm", checkMemberNickNm);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -63,11 +66,16 @@ public class ProfileUpdateServlet extends HttpServlet {
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		Profile at = new Profile();
 		
+		String a = (String)session.getAttribute("filePath");
+		String b = (String)session.getAttribute("fileName");
+		
 		
 		int result = 0;
+		
 		try {
 			int memberNo = loginMember.getMemberNo();
 			int maxSize = 1024 * 1024 * 20;
+			
 			String root = session.getServletContext().getRealPath("/");
 			String filePath = "resources/img/profileImg/";
 			Profile memberPreProfile = service.memberPreProfile(memberNo);
@@ -88,22 +96,22 @@ public class ProfileUpdateServlet extends HttpServlet {
 						at.setFileName(mpRequest.getFilesystemName(name));
 						atList.add(at);
 					}
-				}
+			}
 				
 					memberNickNm = mpRequest.getParameter("memberNickNm");
 					result = service.updateProfile(memberNo, atList, memberNickNm);
 				
 				
-					// System.out.println("1 :" + memberNo);
-					// System.out.println("1 :" + atList);
-					// System.out.println("1 :" + memberNickNm);
+					//System.out.println("1 :" + memberNo);
+					System.out.println("1 :" + atList);
+					//System.out.println("1 :" + memberNickNm);
 
 				
 					
 			if(result > 0) {
 				icon = "success";
 				title = "프로필 수정 성공";
-				path = "/WEB-INF/views/member/mypage/mypageMain.jsp";
+				path = "/WEB-INF/views/member/mypage/profile.jsp";
 				
 			}else {
 				icon = "error";
