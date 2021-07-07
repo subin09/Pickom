@@ -62,12 +62,15 @@
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 100px;
-        height: 100px;
+        width : 150px;
+        height: 150px;
         }
         
         
         /*댓글 */
+        .commentWrite {
+        	margin-top: 5rem;
+        }
         .commentWrite>table {	margin-top: 10px; }
 		.cWriter {
 			display: inline-block;
@@ -90,7 +93,7 @@
 			padding : 15px 0;
 		}
        .complainDetail__main{
-      	 	width: 50%;
+      	 	width: 60%;
        }
        
        .complainDetail__body {
@@ -103,11 +106,28 @@
        .complainDetail__main h1 {
        		margin: 70px 0px;
        }
-       
+       .complainDetail__main p {
+       	margin: 2rem 0;
+       }
        
        .btn-primary{
        	margin-left 20px;
        }
+       
+       .mt-4 {
+       	margin-bottom: 2rem;
+       }
+       
+       .title-area{
+       	margin-bottom: 2rem;
+       	height: 200px;
+       }
+       
+       .mokrokeuro {
+       	margin: 2rem 0;
+       }
+       
+     
     </style>
 
 
@@ -190,7 +210,7 @@
 					
 
 	
-					<div class="form-inline mb-2">
+					<div class="form-inline title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
@@ -239,7 +259,7 @@
 					<button id="updateBtn" class="btn btn-primary float-right mr-2" onclick="updateRequest('updateForm');">수정</button> 
 				</c:if>
 				
-				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
+				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2 mokrokeuro">목록으로</a>
 			</div>
 			
 			
@@ -247,7 +267,7 @@
 
 		
 		<br>
-		<hr>
+	
 			
 		
 		

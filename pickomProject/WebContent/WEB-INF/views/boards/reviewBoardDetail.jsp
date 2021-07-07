@@ -95,6 +95,17 @@
        		margin: 70px 0px;
        }
        
+       .reportBtn2{
+       	text-decoration: none;
+       	color: white;
+       }
+       
+       .reportBtn2:hover{
+       	text-decoration: none;
+       	color: white;
+       	font-weight: bold;
+       }
+       
     </style>
 
 
@@ -504,7 +515,7 @@
 					 	            } else{
 					 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
 					 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
-					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo);
+					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
 					 	               
 					 	               reportBtn.append(reportLink);
 					 	               commentBtnArea.append(reportBtn);
