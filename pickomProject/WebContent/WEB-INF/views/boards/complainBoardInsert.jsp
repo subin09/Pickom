@@ -21,10 +21,7 @@
     div{
         /*border: 1px solid red;*/
     }
-    body{
-        padding: 210px;
-    }
-    
+
     .boardImg{
   		cursor : pointer;
 		width: 200px;
@@ -78,13 +75,20 @@
     #fileArea {
     	display: none;
     }
+    .submitBtn {
+         	display: flex;
+         	justify-content: center;
+         }
+    .updateform-group{
+         	margin: 20px 0px 0px 0px;
+     }
 </style>
 <body>
      <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
   
     <div class="container">
-        <h1>리뷰 게시판 작성</h1>
+        <h1>불편사항 작성</h1>
         <form action="${contextPath}/complainBoardDML/insert?type=${param.type}" method="post" 
 				  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
 
@@ -153,12 +157,16 @@
 				
 				
 				
-            <div class="form-group" id="content-title">
-                <label for="exampleFormControlTextarea1">내용</label>
+            <div class="updateform-group" id="content-title">
+                <span>내용<span>
+            </div>
                 <textarea class="form-control exampleFormControlTextarea1" id="boardContent" rows="20" name="boardContent"></textarea>
                 
-              </div>
-              <input class="btn btn-primary" id="" type="submit" value="등록">
+              
+              <div class="submitBtn">
+             
+	              <input class="btn btn-primary" id="" type="submit" value="등록">
+             </div>
         </form>
 
       </div>
