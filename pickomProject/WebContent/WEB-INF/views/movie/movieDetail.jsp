@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,36 +18,75 @@
 	<!-- css -->
 	<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/common/main/detail-style.css" >
 	
-	<!-- swipper -->
-     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />   
+	
 	<title></title>
 </head>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="container">
+
+<c:forEach items="${mo.moList}" var="m">
+						<c:choose>
+							<c:when test="${m.movieLinkLV == 0 && m.movieLinkType eq 'P'}">
+								<c:set var="poster" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV == 0 && m.movieLinkType eq 'S'}">
+								<c:set var="img0" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV == 1 && m.movieLinkType eq 'S'}">
+								<c:set var="img1" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV == 2 && m.movieLinkType eq 'S'}}">
+								<c:set var="img2" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==3 && m.movieLinkType eq 'S'}}">
+								<c:set var="img3" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==4 && m.movieLinkType eq 'S'}}">
+								<c:set var="img4" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==5 && m.movieLinkType eq 'S'}}">
+								<c:set var="img5" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==6 && m.movieLinkType eq 'S'}}">
+								<c:set var="img6" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==7 && m.movieLinkType eq 'S'}}">
+								<c:set var="img7" value="${m.movieFileLink}"/>
+							</c:when>
+							<c:when test="${m.movieLinkLV ==0 && m.movieLinkType eq 'M'}}">
+								<c:set var="m0" value="${m.movieFileLink}"/>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+
+
  <div class="container">
         <div class="movie-info">
             <form>
                 <div class="movie-info">
                   <div class="movie-poster">
-                    <img src="#">
+                
+                    <img src="${poster}">
+             
                   </div>
                   <div class="movie-info-detail">
-                    <h4>movie title</h4>
+                    <h4> ${mo.movieTitleEn }</h4>
                     <hr>
                     <div class="item">
-                      <span class="items">개봉년도</span>
-                      <span class="items">장르</span>
-                      <span class="items">나라</span>
+                      <span class="items">${mo.movieOpenDt}</span>
+                      <span class="items">${mo.movieGenreNM }</span>
+                      <span class="items">${mo.movieCountry }</span>
                     </div>
                     
-                    <div class="items">감독</div>
+                    <div class="items">${mo.movieDirector }</div>
+                    <c:forEach items="${ac}" var="ac" begin="0" end="3">
                     <div class="items">
-                        <span class="items">배우</span>
-                        <span class="items">배우</span>
-                        <span class="items">배우</span>      
-                    </div>   
+                        <span class="items">${ac.actorNmKo }</span>
+                            
+                    </div> 
+                    </c:forEach>  
                     <br>
-                    <input class="btn btn-primary" type="button" value="찜하기">
                   </div>
                 </div>
                 
@@ -58,13 +98,13 @@
 
         <div class="movie-detail">
             <div class="movie-story">
-                <strong>상세정보</strong>
-                <p>And yes, this is the last block of representative placeholder content.
-                    And yes, this is the last block of representative placeholder content.
-                    And yes, this is the last block of representative placeholder content.
-                </p>
+                <details>
+    			<summary id="cusur">줄거리</summary>
+    			<p>${mo.movieSummary}</p>
+				</details>
             </div>
         </div>
+
 
         <hr class="movie-line">
 
@@ -74,18 +114,23 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="#" class="d-block w-100" alt="...">
+                       <c:if test="${!empty img0 }">
+                        <img src="${img0}" class="d-block w-100" id="medi" alt="...">
+                         </c:if>
                       </div>
                       <div class="carousel-item">
-                        <img src="#" class="d-block w-100" alt="...">
+                      <c:if test="${!empty img1 }">
+                        <img src="${img1}" class="d-block w-100" id="medi" alt="...">
+                        </c:if>
                       </div>
                       <div class="carousel-item">
-                        <img src="#"  class="d-block w-100" alt="...">
+                     	<c:if test="${!empty img2 }">
+                     	 <img src="${img2}" class="d-block w-100" id="medi" alt="...">
+                     	</c:if>
                       </div>
-                      <div class="carousel-item">
-                        <video controls autoplay src="#" id="video"></video> 
-                      </div>
-                    
+                     
+                     
+                     
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -143,36 +188,15 @@
                 </form>
             </div>
 
-            <hr class="movie-line"><br>
-            <div class="recommend-movie">
-                <h4>비슷한 작품</h4>
-                <form class="main-form">
-                    <div class="swiper-container recom">
-                    
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">Slide 1</div>
-                            <div class="swiper-slide">Slide 2</div>
-                            <div class="swiper-slide">Slide 3</div>
-                            <div class="swiper-slide">Slide 4</div>
-                            <div class="swiper-slide">Slide 5</div>
-                            <div class="swiper-slide">Slide 6</div>
-                            <div class="swiper-slide">Slide 7</div>
-                            <div class="swiper-slide">Slide 8</div>
-                            <div class="swiper-slide">Slide 9</div>
-                          </div>
-                          <div class="swiper-button-next"></div>
-                          <div class="swiper-button-prev"></div>
-                          <div class="swiper-pagination"></div>
-                   
-                  </div>
+          
             
                 </form>
             
             </div>
         </div>
     </div>
-
-
+</div>
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 
 
@@ -187,22 +211,7 @@
 
 
 
-        var swiper = new Swiper(".recom", {
-        slidesPerView: 4,
-        spaceBetween: 20,
-        slidesPerGroup: 3,
-        loop: true,
-        mousewheel: false,
-        loopFillGroupWithBlank: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
+      
     </script>
 
 </body>

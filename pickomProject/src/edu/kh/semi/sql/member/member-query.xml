@@ -5,8 +5,7 @@
 	<!-- 로그인 SQL  -->
 	<entry key="login">
 	SELECT MEMBER_NO, MEMBER_ID, MEMBER_NM, MEMBER_PHONE,
-           MEMBER_EMAIL, MEMBER_ADDR, SIGNUP_DT,
-           MEMBER_GRADE, MEMBER_NICKNAME
+           MEMBER_EMAIL, MEMBER_ADDR, SIGNUP_DT, MEMBER_GRADE,MEMBER_NICKNAME
 	FROM MEMBER
 	WHERE MEMBER_ID=?
 	AND MEMBER_PW =?
@@ -19,4 +18,34 @@
 	VALUES(SEQ_MNO.NEXTVAL, ?, ?, ?, ?, 
 	?, ?, DEFAULT, DEFAULT, DEFAULT, ?)
 	</entry>
+	
+	<!-- 아이디 중복검사 -->
+	<entry key="idDupCheck">
+	SELECT COUNT(*) FROM MEMBER
+	WHERE MEMBER_STATUS = 'Y'
+	AND MEMBER_ID = ?
+	</entry>
+	
+	<!-- 비밀번호찾기 SQL  -->
+	<entry key="searchPw">
+	SELECT*FROM MEMBER
+	WHERE MEMBER_EMAIL=?
+	AND MEMBER_ID=?
+	</entry>
+	
+	<!-- 아이디찾기 SQL  -->
+	<entry key="searchId">
+	SELECT*FROM MEMBER
+	WHERE MEMBER_NM =?
+	AND MEMBER_EMAIL=?
+	
+	</entry>
+	
+	
+	<!-- 비밀번호찾기 비밀번호변경  -->
+	<entry key="newPw">
+	UPDATE MEMBER SET MEMBER_PW=?
+	WHERE MEMBER_ID=?
+	</entry>
+
 </properties>

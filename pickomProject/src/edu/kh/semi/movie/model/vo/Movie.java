@@ -2,6 +2,7 @@ package edu.kh.semi.movie.model.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -19,19 +20,25 @@ public class Movie {
 	private String movieDirector;
 	private Date movieOpenDt;
 	
+	private List<MovieLink> moList;
+	private int actorCd;
+	private String actorNmKo;
+	private int actorNo;
+	private int movieGenreCode;
+	private String movieGenreNM;
 	
-	private List<String> movieLinkNo;
-	private List<String> movieFileLink;
 	
-	
+
 	public Movie() {
 		// TODO Auto-generated constructor stub
 	}
 
 
+	
 	public Movie(int movieNo, String movieTitleEn, String movieTitleKo, String movieSummary, int movieCount,
 			Timestamp createDt, Timestamp modifyDt, String movieStatus, String movieCountry, int movieRuntime,
-			String movieDirector, Date movieOpenDt, List<String> movieLinkNo, List<String> movieFileLink) {
+			String movieDirector, Date movieOpenDt, List<MovieLink> moList, int actorCd, String actorNmKo, int actorNo,
+			int movieGenreCode, String movieGenreNM) {
 		super();
 		this.movieNo = movieNo;
 		this.movieTitleEn = movieTitleEn;
@@ -45,9 +52,24 @@ public class Movie {
 		this.movieRuntime = movieRuntime;
 		this.movieDirector = movieDirector;
 		this.movieOpenDt = movieOpenDt;
-		this.movieLinkNo = movieLinkNo;
-		this.movieFileLink = movieFileLink;
+		this.moList = moList;
+		this.actorCd = actorCd;
+		this.actorNmKo = actorNmKo;
+		this.actorNo = actorNo;
+		this.movieGenreCode = movieGenreCode;
+		this.movieGenreNM = movieGenreNM;
 	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public int getMovieNo() {
@@ -170,24 +192,81 @@ public class Movie {
 	}
 
 
-	public List<String> getMovieLinkNo() {
-		return movieLinkNo;
+
+
+
+
+
+	public List<MovieLink> getMoList() {
+		return moList;
 	}
 
 
-	public void setMovieLinkNo(List<String> movieLinkNo) {
-		this.movieLinkNo = movieLinkNo;
+
+	public void setMoList(List<MovieLink> moList) {
+		this.moList = moList;
 	}
 
 
-	public List<String> getMovieFileLink() {
-		return movieFileLink;
+
+	public int getActorCd() {
+		return actorCd;
 	}
 
 
-	public void setMovieFileLink(List<String> movieFileLink) {
-		this.movieFileLink = movieFileLink;
+
+	public void setActorCd(int actorCd) {
+		this.actorCd = actorCd;
 	}
+
+
+
+	public String getActorNmKo() {
+		return actorNmKo;
+	}
+
+
+
+	public void setActorNmKo(String actorNmKo) {
+		this.actorNmKo = actorNmKo;
+	}
+
+
+
+	public int getActorNo() {
+		return actorNo;
+	}
+
+
+
+	public void setActorNo(int actorNo) {
+		this.actorNo = actorNo;
+	}
+
+
+
+	public int getMovieGenreCode() {
+		return movieGenreCode;
+	}
+
+
+
+	public void setMovieGenreCode(int movieGenreCode) {
+		this.movieGenreCode = movieGenreCode;
+	}
+
+
+
+	public String getMovieGenreNM() {
+		return movieGenreNM;
+	}
+
+
+
+	public void setMovieGenreNM(String movieGenreNM) {
+		this.movieGenreNM = movieGenreNM;
+	}
+
 
 
 	@Override
@@ -196,8 +275,41 @@ public class Movie {
 				+ ", movieSummary=" + movieSummary + ", movieCount=" + movieCount + ", createDt=" + createDt
 				+ ", modifyDt=" + modifyDt + ", movieStatus=" + movieStatus + ", movieCountry=" + movieCountry
 				+ ", movieRuntime=" + movieRuntime + ", movieDirector=" + movieDirector + ", movieOpenDt=" + movieOpenDt
-				+ ", movieLinkNo=" + movieLinkNo + ", movieFileLink=" + movieFileLink + "]";
+				+ ", moList=" + moList + ", actorCd=" + actorCd + ", actorNmKo=" + actorNmKo + ", actorNo=" + actorNo
+				+ ", movieGenreCode=" + movieGenreCode + ", movieGenreNM=" + movieGenreNM + "]";
 	}
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
 	
 	
 }

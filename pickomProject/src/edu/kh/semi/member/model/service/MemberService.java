@@ -22,12 +22,16 @@ public class MemberService {
 	 */
 	public Member login(String memberId, String memberPw) throws Exception {
 		
+		// DB 연결 정보를 담고있는 Connection을 얻어옴.
 		Connection conn = getConnection();
 		
+		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
 		Member loginMember = dao.login(conn, memberId, memberPw);
 		
+		// 커넥션 반환
 		close(conn);
 		
+		// 서비스 수행 결과 반환
 		return loginMember;
 	}
 	
@@ -73,15 +77,16 @@ public class MemberService {
 	/** 비밀번호찾기 
 	 * @param memberId
 	 * @param memberEmail 
+	 * @param memberId 
 	 * @return m
 	 * @throws Exception
 	 */
-	public Member searchPw(String memberId, String memberEmail) throws Exception{
+	public Member searchPw(String memberEmail, String memberId) throws Exception{
 		
 		Connection conn = getConnection();
 		
 		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
-		Member m = dao.searchPw(conn, memberId,memberEmail);
+		Member m = dao.searchPw(conn,memberEmail,memberId);
 		
 		// 커넥션 반환
 		close(conn);
@@ -90,9 +95,43 @@ public class MemberService {
 	}
 
 
-	public int memberUpdate(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+	/** 아이디찾기 
+	 * @param memberNm
+	 * @param memberEmail
+	 * @return loginId
+	 * @throws Exception
+	 */
+	public Member searchId(String memberNm, String memberEmail) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		Member loginId = dao.searchId(conn, memberNm, memberEmail);
+		
+		close(conn);
+		
+		return loginId;
+	}
+
+
+	/** 비밀번호찾기 비밀번호변경
+	 * @param memberPw
+	 * @param memberPw2
+	 * @param memberEmail
+	 * @return result
+	 * @throws Exception
+	 */
+	public int newPw(String memberPw, String memberId) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.newPw(conn, memberPw,memberId);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	
