@@ -23,49 +23,11 @@
 
     <style>
     
-	    .fa-angle-left:before{
-	    	content: "<";
-	    }
         div {
             /* border: 1px solid black;*/
         }
 
-        div#mainlog,
-        div#main {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
-
+       
        
 
         #content-area {
@@ -166,15 +128,7 @@
         .searchForm-review button {
         	margin-left: 10px;
         }
-        
-        .review-header {
-         	display: flex;
-         	justify-content: space-between;
-         	align-items : center;
-         	margin-bottom: 20px;
-         	padding: 10px;
-        }
-        
+
         .notice-review {
         	text-align: center;
         }
@@ -230,11 +184,7 @@
         	padding: 0px 5px;
         	border-radius : 5px;
         }
-        
-        .review-header__container{
-        	display: flex;
-        	align-items: center;
-        }
+
         
         .fa-file-video {
         	margin:0px 20px;
@@ -274,6 +224,8 @@
         .review-header__container{
         	display: flex;
         	align-items: center;
+
+        	padding: 80px 25px 40px 25px;
         }
         
         .fa-bell {

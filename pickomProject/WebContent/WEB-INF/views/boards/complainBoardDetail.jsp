@@ -34,9 +34,7 @@
   
 
     <style>
-        div {
-            border: 1px solid red;
-        }
+        
 
         div#mainlog,
         div#mainmypage {
@@ -150,20 +148,7 @@
             <div> <h1>리뷰게시판</h1></div>
             
 
-            <div class = text-right>
-                <a href="#" class="btn btn-primary">이전글</a>
-                <a href="#" class="btn btn-primary">다음글</a>
-                
-			<c:choose>
-				<c:when test="${ !empty searchType}">
-					
-					<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType }&cp=${cp}" class="btn btn-primary">목록</a>
-				</c:when>
-				
-				<c:otherwise>
-					<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary">목록</a>
-				</c:otherwise>
-			</c:choose>
+            
                 
             
             </div>

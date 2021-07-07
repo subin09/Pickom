@@ -28,8 +28,8 @@
 <body class="admin-body">
     <header class="admin-header__main">
         <div class="admin-header__main-container">
-          <a href="${contextPath}"><img src="${contextPath}/resources/img/admin/로고.png" alt="logo" class="admin-header__logo"></a>
-      <a href="${contextPath}/member/logout"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
+             <a class="admin-logo__img" href="${contextPath}"><img src="${contextPath}/resources/img/logo.jpg" alt="logo" class="admin-header__logo"></a>
+     		 <a href="${contextPath}/admin/adminMain"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
         </div>
       </header>
     <main class="admin-main admin-main__member">
@@ -236,8 +236,8 @@
            <li><a class="admin-a" href="${contextPath }/admin/adminMember/list?type=0">회원관리</a></li>
            <li><a class="admin-a" href="${contextPath }/reviewBoard/list?type=200">신고 게시글</a></li>
            <li><a class="admin-a" href="${contextPath }/reviewBoard/list?type=300">신고 댓글</a></li>
-           <li><a class="admin-a" href="#">행사게시판</a></li>
-           <li><a class="admin-a" href="#">커뮤니티</a></li>
+           <li><a class="admin-a" href="${contextPath}/eventBoard/list">행사게시판</a></li>
+           <li><a class="admin-a" href="${contextPath}/FAQBoard/list">공지사항</a></li>
            <li><a class="admin-a" href="${contextPath}/complainBoard/list?type=0">불편사항</a></li>
         </ul>
     </div>

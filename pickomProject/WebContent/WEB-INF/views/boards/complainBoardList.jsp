@@ -26,41 +26,7 @@
             /* border: 1px solid black;*/
         }
 
-        div#mainlog,
-        div#main {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
+      
 
         
 
@@ -197,7 +163,7 @@
         .complain-header {
         	display: flex;
         	justify-content : space-between;
-        	padding: 25px;
+        	padding: 80px 25px 40px 25px;
         }
         
         .complain-header__complain {
@@ -262,7 +228,7 @@
             	<div class="complain-header">
             		<div class="complain-header__complain">
             			<i class="far fa-keyboard fa-3x"></i>
-            			<h1>고객센터</h1>
+            			<h1>불편사항</h1>
             		</div>
             		
 	                <div class="complain-button">
