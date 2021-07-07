@@ -28,7 +28,7 @@
   <header class="admin-header__main">
     <div class="admin-header__main-container">
       <a class="admin-logo__img" href="${contextPath}"><img src="${contextPath}/resources/img/logo.jpg" alt="logo" class="admin-header__logo"></a>
-      <a href="${contextPath}/admin/adminMain"><img  src="${contextPath}/resources/img/admin/유저.jpg" alt="user-profile" class="admin-header__user"></a>
+    
     </div>
   </header>
   
@@ -293,22 +293,7 @@
 	                    </c:choose>
                     </c:forEach>
                       
-        <c:if test="${!empty title }">
-			<script>
-				swal({
-					"icon"  : "${icon}",
-					"title" : "${title}",
-					"text"  : "${text}"
-				});
-			
-			</script>
-	
-	
-			<c:remove var="icon" />
-			<c:remove var="title" />
-			<c:remove var="text" />
-		</c:if>
-		
+
                     </tbody>
                       </table>
                 </div>

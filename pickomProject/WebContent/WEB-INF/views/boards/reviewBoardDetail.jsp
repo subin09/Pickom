@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 댓글 작성</title>
+    <title>리뷰게시판 상세</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
@@ -106,6 +106,10 @@
        	font-weight: bold;
        }
        
+       .title-area{
+       	margin-bottom: 2rem;
+       	height: 200px;
+       }
     </style>
 
 
@@ -192,7 +196,7 @@
 					
 
 	
-					<div class="form-inline mb-2">
+					<div class="form-inline mb-2 title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
