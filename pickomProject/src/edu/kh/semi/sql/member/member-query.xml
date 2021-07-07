@@ -53,12 +53,37 @@
 		DEFAULT, DEFAULT)
 	</entry>
 	
-	<!-- 프로필 테이블 삽입 SQL -->
+	<!-- 프로필 검색 SQL -->
 	<entry key="memberPreProfile">
-		SELECT MEMBER_NO, 
-		PROFILE_PICTURE, 
-		PROFILE_PICTURE_NAME
-		FROM MEMBER_PROFILE
+		SELECT MEMBER_NO, PROFILE_PICTURE,
+		PROFILE_PICTURE_NAME, MEMBER_NICKNAME
+		FROM MEMBER_PROFILE JOIN MEMBER USING (MEMBER_NO)
 		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 비밀번호 변경 SQL -->
+	<entry key="changePw">
+		UPDATE MEMBER SET MEMBER_PW = ?
+		WHERE MEMBER_PW = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 비밀번호 확인 SQL -->
+	<entry key="checkPw">
+		SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_PW = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 회원 탈퇴 확인 SQL -->
+	<entry key="secession">
+		UPDATE MEMBER SET MEMBER_STATUS = 'N'
+		WHERE MEMBER_NO= ?
+	</entry>
+	
+	<!-- 회원 탈퇴 테이블 입력 SQL -->
+	<entry key="insertDropTable">
+		INSERT INTO MEMBER_DROP
+		VALUES(?, DEFAULT, ?, ?)
 	</entry>
 </properties>

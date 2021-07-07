@@ -201,9 +201,6 @@
             </svg>
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-          
-
-
 
 					<!-- 이미지 출력 -->	
 					<c:forEach items="${board.atList }" var="at">

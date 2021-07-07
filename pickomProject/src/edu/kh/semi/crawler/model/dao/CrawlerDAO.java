@@ -29,7 +29,7 @@ public class CrawlerDAO {
 			prop.loadFromXML(new FileInputStream(filePath));
 			
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
