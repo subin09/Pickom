@@ -6,7 +6,7 @@
         }
         
 
-        body{
+        container{
             padding-top: 30px;
            
         }
@@ -36,11 +36,16 @@
            overflow: scroll;
        }
 
-       #video{
-           width: 100%;
-           height: 100%;
+       .video{
+           width: 727px;
+           height: 405px;
            max-width: 1000px;
-           margin: 10px;
+          
+       }
+       
+       #medi{
+       width: 527px;
+       height: 405px;
        }
 
        #title{
@@ -50,46 +55,10 @@
        }
 
        
-
-       /* swipper */
-       .swiper-container {
-        width: 100%;
-        height: 100%;
-        margin-bottom: 50px;
-      }
-
-      .swiper-slide {
-
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-
-        
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-        height: 50vh;
-      }
-
-      .swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
       #main-form{
           padding-bottom: 100px;
       }
-
-
+      
+     
+      
+   

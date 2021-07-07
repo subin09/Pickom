@@ -105,65 +105,6 @@ public class MovieCrawlerServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		CrawlerVo craw = new CrawlerVo();
-		HttpSession session = request.getSession();
-		
-		int count = 0;
-		
-		for(int movieNo= 204624; movieNo<204644; movieNo++) {
-			count++;
-			try {
-				// 1. 영화테이블 크롤러 실행
-				Robot robot =new Robot();
-				robot.delay(300);
-				
-				int select = service.searchMovie(movieNo);
-				
-				if(select == 0) {
-					
-					craw.movieTable(movieNo);			
-					
-					//  변수
-					ArrayList<String> arrMovieTitleKo = craw.getArrMovieTitleKo();
-					ArrayList<String> arrMovieTitleEn = craw.getArrMovieTitleEn();
-					ArrayList<String> arrMovieDirector = craw.getArrMovieDirector();
-					ArrayList<String> arrMovieSummary = craw.getArrMovieSummary();
-					ArrayList<String> arrMovieCountry = craw.getArrMovieCountry();
-					ArrayList<Date> arrMovieOpenDt =  craw.getArrMovieOpenDt();
-					ArrayList<String> arrRuntime = craw.getArrRuntime();
-					service.insertMovie(movieNo, arrMovieTitleKo, arrMovieTitleEn, arrMovieDirector, arrMovieSummary,
-							arrMovieCountry, arrMovieOpenDt, arrRuntime);
-					
-					craw.movieFileLink(movieNo);
-					ArrayList<String> arrPoster = craw.getArrPoster();
-					ArrayList<String> arrStillCut = craw.getArrStillCut();
-					ArrayList<String> arrMedia = craw.getArrMedia();
-					service.insertFile(movieNo, arrPoster, arrStillCut, arrMedia);
-					
-					
-					
-					craw.movieActor(movieNo);
-					ArrayList<String> arrActorNmKo = craw.getArrActorNmKo();
-					ArrayList<String> arrActorNmEn = craw.getArrActorNmEn();
-					ArrayList<String> arrActorCd = craw.getArrActorCd();
-					service.insertActor(movieNo, arrActorNmKo, arrActorNmEn, arrActorCd);
-							
-					ArrayList<String> arrGenreCd1  = craw.getArrGenreCd1();
-					service.insertActor(movieNo, arrGenreCd1);
-				}
-				
-				}catch (Exception e) {
-					System.out.println(movieNo + ": 예외처리");
-			}
-			
-		}
-			session.setAttribute("icon", "success");
-			session.setAttribute("title", "전체 정보처리 완료");
-			session.setAttribute("text", "크롤링 메소드");
-			
-			String path = request.getHeader("/crawler");
-			response.sendRedirect(path);
+		doGet(request, response);
 	}
 }

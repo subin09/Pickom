@@ -293,7 +293,22 @@
 	                    </c:choose>
                     </c:forEach>
                       
-
+        <c:if test="${!empty title }">
+			<script>
+				swal({
+					"icon"  : "${icon}",
+					"title" : "${title}",
+					"text"  : "${text}"
+				});
+			
+			</script>
+	
+	
+			<c:remove var="icon" />
+			<c:remove var="title" />
+			<c:remove var="text" />
+		</c:if>
+		
                     </tbody>
                       </table>
                 </div>

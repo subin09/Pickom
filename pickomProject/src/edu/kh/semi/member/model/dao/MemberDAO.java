@@ -439,6 +439,134 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	/** 비밀번호 찾기 DAO
+	 * @param conn
+	 * @param memberEmail
+	 * @param memberId 
+	 * @return
+	 * @throws Exception
+	 */
+	public Member searchPw(Connection conn,String memberEmail, String memberId) throws Exception{
+		
+		Member m = null;
+		
+		String sql = prop.getProperty("searchPw");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberEmail);
+			pstmt.setString(2, memberId);
+			
+			// SQL 구문 수행 후 조회 결과인 ResultSet을 rs 변수에 저장
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				m = new Member();
+				m.setMemberNo(rs.getInt("MEMBER_NO"));
+				m.setMemberId(rs.getString("MEMBER_ID"));
+				m.setMemberPw(rs.getString("MEMBER_PW"));
+				m.setMemberNm(rs.getString("MEMBER_NM"));
+				m.setMemberPhone(rs.getString("MEMBER_PHONE"));
+				m.setMemberEmail(rs.getString("MEMBER_EMAIL"));
+				m.setMemberAddress(rs.getString("MEMBER_ADDR"));
+				m.setSignUpDt(rs.getDate("SIGNUP_DT"));
+				m.setMemberStatus(rs.getString("MEMBER_STATUS"));
+				m.setMemberGrade(rs.getString("MEMBER_GRADE"));
+				m.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
+			}
+			
+		}finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return m;
+	}
 
+
+	/** 아이디찾기 DAO
+	 * @param conn
+	 * @param memberNm
+	 * @param memberEmail
+	 * @return loginId
+	 * @throws Exception
+	 */
+	public Member searchId(Connection conn, String memberNm, String memberEmail) throws Exception{
+		
+		Member loginId = null;
+		
+		String sql = prop.getProperty("searchId");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNm);
+			pstmt.setString(2, memberEmail);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				loginId = new Member();
+				loginId.setMemberNo(rs.getInt("MEMBER_NO"));
+				loginId.setMemberId(rs.getString("MEMBER_ID"));
+				loginId.setMemberPw(rs.getString("MEMBER_PW"));
+				loginId.setMemberNm(rs.getString("MEMBER_NM"));
+				loginId.setMemberPhone(rs.getString("MEMBER_PHONE"));
+				loginId.setMemberEmail(rs.getString("MEMBER_EMAIL"));
+				loginId.setMemberAddress(rs.getString("MEMBER_ADDR"));
+				loginId.setSignUpDt(rs.getDate("SIGNUP_DT"));
+				loginId.setMemberStatus(rs.getString("MEMBER_STATUS"));
+				loginId.setMemberGrade(rs.getString("MEMBER_GRADE"));
+				loginId.setMemberNickNm(rs.getString("MEMBER_NICKNAME"));
+						
+					
+			}
+			
+		
+			
+			
+		}finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		
+		return loginId;
+	}
+
+
+		/**새로운 비밀번호 DAO
+		 * @param conn
+		 * @param memberPw
+		 * @param memberId
+		 * @return
+		 * @throws Exception
+		 */
+		public int newPw(Connection conn, String memberPw,String memberId) throws Exception{
+			int result = 0;
+			
+			String sql = prop.getProperty("newPw");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, memberPw);
+				pstmt.setString(2, memberId);
+				
+				result = pstmt.executeUpdate();
+				
+				
+			}finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 
 }

@@ -231,4 +231,64 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	/** 비밀번호찾기 
+	 * @param memberId
+	 * @param memberEmail 
+	 * @param memberId 
+	 * @return m
+	 * @throws Exception
+	 */
+	public Member searchPw(String memberEmail, String memberId) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
+		Member m = dao.searchPw(conn,memberEmail,memberId);
+		
+		// 커넥션 반환
+		close(conn);
+		
+		return m;
+	}
+
+
+	/** 아이디찾기 
+	 * @param memberNm
+	 * @param memberEmail
+	 * @return loginId
+	 * @throws Exception
+	 */
+	public Member searchId(String memberNm, String memberEmail) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		Member loginId = dao.searchId(conn, memberNm, memberEmail);
+		
+		close(conn);
+		
+		return loginId;
+	}
+
+
+	/** 비밀번호찾기 비밀번호변경
+	 * @param memberPw
+	 * @param memberPw2
+	 * @param memberEmail
+	 * @return result
+	 * @throws Exception
+	 */
+	public int newPw(String memberPw, String memberId) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.newPw(conn, memberPw,memberId);
+		
+		if(result>0) commit(conn);
+		else		 rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 }
