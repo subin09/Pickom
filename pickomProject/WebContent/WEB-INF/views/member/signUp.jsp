@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/signUp/join-style.css" >
+<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/member/signUp/join-style.css" >
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <title>회원가입</title>
@@ -13,12 +13,12 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	  <div class="container">
+	  <div class="container-signup">
 	<form action="signUp" method="POST" name ="signUpForm" onsubmit="return validate();">
 		<h1>회원가입</h1>
         <br><hr><br>
        <div class="join-form">
-           <table>
+           <table class="signup-table">
                <tbody>
                    <tr>
                        <th>
@@ -129,8 +129,9 @@
        
 		<br>
 		<br>
-		    
+
 	</form>
+			</div> 
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 	
     <!--유효성 검사하는 스크립트 !! --> 

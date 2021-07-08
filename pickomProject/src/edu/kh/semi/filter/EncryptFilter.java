@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import edu.kh.semi.wrapper.EncryptWrapper;
 
 @WebFilter(filterName = "encryptFilter", urlPatterns = {"/member/login", "/member/signUp", "/member/mypage/changePw",
-														"/member/mypage/secession"})
+														"/member/mypage/secession","/member/newPw"})
 public class EncryptFilter implements Filter {
 
 	public void destroy() {}
