@@ -183,7 +183,7 @@
 
 
 
-    <div class="container complainDetail__main">
+    <div class="container complainDetail__main shadow p-3 mb-5 bg-white rounded">
     
         
             <div> <h1>리뷰게시판</h1></div>

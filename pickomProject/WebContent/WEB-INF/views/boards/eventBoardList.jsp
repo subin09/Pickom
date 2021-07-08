@@ -10,8 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title></title>
-<link rel="stylesheet" type="text/css" href="css/01_header.css">
-<link rel="stylesheet" type="text/css" href="css/02_footer.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
 
@@ -37,7 +35,7 @@
  display : flex;
  padding-top: 80px;
  padding-right: 25px;
- padding-bottom: 40px;
+ padding-bottom: 20px;
  padding-left: 25px;
  
  }
@@ -89,9 +87,9 @@
 
 
 		<div id="board-list-area">
-			<table class="table table-hover table-striped my-5"
+			<table class="table table-hover"
 				id="event-list-table">
-				<thead class="thead-dark">
+				<thead>
 					<tr>
 						<th scope="col">NO</th>
 						<th scope="col">제목</th>
@@ -125,7 +123,7 @@
 									<td>${board.eventBodNo}</td>
 									<%-- 게시판 제목 --%>
 									<td class ="boardTitle">
-										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}" id="boardTitle">
+										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}" style="font-weight: bold;">
 										${board.eventBodTitle}
 										</a>
 									</td>
@@ -168,7 +166,7 @@
 		<c:set var="next" value="cp=${pagination.nextPage}" />
 
 
-		<div class="my-5" style="width:500px; margin-left: 50%">
+		<div class="my-5" style="width:500px; margin-left: 45%">
 			<ul class="pagination">
 
 				<c:if test="${pagination.currentPage > 10}">

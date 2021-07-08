@@ -55,7 +55,7 @@
 		 <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
 
-		<div class="container my-5">
+		<div class="container my-5 shadow p-3 mb-5 bg-white rounded">
 
 			<h3>게시글 수정</h3>
 			<hr>

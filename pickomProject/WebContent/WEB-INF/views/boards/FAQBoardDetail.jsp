@@ -92,7 +92,7 @@
 
 
 
-    <div class="container noticeBoard_container">
+    <div class="container noticeBoard_container shadow p-3 mb-5 bg-white rounded">
     
         <main class="noticeBoard_container2">
             <div> <h1>공지사항</h1></div>
