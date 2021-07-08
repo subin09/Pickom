@@ -399,6 +399,8 @@ public class ReviewBoardDAO {
 				commentList.add(comment);
 			}
 		} finally {
+			close(rs);
+			close(pstmt);
 			
 		}
 		return commentList;
