@@ -36,7 +36,6 @@ public class MainServlet extends HttpServlet {
 	       		 RequestDispatcher view 
 	       		 = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
 	       		 
-	       		 
 	       		 view.forward(request, response);
 	      
 	       	 }else {

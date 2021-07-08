@@ -17,7 +17,6 @@
 	 <jsp:include page="common/header.jsp" />
 	<!-- header.jsp 동적 include -->
 	<!-- 메인 화면  -->
-
 	
 	<!-- 메인 화면 이미지 -->
 
