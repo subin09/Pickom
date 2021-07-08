@@ -447,7 +447,7 @@ public class MemberDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public Member searchPw(Connection conn, String memberEmail, String memberId) throws Exception{
+	public Member searchPassword(Connection conn,String memberEmail, String memberId) throws Exception{
 		
 		Member m = null;
 		
