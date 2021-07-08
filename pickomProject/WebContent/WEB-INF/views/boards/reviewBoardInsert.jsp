@@ -212,7 +212,7 @@
          }
          
          .updateform-group{
-         	margin: 20px 0px 0px 0px;
+         	margin: 10px 0px 0px 0px;
          }
 </style>
 <body>

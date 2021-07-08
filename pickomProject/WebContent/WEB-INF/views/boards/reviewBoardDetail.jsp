@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 댓글 작성</title>
+    <title>리뷰게시판 상세</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
@@ -64,8 +64,8 @@
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 100px;
-        height: 100px;
+        width : 200px;
+        height: 200px;
         }
         
         
@@ -76,6 +76,12 @@
 			vertical-align: top;
 			font-size : 1.2em;
 			font-weight: bold;
+			margin-right: 1rem;
+		}
+		
+	
+		.commentWrite{
+			margin-top: 50px;
 		}
 		.cDate { display: inline-block; }
 		.cContent, .commentBtnArea {
@@ -89,11 +95,23 @@
 		}
 		.comment-row{
 			border-top : 1px solid #ccc;
-			padding : 15px 0;
+			padding : 15px 15px;
 		}
-		.complainDetail__main h1 {
+		
+		.comment-row div:first-child{
+			display: flex;
+			align-items: center;
+		}
+		.complainDetail__main h1:first-child {
        		margin: 70px 0px;
        }
+		.complainDetail__main h1:last-child {
+       		margin: 70px 0px 20px 0px;
+       }
+       
+       #normal-board-contnent {
+      		margin-top: 30px;
+      	}
        
        .reportBtn2{
        	text-decoration: none;
@@ -106,6 +124,52 @@
        	font-weight: bold;
        }
        
+       .title-area{
+       	margin:30px 0px;
+       	height: 200px;
+       }
+       
+       #commentListArea {
+       	list-style: none;
+       }
+       
+       .reportedContent{
+       	background-color: rgba(0,0,0,0.05);
+       }
+       .reportedComment {
+       	color: rgba(0,0,0,0.3);
+       }
+       
+       .reportAdmin {
+       	background-color: #FFD8D4;
+       }
+       
+       	 .genreContainer {
+            display: flex;
+
+            height: 30%;
+        }
+
+        .genreContainer span {
+            margin-right: 1rem;
+            background-color: rgb(61, 61, 105);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 1rem;
+ 
+        }
+        
+        .reviewDetailBtn-area {
+        	margin-top: 20px;
+        }
+        
+        .title-area div{
+       		width: 200px;
+       		height: 200px;
+       }
+       	#comment-area {
+			margin-bottom: 100px;
+		}
     </style>
 
 
@@ -152,10 +216,12 @@
 				<h1>${board.movieTitleEn }</h1>
 			</div>
 			
-             <div>
-             <label>영화 장르 :</label>
+			
+		
+             <div class="genreContainer">
+             
 	             <c:forEach items="${board.gnList }" var="gn">         
-	             <span> [${gn.movieGenreNM}]</span>
+	             <span> # ${gn.movieGenreNM}</span>
 	             </c:forEach>
              </div>
      
@@ -168,7 +234,7 @@
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
             </svg>
-            <!-- 댓글 단 횟수 count -->
+            
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
 
 					<!-- 이미지 출력 -->	
@@ -192,7 +258,7 @@
 					
 
 	
-					<div class="form-inline mb-2">
+					<div class="form-inline mb-2 title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
@@ -238,7 +304,7 @@
 			
 
 
-			<div>
+			<div class="reviewDetailBtn-area">
 				<c:if test="${!empty loginMember }">
 						
 					<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
@@ -510,18 +576,26 @@
 				 	            
 								if(item.memberNo != loginMemberNo && loginMemberGrade != 'A'){ //  일반회원인데 본인이 아닐 때
 				 	               
-				 	             	 if(item.reportNo != ""){ // 신고댓글일 때
-					 	            	 var cContent = $("<p>").addClass("cContent").html("신고된 댓글입니다.");
+									if(item.memberGrade != 'A'){
+										
+					 	             	 if(item.reportNo != ""){ // 신고댓글일 때
+						 	            	 var cContent = $("<p>").addClass("cContent").addClass("reportedComment").html("신고된 댓글입니다.");
+					 	             	 		li.addClass("reportedContent");
+						 	            	} else{
+						 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+						 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
+						 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
+						 	               
+						 	               reportBtn.append(reportLink);
+						 	               commentBtnArea.append(reportBtn);
+						 	               
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+											}
 					 	            } else{
-					 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
-					 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
-					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
-					 	               
-					 	               reportBtn.append(reportLink);
-					 	               commentBtnArea.append(reportBtn);
-					 	               
-					 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 					 	            	
+					 	            	
+						 	               
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 					 	            }
 				 	            }
 								
@@ -530,8 +604,8 @@
 										   var recoverBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("복구").attr("onclick", "recoverComment("+item.reportNo+")");
 						 	               var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");
 						 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
-						 	              
-						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent).css({color: "red", fontWeight : "bold"});
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent).css({fontWeight : "bold"});
+						 	              	li.addClass("reportAdmin");
 						 	              commentBtnArea.append(showUpdate).append(deleteComment).append(recoverBtn);
 									} else { // 신고댓글이 아닌 일반 댓글일 때
 											var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");

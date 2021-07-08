@@ -36,7 +36,7 @@ public class ReviewCommentController extends HttpServlet {
 				int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 				
 				List<ReviewComment> list = service.selectList(boardNo);
-			
+				System.out.println("댓글이 안넘어와..." + list);
 				// response.getWriter().print(list); 
 				// 밑에 isnertcomment에서처럼 이렇게 보내면 배열이 아니라 객체의 toString 문자열로 보내져버림
 				// 왜? 요청/응답 시 데이터는 기본적으로 문자열의 형태로 전달이 된다

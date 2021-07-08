@@ -8,9 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상세조회</title>
-    
-<link rel="shortcut icon" href="#">
+    <title>리뷰게시판 상세</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
 <!-- 라이트 박스 시작!  -->
@@ -20,22 +19,16 @@
 <!-- 라이트 박스 끝! -->
 
 
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
 <!-- Bootstrap core JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
  
- 
-<!-- sweetalert API 추가 -->
+<!-- sweetalert API 추가 --> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-
     <style>
-        
 
+		    
+	
 
         #normal-board-content {
             width: 100%;
@@ -56,27 +49,34 @@
 			height: 100px;
 		}
 
-       
+
+        
+        .reportBtn {
+        	color: white;
+       	text-decoration: none;
+        	}
+       .reportBtn:hover{
+       	text-decoration: none;
+       	color: white;
+       }
         
         #contentImg0, 
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 200px;
-        height: 200px;
+        width : 100px;
+        height: 100px;
         }
         
         
         /*댓글 */
-        .commentWrite {
-        	margin-top: 5rem;
-        }
         .commentWrite>table {	margin-top: 10px; }
 		.cWriter {
 			display: inline-block;
 			vertical-align: top;
 			font-size : 1.2em;
 			font-weight: bold;
+			margin-right: 1rem;
 		}
 		.cDate { display: inline-block; }
 		.cContent, .commentBtnArea {
@@ -90,32 +90,26 @@
 		}
 		.comment-row{
 			border-top : 1px solid #ccc;
-			padding : 15px 0;
+			padding : 15px 15px;
 		}
-       .complainDetail__main{
-      	 	width: 60%;
-       }
-       
-       .complainDetail__body {
-	       	display: flex;
-		    justify-content: center;
-		    flex-direction: column;
-		    align-items: center;
-       }
-       
-       .complainDetail__main h1 {
+		
+		.comment-row div:first-child{
+			display: flex;
+			align-items: center;
+		}
+		.complainDetail__main h1 {
        		margin: 70px 0px;
        }
-       .complainDetail__main p {
-       	margin: 2rem 0;
+       
+       .reportBtn2{
+       	text-decoration: none;
+       	color: white;
        }
        
-       .btn-primary{
-       	margin-left 20px;
-       }
-       
-       .mt-4 {
-       	margin-bottom: 2rem;
+       .reportBtn2:hover{
+       	text-decoration: none;
+       	color: white;
+       	font-weight: bold;
        }
        
        .title-area{
@@ -123,62 +117,75 @@
        	height: 200px;
        }
        
-       .complainDetailBtn-area {
-       	margin-top: 20px;
+       #commentListArea {
+       	list-style: none;
        }
        
-       
-       .title-area div{
-       		width: 200px;
-       		height: 200px;
+       .reportedContent{
+       	background-color: rgba(0,0,0,0.5);
        }
-     
+       .reportedComment {
+       	color: #e6dfdf;
+       }
+       
+       .reportAdmin {
+       	background-color: #FFD8D4;
+       }
     </style>
 
 
 </head>
 
-<body class="complainDetail__body">
+<body>
 	
-   <!-- header.jsp 동적 include -->
+    <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
 
 
 
 
-	<main class="complainDetail__main">
-    <div class="container">
+    <div class="container complainDetail__main">
     
         
-            <div> <h1>불편사항</h1></div>
+            <div> <h1>리뷰게시판</h1></div>
             
 
             
-                
             
-            </div>
-            
-          	<!-- Category -->
-			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
+          	
+			
+			
+			
             
             <hr>                        
+            <h2><span id="event-bod-title">제목 : ${board.reviewTitle }</span></h2>
+            <hr>                        
+            
         	<!-- Date -->
 			<p>
 				<span class="board-dateArea">
-					작성일 : <fmt:formatDate value="${board.complainDate }" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
+					작성일 : <fmt:formatDate value="${board.createDt }" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
 					<br>
-					마지막 수정일 : <fmt:formatDate value="${complainModifyDt }" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
+					마지막 수정일 : <fmt:formatDate value="${board.modifyDt }" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
 				</span>
-		 		<span class="float-right">조회수 ${board.complainCount } </span>
+		 		<span class="float-right">조회수 ${board.readCount } </span>
 			</p>
 			
-			<hr>
-            <h2><span id="event-bod-title"> 제목 : ${board.complainTitle }</span></h2>
-            
-             
-                      
-     
+            <hr>                        
 
+			<div>
+				<h1>${board.movieTitleEn }</h1>
+			</div>
+			
+             <div>
+             <label>영화 장르 :</label>
+	             <c:forEach items="${board.gnList }" var="gn">         
+	             <span> [${gn.movieGenreNM}]</span>
+	             </c:forEach>
+             </div>
+     
+				<br>
+				
             <!-- 회원이 글 쓴 내용 -->
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -186,14 +193,9 @@
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
             </svg>
-
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
 
-
-
-            <br>
-            <br>
 					<!-- 이미지 출력 -->	
 					<c:forEach items="${board.atList }" var="at">
 						<c:choose>
@@ -215,7 +217,7 @@
 					
 
 	
-					<div class="form-inline title-area">
+					<div class="form-inline mb-2 title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
@@ -253,26 +255,39 @@
 					
             <!-- 글 쓴 내용  -->
             <div id="normal-board-contnent" style="border: 1px solid black; width: 100%;  height: 400px;">
-              ${board.complainContent }
+              ${board.reviewContent }
             </div>
 
 
-			<div class="complainDetailBtn-area">
-				<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
-				<c:if test="${loginMember.memberGrade == 'A' || loginMember.memberNo == board.memberNo}">
-					<button id="deleteBtn" class="btn btn-primary float-right mr-2" onclick="deleteRequest();">삭제</button> 
-					<button id="updateBtn" class="btn btn-primary float-right mr-2" onclick="updateRequest('updateForm');">수정</button> 
-				</c:if>
+			
+			
+
+
+			<div>
+				<c:if test="${!empty loginMember }">
+						
+					<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
+					<c:if test="${loginMember.memberGrade == 'A' || loginMember.memberNo == board.memberNo}">
+						<button id="deleteBtn" class="btn btn-primary float-right mr-2" onclick="deleteRequest();">삭제</button> 
+						<button id="updateBtn" class="btn btn-primary float-right mr-2" onclick="updateRequest('updateForm');">수정</button> 
+					</c:if>
+					
+					<%-- 로그인된 회원과 해당 글 작성자가 다른 경우에만 신고버튼 노출--%>
+					<c:if test="${loginMember.memberNo != board.memberNo && board.memberGrade != 'A' && loginMember.memberGrade != 'A'}">
+								<button id="deleteBtn" class="btn btn-primary float-right mr-2">
+									<a class="reportBtn" href="${contextPath }/report/reportPostForm?type=0&no=${board.reviewNo}">신고</a>
+								</button> 
+							
+					</c:if>
+					
+				</c:if>	
 				
-				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2 ">목록으로</a>
+				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
 			</div>
-			
-			
-
-
 		
-		<br>
-	
+			<br>
+			<br>
+            <hr>
 			
 		
 		
@@ -282,7 +297,7 @@
 					<table align="center">
 						<tr>
 							<td id="commentContentArea">
-								<textArea rows="3" id="commentContent"  style = "width:600px; resize: none;"></textArea>
+								<textArea rows="3" id="commentContent" style = "width:600px; resize: none;"></textArea>
 							</td>
 							<td id="commentBtnArea">
 								<button class="btn btn-primary" id="addComment" onclick="addComment();">
@@ -306,53 +321,67 @@
 				
 								<p class="cContent">${comment.commentContent }</p>
 								
+								<c:if test="${!empty loginMember }">
+									<c:if test="${comment.memberNo == loginMember.memberNo || comment.memberGrade == 'A'}">
+										<div class="commentBtnArea">
+											<button class="btn btn-primary btn-sm ml-1" id="updateComment" onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
+											<button class="btn btn-primary btn-sm ml-1" id="deleteComment" onclick="deleteComment(${comment.commentNo})">삭제</button>
+										
+										</div>
+									</c:if>
 								
-								<c:if test="${comment.memberNo == loginMember.memberNo || comment.memberGrade == 'A'}">
-									<div class="commentBtnArea">
-										<button class="btn btn-primary btn-sm ml-1" id="updateComment" onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
-										<button class="btn btn-primary btn-sm ml-1" id="deleteComment" onclick="deleteComment(${comment.commentNo})">삭제</button>
-									</div>
+									
 								</c:if>
+								
+								
 							</li>
 						</c:forEach>
 					</ul>
 				</div>
 			
 			</div>
-	</div>
-
-
+			
+		</div>	
+			
+			
+			
+			
 	<form action="#" method="post" name="requestForm">
-			<input type="hidden" value="${board.complainNo }" name="boardNo">
+			<input type="hidden" value="${board.reviewNo }" name="boardNo">
 			<input type="hidden" value="${param.cp }" name="cp">
 			<input type="hidden" value="${param.type }" name="type">
 			
 	</form>
-	</main>
-    <!-- footer.jsp 동적 include -->
+
+   <!-- footer.jsp 동적 include -->
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 
-	
-	
+
+	<%-- 로그인 실패와 같은 메세지가 서버로부터 전달되어 온 경우 출력 --%>
 	<c:if test="${!empty title }">
 		<script>
 			swal({
-				"icon"  : "${icon}",
+				"icon" : "${icon}", 
 				"title" : "${title}",
-				"text"  : "${text}"
-			});
-			
+				"text" : "${text}"
+			})
 		</script>
-	
-	
-		<c:remove var="icon" />
-		<c:remove var="title" />
-		<c:remove var="text" />
+		
+		<%-- 특정 스코프에 있는 속성(변수)를 제거할 수 잇음 --%>
+		<%-- 서버로부터 전달받은 메세지를 1회 출력 후 제거 -> 반복 출력되지 않음 --%>
+		<c:remove var="icon"/>
+		<c:remove var="title"/>
+		<c:remove var="text"/>
 	</c:if>
 	
 	
 	
+	
     <script>
+    
+    
+		
+	
         var date = new Date();
         var year = date.getFullYear(date);
         $(document).ready(function () {
@@ -363,7 +392,7 @@
 		function updateRequest(addr) {
 			const boardtype = ${boardType};
 
-			document.requestForm.action = "../complainBoardDML/" +addr;
+			document.requestForm.action = "../reviewBoardDML/" +addr;
 			// 현재 문서 내부에  name 속성값이 requestForm인 요소를 submit
 			document.requestForm.submit();
 
@@ -382,7 +411,7 @@
 				})
 				.then(function(willDelete) { // <=== Only change is here
 					if (willDelete) {
-						  document.requestForm.action = "../complainBoardDML/delete?no="+${board.complainNo };
+						  document.requestForm.action = "../reviewBoardDML/delete?no="+${board.reviewNo };
 							// 현재 문서 내부에  name 속성값이 requestForm인 요소를 submit
 							document.requestForm.submit();
 					 
@@ -401,7 +430,7 @@
 		const loginMemberGrade = "${loginMember.memberGrade}";
 
 		// 현재 게시글 번호
-		const boardNo = ${board.complainNo};
+		const boardNo = ${board.reviewNo};
 
 		// 수정 전 댓글 요소를 저장할 변수 (댓글 수정 시 사용)
 		let beforeCommentRow;
@@ -427,7 +456,7 @@
 					
 					// 로그인 O, 댓글 작성 O
 					$.ajax({
-						url : "${contextPath}/complainComment/insertComment", // 필수속성!!!!
+						url : "${contextPath}/reviewComment/insertComment", // 필수속성!!!!
 						type : "POST", 
 						data : {"memberNo" : loginMemberNo, // Controller에서 getParameter로 받을 애들
 								"boardNo" : boardNo, 
@@ -457,7 +486,7 @@
 		//해당 게시글 댓글 목록 조회
 		function selectCommentList(){
 		 	$.ajax({
-		 		url : "${contextPath}/complainComment/list", 
+		 		url : "${contextPath}/reviewComment/list", 
 		 		data : {"boardNo" : boardNo}, 
 		 		type : "POST", 
 		 		dataType : "JSON", // 응답되는 데이터의 형식이 JSON임을 알려줌 -> 자바스크립트 객체로 변환됨
@@ -480,22 +509,74 @@
 		 	            div.append(cWriter).append(cDate)
 		 	            
 		 	            
-		 	            // 댓글 내용
-		 	            var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 		 	            
 		 	            
 		 	            // 대댓글, 수정, 삭제 버튼 영역
 		 	            var commentBtnArea = $("<div>").addClass("commentBtnArea");
 		 	            
 		 	            // 현재 댓글의 작성자와 로그인한 멤버의 아이디가 같을 때 버튼 추가
-		 	            if(item.memberNo == loginMemberNo || loginMemberGrade == 'A'){
-		 	               
-		 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
-		 	               var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");
-		 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
-		 	               
-		 	               commentBtnArea.append(showUpdate).append(deleteComment);
+		 	           
+		 	            if(loginMemberNo != ""){
+		 	            	
+		 	            	
+				 	            if(item.memberNo == loginMemberNo && loginMemberGrade != 'A'){ // 일반회원인데 본인일 때
+				 	               // 신고댓글 아닐 때ㄴ
+					 	              if(item.reportNo != ""){ // 신고댓글일 때
+					 	            	 var cContent = $("<p>").addClass("cContent").html("작성하신 댓글이 신고되었습니다. 관리자의 복구승인이 필요합니다.");
+					 	              } else {
+						 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+						 	               var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");
+						 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
+						 	               
+						 	               commentBtnArea.append(showUpdate).append(deleteComment);
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+					 	              }
+				 	              }
+				 	            
+								if(item.memberNo != loginMemberNo && loginMemberGrade != 'A'){ //  일반회원인데 본인이 아닐 때
+				 	               
+				 	             	 if(item.reportNo != ""){ // 신고댓글일 때
+					 	            	 var cContent = $("<p>").addClass("cContent").addClass("reportedComment").html("신고된 댓글입니다.");
+				 	             	 		li.addClass("reportedContent");
+					 	            } else{
+					 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+					 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
+					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
+					 	               
+					 	               reportBtn.append(reportLink);
+					 	               commentBtnArea.append(reportBtn);
+					 	               
+					 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+					 	            	
+					 	            }
+				 	            }
+								
+								if(loginMemberGrade == 'A'){ // 관리자일 때 
+									if(item.reportNo != ""){ // 신고댓글일 때
+										   var recoverBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("복구").attr("onclick", "recoverComment("+item.reportNo+")");
+						 	               var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");
+						 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent).css({fontWeight : "bold"});
+						 	              	li.addClass("reportAdmin");
+						 	              commentBtnArea.append(showUpdate).append(deleteComment).append(recoverBtn);
+									} else { // 신고댓글이 아닌 일반 댓글일 때
+											var showUpdate = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("수정").attr("onclick", "showUpdateComment("+item.commentNo+", this)");
+						 	               var deleteComment = $("<button>").addClass("btn btn-primary btn-sm ml-1").text("삭제").attr("onclick", "deleteComment("+item.commentNo+")");
+						 	               
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+						 	               commentBtnArea.append(showUpdate).append(deleteComment);
+									}
+								} 
+								
+			 				
+		 	            } else { // 비로그인 상태일 때
+			 	           var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+			 	          if(item.reportNo != ""){ // 신고댓글일 때
+			 	            	 var cContent = $("<p>").addClass("cContent").html("신고된 댓글입니다.");
+			 	            }
 		 	            }
+		 	            
+		 	          
 		 	            
 		 	            
 		 	            // 댓글 요소 하나로 합치기
@@ -516,7 +597,7 @@
 		// -----------------------------------------------------------------------------------------
 		// 일정 시간마다 댓글 목록 갱신
 		//const replyInterval = setInterval(function(){
-		selectCommentList();
+			selectCommentList();
 		//}, 5000);
 
 
@@ -585,7 +666,7 @@
 			const commentContent = $(el).parent().prev().val();
 			
 			$.ajax({
-				url : "${contextPath}/complainComment/updateComment",
+				url : "${contextPath}/reviewComment/updateComment",
 				type : "POST", 
 				data : {"commentNo" : commentNo,
 						"commentContent" : commentContent},
@@ -617,7 +698,7 @@
 				})
 				.then(function(willDelete) { // <=== Only change is here
 					if (willDelete) {
-						var url = "${contextPath}/complainComment/deleteComment";
+						var url = "${contextPath}/reviewComment/deleteComment";
 						
 						$.ajax({
 							url : url,
@@ -638,6 +719,35 @@
 
 		}
 		
+		function recoverComment(commentNo){
+			swal({
+				  title: "댓글을 복구하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then(function(willDelete) { // <=== Only change is here
+					if (willDelete) {
+						var url = "${contextPath}/report/recoveryComment";
+						
+						$.ajax({
+							url : url,
+							data : {"no" : commentNo},
+							success : function(result){
+								if(result > 0){
+									selectCommentList(boardNo);
+									
+									swal({"icon" : "success" , "title" : "댓글 복구 성공"});
+								}
+								
+							}, error : function(){
+								console.log("ajax 통신 실패");
+							}
+						});
+					  }
+				});
+		}
+		
 		
 		lightbox.option({
 		    resizeDuration: 200,
@@ -645,8 +755,6 @@
 		    disableScrolling: false,
 		    fitImagesInViewport:false
 		})
-		
-		
     </script>
 
 

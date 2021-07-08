@@ -61,6 +61,8 @@
 	border: 1px solid red;
 } */
 
+ 
+
 #content-box {
 	width: 100%;
 	height: 400px;
@@ -96,11 +98,10 @@
 
 
 
-	<div class="container">
+	<div class="container shadow p-3 mb-5 bg-white rounded">
 
 
-
-		<h1>행사게시판</h1>
+		<h1 style="margin-top: 70px;">행사게시판</h1>
 		<div class=text-right>
 			<a href="view?no=${board.eventBodNo-1}&cp=1" class="btn btn-primary">이전글</a>
 			<a href="view?no=${board.eventBodNo+1}&cp=1" class="btn btn-primary">다음글</a>
