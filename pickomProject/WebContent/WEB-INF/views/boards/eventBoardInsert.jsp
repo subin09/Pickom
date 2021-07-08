@@ -34,6 +34,7 @@
 } */
 
 
+
 .boardImg {
 	cursor: pointer;
 	width: 200px;
@@ -98,8 +99,9 @@ a:hover {
 	<jsp:include page="../common/header.jsp"></jsp:include>
 
 
-	<div class="container">
-		<h1>행사 게시판 작성</h1>
+	<div class="container shadow p-3 mb-5 bg-white rounded">
+	
+		<h1 style="margin-top: 70px;">행사 게시판 작성</h1>
 		<hr>
 		<form action="${contextPath}/eventBoard2/insert" id="writeForm" method="post"
 			enctype="multipart/form-data" role="form"
