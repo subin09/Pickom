@@ -82,7 +82,7 @@
     <!-- header.jsp 동적 include -->
 	<jsp:include page="../common/header.jsp" />
     <div class="container shadow p-3 mb-5 bg-white rounded">
-        <h1>FAQ 게시판 작성</h1>
+        <h1>공지사항 게시판 작성</h1>
         <form action="${contextPath}/FAQBoardDML/insert" method="post" 
 				  enctype="multipart/form-data" role="form" onsubmit="return boardValidate();">
            

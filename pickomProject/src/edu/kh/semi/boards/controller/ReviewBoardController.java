@@ -77,6 +77,7 @@ public class ReviewBoardController extends HttpServlet {
 					request.setAttribute("searchValue", searchValue);
 					request.setAttribute("searchType", searchType);
 					
+					
 					path="/WEB-INF/views/boards/reviewBoardList.jsp";
 					view = request.getRequestDispatcher(path);
 					view.forward(request, response);

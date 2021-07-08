@@ -322,8 +322,16 @@
 					</c:if>
 					
 				</c:if>	
-				
-				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
+				<c:choose>
+					<c:when test="${boardType == 100}">
+						<a href="list?type=${boardType }&searchValue=${searchValue }&searchType=${searchType}&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
+					
+					</c:when>
+					<c:otherwise>
+						<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2">목록으로</a>
+					
+					</c:otherwise>
+				</c:choose>
 			</div>
 		
 			<br>
