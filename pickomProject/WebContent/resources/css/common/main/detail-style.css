@@ -1,23 +1,25 @@
 
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+		.d-container{
+			margin:30px;
+			background:#0D0000;
+			position: relative;
+        	height: 100%;
+         	
+		}
         
-
-        container{
+        
+        .detail-container{
             padding-top: 30px;
+            background:#0D0000;
            
         }
-
-
-        
 
        .movie-info{
            box-sizing: border-box;
            display: flex;
            justify-content: left;
+           color: #fff;
+           margin-left:50px;
        }
 
        .movie-poster img{
@@ -28,30 +30,27 @@
        }
 
        .movie-info-detail{
-        
+        color: #fff;
        }
 
-       .movie--detail{
+       .movie-detail{
            text-align: center;
-           overflow: scroll;
+           color: #fff;
+           font:15px;
        }
 
-       .video{
-           width: 727px;
-           height: 405px;
-           max-width: 1000px;
-          
-       }
        
-       #medi{
-       width: 527px;
-       height: 405px;
-       }
-
+     
        #title{
            display: flex;
            justify-content: space-between;
           
+       }
+       
+       #items actor{
+       	font-size:15px;
+       	color: #fff;
+       	
        }
 
        
@@ -59,6 +58,46 @@
           padding-bottom: 100px;
       }
       
-     
+   
+      .img-content{
+      	color: #fff;
+      }
+      
+      
+       .swiper-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #0D0000;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 70%;
+        height: 50%;
+        object-fit: cover;
+      }
+      
+      
+    
+    
       
    

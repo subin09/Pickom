@@ -1,32 +1,33 @@
- .movie-container {
+
+  .movie-container {
    	position: relative;
     height: 100%;
     background-size: cover;
-    background: #eee;
-    color: #000;
-    padding: 20px;
+    background:#0D0000;
+    padding: 10px;
     margin-bottom:40px
   
   }
   
     .main-title{
     margin-top:40px;
-  	color: #292a32;
+  	color: #fff;
+  	font-weight:bold;
   	font-size: 22px;
+  	margin-left:40px;
+  	font-size:28px;
   }
 
  .swiper-container {
     width: 100%;
-    height: auto;
-    margin-bottom: 30px;
-    margin:20px;
+    height: 100%;
+    margin-bottom: 20px;
   }
 
   .swiper-slide {
-
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: #0D0000;
 
     
     display: -webkit-box;

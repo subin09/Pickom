@@ -1,47 +1,40 @@
 
-
-.container{
+.end-content{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width : 100%
-    
+    text-align:center;
 }
 
 .container h1{
+	z-index:1;
     font-size: 32px;
-    text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
-.change-area{
-    width: 400px;
+.error-area{
+    width: 300px;
 }
 
-.change-area label{
+
+.error-area label{
     font-size: 13px;
     font-weight: bold;
 }
 
-.change-area input{
-    width: 100%;
-    padding:20px 10px 10px;
-    background-color:transparent;
-    border: 1px solid #999;
-    font-size: 18px;
-    outline: none;
-    margin-bottom: 15px;
-    margin-top: 3px;
-    border-radius: 5px;
-    color: #999;
-
+.finded{
+	display:flex;
+	margin-left:80px;
+	text-align:center;
+	
 }
 
 
 
-.search{
-    width: 400px;
+.login-end{
+	 width: 400px;
     height: 50px;
     background: #51608C;
     color: #fff;
@@ -49,11 +42,7 @@
     border: none;
     border-radius: 8px;
     margin-top: 20px;
-    margin-left: 10px;
-    
+    margin-left:-50px;
 }
 
 
-p{
-	color:#D92B04;
-}
