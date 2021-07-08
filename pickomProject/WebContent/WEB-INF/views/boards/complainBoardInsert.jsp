@@ -114,7 +114,7 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${category}" var="c">
+									<c:forEach items="${category}" var="c" begin="0" end="1">
 										<option value="${c.categoryCode }">${c.categoryName }</option>
 									</c:forEach>
 								</c:otherwise>
