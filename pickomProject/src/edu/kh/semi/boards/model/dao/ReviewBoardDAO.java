@@ -674,7 +674,7 @@ public class ReviewBoardDAO {
 			
 			// board에 필드 중 atList에 값을 저장할 수 있도록 List 객체 하나를 생성하여 세팅 
 			board.setAtList(new ArrayList<ComplainAttachment>());
-			board.setGnList(new ArrayList<MovieGenre>());
+			
 			
 			
 			boolean flag = true; // 아래 반복문 첫 반복을 하고 있s을 때 true, 아닐 때 false를 나타내는 신호
@@ -694,12 +694,12 @@ public class ReviewBoardDAO {
 					board.setReviewContent(rs.getString("REVIEW_BOARD_CONTENT"));
 					board.setMemberNo(rs.getInt("MEMBER_NO"));
 					board.setModifyDt(rs.getTimestamp("REVIEW_BOARD_MODIFY_DT"));
+					board.setMovieNo(rs.getInt("MOVIE_NO"));
 					flag = false;
+
 				}
+		
 				
-				MovieGenre gn = new MovieGenre();
-				gn.setMovieGenreCode(rs.getInt("MOVIE_GENRE_CD"));
-				gn.setMovieGenreNM(rs.getString("MOVIE_GENRE_NM"));
 				
 				// 조회된 파일 관련 정보를 저장할 객체 선언(경로, 이름, 레벨)
 				ComplainAttachment at = new ComplainAttachment();
@@ -711,8 +711,9 @@ public class ReviewBoardDAO {
 				// 값 세팅이 완료된 Attachment 객체를 
 				// board의 atList에 추가 
 				board.getAtList().add(at);
-				board.getGnList().add(gn);
+
 			}
+
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -741,7 +742,7 @@ public class ReviewBoardDAO {
 			
 			// board에 필드 중 atList에 값을 저장할 수 있도록 List 객체 하나를 생성하여 세팅 
 			board.setAtList(new ArrayList<ComplainAttachment>());
-			board.setGnList(new ArrayList<MovieGenre>());
+			
 			
 			
 			boolean flag = true; // 아래 반복문 첫 반복을 하고 있s을 때 true, 아닐 때 false를 나타내는 신호
@@ -762,12 +763,10 @@ public class ReviewBoardDAO {
 					board.setReviewContent(rs.getString("REVIEW_BOARD_CONTENT"));
 					board.setMemberNo(rs.getInt("MEMBER_NO"));
 					board.setModifyDt(rs.getTimestamp("REVIEW_BOARD_MODIFY_DT"));
+					board.setMovieNo(rs.getInt("MOVIE_NO"));
 					flag = false;
 				}
 				
-				MovieGenre gn = new MovieGenre();
-				gn.setMovieGenreCode(rs.getInt("MOVIE_GENRE_CD"));
-				gn.setMovieGenreNM(rs.getString("MOVIE_GENRE_NM"));
 				
 				// 조회된 파일 관련 정보를 저장할 객체 선언(경로, 이름, 레벨)
 				ComplainAttachment at = new ComplainAttachment();
@@ -779,7 +778,7 @@ public class ReviewBoardDAO {
 				// 값 세팅이 완료된 Attachment 객체를 
 				// board의 atList에 추가 
 				board.getAtList().add(at);
-				board.getGnList().add(gn);
+				
 			}
 
 		} finally {
