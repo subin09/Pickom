@@ -75,7 +75,8 @@
 	<div class="replyList mt-5 pt-2" id="commentList">
 		<ul id="replyListArea">
 			<c:forEach items="${rList}" var="reply">
-				<li class= "bi bi-person-circle">
+			
+				<li class="shadow p-3 mb-5 bg-white rounded">
 					<div>
 						<p class="rWriter">${reply.memberNm}</p>
 

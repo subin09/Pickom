@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/01_header.css">
 <link rel="stylesheet" type="text/css" href="css/02_footer.css">
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -32,6 +32,23 @@
 /*         div {
             border: 1px solid red;
         } */
+        
+ .event-header{
+ display : flex;
+ padding-top: 80px;
+ padding-right: 25px;
+ padding-bottom: 40px;
+ padding-left: 25px;
+ 
+ }
+        
+ .boardTitle a{
+   text-decoration: none;
+   color: inherit;
+ 
+ }       
+ 
+ 
 #paging-num {
 	width: 190px;
 	height: 50px;
@@ -64,9 +81,9 @@
 
 	<div class="container">
 
-
-		<div id="event-bod-list-title">
-			<h1>행사게시판</h1>
+		<div class="event-header">
+				<i class="fas fa-calendar-check fa-3x" style="margin: 0px 20px"></i>
+				<h1>행사게시판</h1>
 		</div>
 		<hr>
 
