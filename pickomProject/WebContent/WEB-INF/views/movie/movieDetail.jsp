@@ -16,13 +16,13 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- css -->
 	<link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/common/main/detail-style.css" >
-	
+	 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 	
 	<title></title>
 </head>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
-<div class="container">
+<div class="d-container">
 <c:forEach items="${mo.moList}" var="m">
 						<c:choose>
 							<c:when test="${m.movieLinkLV == 0 && m.movieLinkType eq 'P'}">
@@ -59,7 +59,7 @@
 					</c:forEach>
 
 
- <div class="container">
+ <div class="detail-container">
         <div class="movie-info">
             <form>
                 <div class="movie-info">
@@ -80,7 +80,7 @@
                     <div class="items">${mo.movieDirector }</div>
                     <c:forEach items="${ac}" var="ac" begin="0" end="3">
                     <div class="items">
-                        <span class="items">${ac.actorNmKo }</span>
+                        <span class="items actor">${ac.actorNmKo }</span>
                             
                     </div> 
                     </c:forEach>  
@@ -106,46 +106,37 @@
 
         <hr class="movie-line">
 
-        <div class="img-content">
-            <form>
-                <h4>미디어</h4>
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                       <c:if test="${!empty img0 }">
-                        <img src="${img0}" class="d-block w-100" id="medi" alt="...">
-                         </c:if>
-                      </div>
-                      <div class="carousel-item">
-                      <c:if test="${!empty img1 }">
-                        <img src="${img1}" class="d-block w-100" id="medi" alt="...">
-                        </c:if>
-                      </div>
-                      <div class="carousel-item">
-                     	<c:if test="${!empty img2 }">
-                     	 <img src="${img2}" class="d-block w-100" id="medi" alt="...">
-                     	</c:if>
-                      </div>
-                     
-                     
-                     
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
-                  
-            </form>
-        </div>
+     
 
         <br>
         <hr class="movie-line">
 
+     
+     
+	     <!-- Swiper -->
+	    <div class="swiper-container mySwiper">
+	      <div class="swiper-wrapper">
+	        <div class="swiper-slide">
+	        	<c:if test="${!empty img0 }">
+                   <img src="${img0}" class="slider-image">
+                </c:if>
+	        </div>
+	        <div class="swiper-slide">
+	        	<c:if test="${!empty img1 }">
+                   <img src="${img1}" class="slider-image">
+                </c:if>
+	        </div>
+	        <div class="swiper-slide">
+	        	<c:if test="${!empty img2 }">
+                   <img src="${img2}" class="slider-image">
+                </c:if>
+	        </div>
+	       
+	    
+	      </div>
+	      <div class="swiper-button-next"></div>
+	      <div class="swiper-button-prev"></div>
+	    </div>
      
           
             
@@ -156,13 +147,18 @@
 
 <jsp:include page="../common/footer.jsp"></jsp:include>
 
+    <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        $('.carousel').carousel({
-            Touch : true,
-            interval:false
-        })
 
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
 
 
 

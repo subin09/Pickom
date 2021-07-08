@@ -14,17 +14,16 @@
 <link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/common/main/main.css" >
 </head>
 <body>
-	   <jsp:include page="../common/header.jsp"></jsp:include>
+	 <jsp:include page="../common/header.jsp"></jsp:include>
 	<!-- header.jsp 동적 include -->
 	<!-- 메인 화면  -->
-
 	
 	<!-- 메인 화면 이미지 -->
 
 	<div class="movie-container">
 	
         <div class="swiper-container main-poster">
-            <h2 class="main-title">액션</h2>
+            <h2 class="main-title">#액션</h2>
             <div class="swiper-wrapper">
             <c:forEach items="${mainList}" var="li">
             <c:if test="${li.movieGenreCode==19}">
@@ -44,7 +43,7 @@
       	</div>
 	
         <div class="swiper-container main-poster">
-            <h2 class="main-title">모험</h2>
+            <h2 class="main-title">#모험</h2>
             <div class="swiper-wrapper">
             <c:forEach items="${mainList}" var="li">
             <c:if test="${li.movieGenreCode==6}">
@@ -62,7 +61,7 @@
       	</div>
 	
         <div class="swiper-container main-poster">
-            <h2 class="main-title">스릴러</h2>
+            <h2 class="main-title">#스릴러</h2>
             <div class="swiper-wrapper">
             <c:forEach items="${mainList}" var="li">
             <c:if test="${li.movieGenreCode==16}">
@@ -80,7 +79,7 @@
       	</div>
 	
         <div class="swiper-container main-poster">
-            <h2 class="main-title">드라마</h2>
+            <h2 class="main-title">#드라마</h2>
             <div class="swiper-wrapper">
             <c:forEach items="${mainList}" var="li">
             <c:if test="${li.movieGenreCode==12}">
@@ -103,7 +102,7 @@
 
 
 	<!-- footer.jsp 동적 include -->
-   <jsp:include page="../common/footer.jsp"></jsp:include>
+ <jsp:include page="../common/footer.jsp"></jsp:include>
     
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -111,12 +110,19 @@
     <script>
       var swiper = new Swiper(".main-poster", {
         slidesPerView: 4,
-        spaceBetween: 10,
+        spaceBetween: 3,
         slidesPerGroup: 3,
         loop: true,
-        mousewheel : true,
+        loopAdditionalSlides:1,
+        autoplay:{
+        	delay:5000,
+        	disableOnInteraction:false,
+        },
+        mousewheel : false,
+        autoHeight: true,
+        allowTouchMove: true,
         loopFillGroupWithBlank: true,
-        pagination: {
+        pagination: {// 버튼 설정
           el: ".swiper-pagination",
           clickable: true,
         },
