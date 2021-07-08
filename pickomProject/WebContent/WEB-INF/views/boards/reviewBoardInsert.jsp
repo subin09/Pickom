@@ -450,8 +450,6 @@
 			 	            var button = $("<option>").addClass("movie").text(item.movieTitleKo).attr("value", item.movieNo);
 			 	         	
 			 	           $("#movieCategory").append(button);
-
-				 	          
 				 	            
 			 	         });
 			 	         
@@ -479,13 +477,10 @@
 		 	         
 		 	         $.each(gnList, function(index, item){
 
-
 		 	            var span = $("<span>").text("# "+item.movieGenreNM);
 		 	         	
 		 	           $(".genreContainer").append(span);
 		 	      
-			 	    
-			 	            
 		 	         });
 				}, 
 				error : function() {
