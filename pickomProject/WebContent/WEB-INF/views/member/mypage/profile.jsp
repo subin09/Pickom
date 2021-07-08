@@ -28,7 +28,7 @@
         <div> <h5>프로필 수정</h5> </div>
         <hr>
     </div>
-
+    
     <div class="container text-center">
         <div class="row my-6">
             <div class="col-sm-8">
@@ -70,6 +70,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="memberNickNm" name="memberNickNm" placeholder="${memberNickNm}">
+                                <input type="hidden" name="memberNickNm2" value="${memberNickNm}">
                             </div>
                         </div>
 
@@ -83,9 +84,6 @@
                                 <div class="row text-center justify-content-center">
                                     <div class="col-sm-2">
                                         <button class="btn btn-primary" type="submit">수정</button>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <button class="btn btn-primary profileResetBtn" type="reset">삭제</button>
                                     </div>
                                 </div>
                             </div>

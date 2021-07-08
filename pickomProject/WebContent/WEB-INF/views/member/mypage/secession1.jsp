@@ -39,11 +39,13 @@
     <div class="container">
         <div class="row my-5 justify-content-center text-center">
             <form  method="POST" action="secession" class="form-horizontal" role="form">
-                <div class="bg-white rounded shadow-sm container p-3 form-group my-5 mx-2">
-                    <diV class="from-group my-5 mx-4">
-                        <p>
+                <div class="bg-white rounded shadow-sm container p-3 form-group my-3 mx-2">
+                    <diV class="from-group my-3 mx-4">
+                        <p id="content-p">
                             <br><br><br><br>
-                            	회원 탈퇴 신청 전에 본인 인증을 위한 현재 사용중인 비밀번호를 한 번 더 입력후 탈퇴 진행이 가능합니다.
+                            	회원 탈퇴 신청 전에 본인 인증을 위한	<br>
+                            	<span id="content-span-h">현재 사용중인 비밀번호</span>를 한 번 더 입력후 <br>
+                            	탈퇴 진행이 가능합니다.
                             <br><br><br><br>
                         </p>
                     </diV>
@@ -51,7 +53,7 @@
                         <input type="password" id="secessionPw" name="secessionPw">
                     </div>
                     <div class="form-group mt-5 mx-4">
-                        <button type="submit"> 탈퇴신청 </button>
+                        <button class="btn btn-primary" type="submit"> 탈퇴신청 </button>
                     </div>
                 </div>
             </form>

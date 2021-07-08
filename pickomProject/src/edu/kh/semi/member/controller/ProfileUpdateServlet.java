@@ -59,82 +59,90 @@ public class ProfileUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberService service = new MemberService();
+		Profile at = new Profile();	
+		
 		String icon = null;
 		String title = null;
 		String path = null;
 		String memberNickNm = null;
+		String memberNickNm2 = null;
+				
+		
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
-		Profile at = new Profile();
+		int memberNo = loginMember.getMemberNo();
 		
-		String a = (String)session.getAttribute("filePath");
-		String b = (String)session.getAttribute("fileName");
+		String root = session.getServletContext().getRealPath("/");
+		String filePath = "resources/img/profileImg/";
 		
 		
 		int result = 0;
-		
+		int maxSize = 1024 * 1024 * 20;
+		int sel = 1;
 		try {
-			int memberNo = loginMember.getMemberNo();
-			int maxSize = 1024 * 1024 * 20;
-			
-			String root = session.getServletContext().getRealPath("/");
-			String filePath = "resources/img/profileImg/";
 			Profile memberPreProfile = service.memberPreProfile(memberNo);
-			
+			String checkfilePath = memberPreProfile.getFilePath();
+			String checkfileName = memberPreProfile.getFileName();
+						
 			MultipartRequest mpRequest 
 			= new MultipartRequest(request, root+filePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-			
+
 			List<Profile> atList = new ArrayList<Profile>();
 			Enumeration<String> images = mpRequest.getFileNames();
-			
-			if(images.hasMoreElements()) {
-	
+
+			memberNickNm = mpRequest.getParameter("memberNickNm");
+			memberNickNm2 = mpRequest.getParameter("memberNickNm2");
+
+			// System.out.println(memberNickNm);
+			// System.out.println("1 :" + memberNickNm2);
+			System.out.println(images);
+			if(!memberNickNm.isEmpty()) {
+				if(images.hasMoreElements()) {
+
 					String name = images.nextElement();
-					
-					
+					if(mpRequest.getFilesystemName(name) != null) {
+						System.out.println("1??");
+						at.setFilePath(filePath);
+						at.setFileName(mpRequest.getFilesystemName(name));
+						atList.add(at);
+					}else {
+						System.out.println("2??");
+						at.setFilePath(checkfilePath);
+						at.setFileName(checkfileName);
+						atList.add(at);
+					}
+				}
+				result = service.updateProfile(memberNo, atList, memberNickNm);	
+			}else {
+				if(images.hasMoreElements()) {
+					System.out.println("3??");
+					String name = images.nextElement();
 					if(mpRequest.getFilesystemName(name) != null) {
 						at.setFilePath(filePath);
 						at.setFileName(mpRequest.getFilesystemName(name));
 						atList.add(at);
 					}
+				}
+				result = service.updateProfile(memberNo, atList, memberNickNm2);	
 			}
-				
-					memberNickNm = mpRequest.getParameter("memberNickNm");
-					result = service.updateProfile(memberNo, atList, memberNickNm);
-				
-				
-					//System.out.println("1 :" + memberNo);
-					System.out.println("1 :" + atList);
-					//System.out.println("1 :" + memberNickNm);
 
-				
-					
-			if(result > 0) {
+			if(result > 0){
 				icon = "success";
 				title = "프로필 수정 성공";
-				path = "/WEB-INF/views/member/mypage/profile.jsp";
-				
-			}else {
+			}else{
 				icon = "error";
 				title = "프로필 수정 실패";
-				
-				
-				path = request.getHeader("referer");
 			}
 			
 			session.setAttribute("icon", icon);
 			session.setAttribute("title", title);
-			
-			response.sendRedirect(path);		
+			response.sendRedirect("profile");	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			request.setAttribute("errorMsg", "프로필 수정 과정에서 오류 발생");
-			
 			RequestDispatcher view 
 				= request.getRequestDispatcher("/WEB-INF/views/common/error.jsp");
-			
 			view.forward(request, response);
 		}
 	}

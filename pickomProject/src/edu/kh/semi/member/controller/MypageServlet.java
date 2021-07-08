@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/member/mypage")
-public class MypageServlet2 extends HttpServlet {
+public class MypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
