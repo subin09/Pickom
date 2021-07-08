@@ -14,15 +14,14 @@
 <link rel="stylesheet"  type="text/css" href="${contextPath}/resources/css/common/main/main.css" >
 </head>
 <body>
-	
+	 <jsp:include page="common/header.jsp" />
 	<!-- header.jsp 동적 include -->
-	<jsp:include page="common/header.jsp" />
 	<!-- 메인 화면  -->
 
 	
 	<!-- 메인 화면 이미지 -->
 
-	<div class="container">
+	<div class="movie-container">
 	
         <div class="swiper-container main-poster">
             <h2 class="main-title">액션</h2>
@@ -100,38 +99,11 @@
 	
  	</div>
 
-    </form>
 
 
-
-
-    <form class="main-form">
-        <div class="swiper-container main-poster">
-            <h2>추천영화</h2>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                <div class="swiper-slide">Slide 7</div>
-                <div class="swiper-slide">Slide 8</div>
-                <div class="swiper-slide">Slide 9</div>
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-
-             
-       
-      </div>
-
-    </form>
 
 	<!-- footer.jsp 동적 include -->
-	<jsp:include page="common/footer.jsp"></jsp:include>
-
+  <jsp:include page="common/footer.jsp"></jsp:include>
     
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
