@@ -40,6 +40,7 @@ public class SessesionServlet2 extends HttpServlet {
 		String checkAgree = "\"회원 탈퇴 신청하겠습니다.\"";
 
 		System.out.println(secessionAgree);
+		System.out.println(secessionReason);
 		
 		
 

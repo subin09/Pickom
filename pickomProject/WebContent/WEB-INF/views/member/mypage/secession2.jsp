@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>09_mypage_secession</title>
-
+	
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/10_secession2.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -33,12 +34,6 @@
         <hr>
         <div> <h5>회원탈퇴</h5> </div>
         <hr>
-        <div>
-            <p>
-                안내사항
-            </p>
-        </div>
-        <hr>
     </div>
 
     <div class="container">
@@ -46,15 +41,24 @@
             <form  method="POST" action="secession2" onsubmit="return secessionValidate();" class="form-horizontal" role="form">
                 <div class="form-group my-5 mx-2">
                        
-                        <fieldset class="form-group row my-5 mx-2" id="secessionreasonCheck">
+                        <fieldset class="bg-white rounded shadow-sm form-group row my-5 mx-2" id="secessionreasonCheck">
                                 <legend class="col-form-label col-sm-2 float-sm-left m-auto ">탈퇴 사유</legend>
                             <div class="col-sm-10">
                                 
                                 <div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason1" value="option1" checked>
+                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason0" value="option0" checked>
+                                    <div>                                    
+                                        <label class="form-check-label" for="secessionreason0">
+                                            	커뮤니티 이용 어려움
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason1" value="option1">
                                     <div>                                    
                                         <label class="form-check-label" for="secessionreason1">
-                                            	커뮤니티 이용 어려움
+                                           		커뮤니티 이용 어려움1
                                         </label>
                                     </div>
                                 </div>
@@ -63,7 +67,7 @@
                                         <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason2" value="option2">
                                     <div>                                    
                                         <label class="form-check-label" for="secessionreason2">
-                                           		커뮤니티 이용 어려움1
+                                           	커뮤니티 이용 어려움2
                                         </label>
                                     </div>
                                 </div>
@@ -72,36 +76,29 @@
                                         <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason3" value="option3">
                                     <div>                                    
                                         <label class="form-check-label" for="secessionreason3">
-                                           	커뮤니티 이용 어려움2
-                                        </label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason4" value="option4">
-                                    <div>                                    
-                                        <label class="form-check-label" for="secessionreason4">
                                             	커뮤니티 이용 어려움3
                                         </label>
                                     </div>
                                 </div>
                            		
                            		<div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason5" value="input">
-                                    <div>                                    
-                                        <input class="form-check-label">
-                                            	커뮤니티 이용 어려움3
+                                        <input class="form-check-input" type="radio" name="secessionreason" id="secessionreason4" value="option4">
+                                    <div>
+                                    <label class="form-check-label"  for="secessionreason4">
+                                        	기타
+                                    </label>                                   
+                                        <input name="secessionreason" id="secessionreason4">      	
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
 
                         
-                        <div class="form-group row mx-2">
+                        <div class="bg-white rounded shadow-sm form-group row mx-2">
                             <p class="col-sm-12 mx-2">
                                	 회원 탈퇴를 원할시 다음 문구를 입력해주세요.
                             </p>
-                            <label class="col-sm-12 mx-2" for="secessionAgree">
+                            <label class="col-sm-12 mx-2" id="content-agree" for="secessionAgree">
                                 "회원 탈퇴 신청하겠습니다."
                             </label>
                         </div>
@@ -157,7 +154,7 @@
 
 						<hr class="mb-4">
                         <div class="form-group col">
-                            <button type="submit"> 탈퇴신청 </button>
+                            <button class="btn btn-primary" type="submit"> 탈퇴신청 </button>
                         </div>
                 </div>
             </form>
