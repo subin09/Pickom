@@ -146,8 +146,8 @@
 
 
 
-	<main class="complainDetail__main">
-    <div class="container">
+	<main class="complainDetail__main shadow p-3 mb-5 bg-white rounded">
+    <div class="container ">
     
         
             <div> <h1>불편사항</h1></div>

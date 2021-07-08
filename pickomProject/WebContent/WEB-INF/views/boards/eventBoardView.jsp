@@ -14,8 +14,6 @@
 <title>상세 게시글</title>
 
 
-<link rel="stylesheet" type="text/css" href="css/01_header.css">
-<link rel="stylesheet" type="text/css" href="css/02_footer.css">
 
 <!-- 라이트 박스 시작!  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -77,15 +75,57 @@
 	margin-left: 85%;
 }
 
-.boardImg {
-	width: 100px;
-	height: 100px;
+
+
+.form-inline{
+display: flex;
+
 }
 
-#contentImg0, #contentImg1, #contentImg2, #contentImg3 {
-	width: 100px;
-	height: 100px;
+.title-area{
+height: 200px;
 }
+
+
+.title-area div {
+    width: 200px;
+    height: 200px;
+}
+
+
+#contentImg0, #contentImg1, #contentImg2, #contentImg3 {
+	width: 200px;
+	height: 200px;
+	
+}
+
+
+
+
+.boardImg {
+	width: 200px;
+	height: 200px;
+	position: relative;
+}
+
+.boardImg > a:hover img {
+  filter: brightness(70%);
+}
+
+#explain{ 
+position: absolute;
+visibility: hidden;
+top : 50%;
+left : 20%;
+font-weight: bold;
+font-size: 15px;
+color: white;
+}
+.boardImg:hover #explain{
+visibility: visible;
+}
+
+
 
 </style>
 
@@ -103,10 +143,7 @@
 
 		<h1 style="margin-top: 70px;">행사게시판</h1>
 		<div class=text-right>
-			<a href="view?no=${board.eventBodNo-1}&cp=1" class="btn btn-primary">이전글</a>
-			<a href="view?no=${board.eventBodNo+1}&cp=1" class="btn btn-primary">다음글</a>
 			<a href="list?cp=${param.cp}" class="btn btn-primary">목록</a>
-
 		</div>
 
 
@@ -175,22 +212,28 @@
 
 
 
-		<div class="form-inline mb-2">
+		<div class="form-inline mb-2 title-area">
 			<label class="input-group-addon mr-3 insert-label">업로드<br>이미지
 			</label>
-			<div class="mr-2 boardImg" id="contentImgArea0">
 
+			<div class="mr-2 boardImg" id="contentImgArea0">
 				<!-- img0 변수가 만들어진 경우 -->
 				<c:if test="${!empty img0 }">
-				<a href="${img0}" data-lightbox="example-set">
-					<img id="contentImg0" src="${img0}">
+				
+				<a href="${img0}" data-lightbox="example-set" style="display: block; width: auto;">
+				<img id="contentImg0" src="${img0}">
+				<div id = 'explain'>이미지 크게 보기</div>
 				</a>
+				
 				</c:if>
 			</div>
+
+
 			<div class="mr-2 boardImg" id="contentImgArea1">
 				<c:if test="${!empty img1 }">
 				<a href="${img1}" data-lightbox="example-set">
 					<img id="contentImg1" src="${img1 }">
+									<div id = 'explain'>이미지 크게 보기</div>
 				</a>
 				</c:if>
 			</div>
@@ -199,6 +242,7 @@
 				<c:if test="${!empty img2 }">
 				<a href="${img2}" data-lightbox="example-set">
 					<img id="contentImg2" src="${img2 }">
+									<div id = 'explain'>이미지 크게 보기</div>
 				</a>
 				</c:if>
 			</div>
@@ -207,6 +251,7 @@
 				<c:if test="${!empty img3 }">
 				<a href="${img3}" data-lightbox="example-set">
 					<img id="contentImg3" src="${img3 }">
+									<div id = 'explain'>이미지 크게 보기</div>
 				</a>
 				</c:if>
 			</div>
