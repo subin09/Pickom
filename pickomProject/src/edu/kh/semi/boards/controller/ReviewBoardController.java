@@ -161,7 +161,7 @@ public class ReviewBoardController extends HttpServlet {
 				view.forward(request, response);
 			} else {
 				ReviewBoard board = service.selectBoard(boardNo);
-				
+				System.out.println("controller에서 baordNo" + board);
 				// 현재 클릭한 게시글의 상세정보와 type, 전역변수 cp를 set해서 Detail.jsp를 보여주는 응답보내기
 				request.setAttribute("board", board);
 				request.setAttribute("boardType", boardType);

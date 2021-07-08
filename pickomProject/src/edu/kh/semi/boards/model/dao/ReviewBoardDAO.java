@@ -296,7 +296,7 @@ public class ReviewBoardDAO {
 				// set 완료된 board를 boardList에 추가
 				boardList.add(board);
 			}
-			
+
 			
 			
 		}finally {
@@ -711,8 +711,9 @@ public class ReviewBoardDAO {
 				// 값 세팅이 완료된 Attachment 객체를 
 				// board의 atList에 추가 
 				board.getAtList().add(at);
-
+				
 			}
+			System.out.println("DAO에서 board"+ board);
 
 		} finally {
 			close(rs);
