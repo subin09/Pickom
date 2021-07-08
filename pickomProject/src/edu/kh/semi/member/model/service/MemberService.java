@@ -10,7 +10,6 @@ import edu.kh.semi.member.model.vo.Member;
 import edu.kh.semi.member.model.vo.Profile;
 
 
-// Service : 비즈니스 로직 처리(데이터 가공, 트랜잭션 처리)
 public class MemberService {
 	
 	private MemberDAO dao = new MemberDAO();
@@ -80,12 +79,12 @@ public class MemberService {
 	 * @return m
 	 * @throws Exception
 	 */
-	public Member searchPw(String memberId, String memberEmail) throws Exception{
+	public Member searchPassword(String memberId, String memberEmail) throws Exception{
 		
 		Connection conn = getConnection();
 		
 		// 얻어온 Connection과 매개변수를 DAO의 알맞은 메소드로 전달하여 결과를 반환 받음.
-		Member m = dao.searchPw(conn, memberId,memberEmail);
+		Member m = dao.searchPassword(conn, memberId,memberEmail);
 		
 		// 커넥션 반환
 		close(conn);

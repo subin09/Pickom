@@ -116,7 +116,7 @@ public class MovieDAO {
 					mo.setMovieRuntime(rs.getInt("MOVIE_RUNTIME"));
 					mo.setMovieDirector(rs.getString("MOVIE_DIRECTOR"));
 					mo.setMovieOpenDt(rs.getDate("MOVIE_OPEN_DT"));
-					mo.setMovieGenreCode(rs.getInt("MOVIE_GENRE_CD"));
+					mo.setMovieGenreCD(rs.getInt("MOVIE_GENRE_CD"));
 					mo.setMovieGenreNM(rs.getString("MOVIE_GENRE_NM"));
 					mo.setActorCd(rs.getInt("ACTOR_CD"));
 					mo.setActorNmKo(rs.getString("ACTOR_NM_KO"));
@@ -132,6 +132,7 @@ public class MovieDAO {
 					
 					mo.getMoList().add(mli);
 					
+			
 					
 				}
 				

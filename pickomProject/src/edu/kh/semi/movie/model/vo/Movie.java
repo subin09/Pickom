@@ -28,10 +28,50 @@ public class Movie {
 	private List<String> movieLinkNo;
 	private List<String> movieFileLink;
 	
+	// detail 
+	private List<MovieLink> moList;
+	private int actorCd;
+	private String actorNmKo;
+	private int actorNo;
+	private String movieGenreNM;
+	private int movieGenreCD;
 	
 	public Movie() {
 		// TODO Auto-generated constructor stub
 	}
+
+
+	public Movie(int movieNo, String movieTitleEn, String movieTitleKo, String movieSummary, int movieCount,
+			Timestamp createDt, Timestamp modifyDt, String movieStatus, String movieCountry, int movieRuntime,
+			String movieDirector, Date movieOpenDt, List<Integer> movieGenreCode, List<String> movieGenreNm,
+			List<MovieGenre> gnList, List<String> movieLinkNo, List<String> movieFileLink, List<MovieLink> moList,
+			int actorCd, String actorNmKo, int actorNo, String movieGenreNM2, int movieGenreCD) {
+		super();
+		this.movieNo = movieNo;
+		this.movieTitleEn = movieTitleEn;
+		this.movieTitleKo = movieTitleKo;
+		this.movieSummary = movieSummary;
+		this.movieCount = movieCount;
+		this.createDt = createDt;
+		this.modifyDt = modifyDt;
+		this.movieStatus = movieStatus;
+		this.movieCountry = movieCountry;
+		this.movieRuntime = movieRuntime;
+		this.movieDirector = movieDirector;
+		this.movieOpenDt = movieOpenDt;
+		this.movieGenreCode = movieGenreCode;
+		this.movieGenreNm = movieGenreNm;
+		this.gnList = gnList;
+		this.movieLinkNo = movieLinkNo;
+		this.movieFileLink = movieFileLink;
+		this.moList = moList;
+		this.actorCd = actorCd;
+		this.actorNmKo = actorNmKo;
+		this.actorNo = actorNo;
+		movieGenreNM = movieGenreNM2;
+		this.movieGenreCD = movieGenreCD;
+	}
+
 
 
 	public List<Integer> getMovieGenreCode() {
@@ -63,26 +103,6 @@ public class Movie {
 		this.gnList = gnList;
 	}
 
-
-	public Movie(int movieNo, String movieTitleEn, String movieTitleKo, String movieSummary, int movieCount,
-			Timestamp createDt, Timestamp modifyDt, String movieStatus, String movieCountry, int movieRuntime,
-			String movieDirector, Date movieOpenDt, List<String> movieLinkNo, List<String> movieFileLink) {
-		super();
-		this.movieNo = movieNo;
-		this.movieTitleEn = movieTitleEn;
-		this.movieTitleKo = movieTitleKo;
-		this.movieSummary = movieSummary;
-		this.movieCount = movieCount;
-		this.createDt = createDt;
-		this.modifyDt = modifyDt;
-		this.movieStatus = movieStatus;
-		this.movieCountry = movieCountry;
-		this.movieRuntime = movieRuntime;
-		this.movieDirector = movieDirector;
-		this.movieOpenDt = movieOpenDt;
-		this.movieLinkNo = movieLinkNo;
-		this.movieFileLink = movieFileLink;
-	}
 
 
 	public int getMovieNo() {
@@ -224,6 +244,88 @@ public class Movie {
 		this.movieFileLink = movieFileLink;
 	}
 
+	
+	
+
+	public List<MovieLink> getMoList() {
+		return moList;
+	}
+
+
+
+
+	public void setMoList(List<MovieLink> moList) {
+		this.moList = moList;
+	}
+
+
+
+
+	public int getActorCd() {
+		return actorCd;
+	}
+
+
+
+
+	public void setActorCd(int actorCd) {
+		this.actorCd = actorCd;
+	}
+
+
+
+
+	public String getActorNmKo() {
+		return actorNmKo;
+	}
+
+
+
+
+	public void setActorNmKo(String actorNmKo) {
+		this.actorNmKo = actorNmKo;
+	}
+
+
+
+
+	public int getActorNo() {
+		return actorNo;
+	}
+
+
+
+
+	public void setActorNo(int actorNo) {
+		this.actorNo = actorNo;
+	}
+
+
+
+
+	public String getMovieGenreNM() {
+		return movieGenreNM;
+	}
+
+
+
+
+	public void setMovieGenreNM(String movieGenreNM) {
+		this.movieGenreNM = movieGenreNM;
+	}
+
+
+
+
+	public int getMovieGenreCD() {
+		return movieGenreCD;
+	}
+
+
+	public void setMovieGenreCD(int movieGenreCD) {
+		this.movieGenreCD = movieGenreCD;
+	}
+
 
 	@Override
 	public String toString() {
@@ -232,10 +334,17 @@ public class Movie {
 				+ ", modifyDt=" + modifyDt + ", movieStatus=" + movieStatus + ", movieCountry=" + movieCountry
 				+ ", movieRuntime=" + movieRuntime + ", movieDirector=" + movieDirector + ", movieOpenDt=" + movieOpenDt
 				+ ", movieGenreCode=" + movieGenreCode + ", movieGenreNm=" + movieGenreNm + ", gnList=" + gnList
-				+ ", movieLinkNo=" + movieLinkNo + ", movieFileLink=" + movieFileLink + "]";
+				+ ", movieLinkNo=" + movieLinkNo + ", movieFileLink=" + movieFileLink + ", moList=" + moList
+				+ ", actorCd=" + actorCd + ", actorNmKo=" + actorNmKo + ", actorNo=" + actorNo + ", movieGenreNM="
+				+ movieGenreNM + ", movieGenreCD=" + movieGenreCD + "]";
 	}
 
 
+	
+
+
+
+	
 	
 	
 	
