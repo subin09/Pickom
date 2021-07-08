@@ -446,7 +446,7 @@
 						console.log(button1.val());
 			 	       	$("#movieCategory").append(button1);
 			 	         $.each(movieList, function(index, item){
-
+							console.log(item);
 			 	            var button = $("<option>").addClass("movie").text(item.movieTitleKo).attr("value", item.movieNo);
 			 	         	
 			 	           $("#movieCategory").append(button);

@@ -199,16 +199,20 @@ public class ReviewBoardService {
 		Connection conn = getConnection();
 		ReviewBoard board = dao.selectBoard(conn, boardNo);
 		List<MovieGenre> gnList = new ArrayList<MovieGenre>();
-		
+
 		// 게시글이 정상 조회된 경우 
 		if(board.getReviewTitle() != null) {
 			gnList = dao.getGnList(conn, board.getMovieNo());
 			board.setGnList(gnList);
+
 			int result = dao.increaseReviewCount(conn, boardNo);
-			
+		
 			if(result>0) {
 				board.setReadCount(board.getReadCount()+1);
 				board.setReviewNo(boardNo);
+				commit(conn);
+			} else {
+				rollback(conn);
 			}
 			
 		}
