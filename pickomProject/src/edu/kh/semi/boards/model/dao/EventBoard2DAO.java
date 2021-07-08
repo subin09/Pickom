@@ -70,6 +70,7 @@ public class EventBoard2DAO {
 			
 		}finally {
 			close(rs);
+			close(stmt);
 		}
 		
 		return category;
