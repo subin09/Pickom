@@ -78,6 +78,11 @@
 			font-weight: bold;
 			margin-right: 1rem;
 		}
+		
+	
+		.commentWrite{
+			margin-top: 50px;
+		}
 		.cDate { display: inline-block; }
 		.cContent, .commentBtnArea {
 			height: 100%;
@@ -129,10 +134,10 @@
        }
        
        .reportedContent{
-       	background-color: rgba(0,0,0,0.5);
+       	background-color: rgba(0,0,0,0.05);
        }
        .reportedComment {
-       	color: #e6dfdf;
+       	color: rgba(0,0,0,0.3);
        }
        
        .reportAdmin {
@@ -162,6 +167,9 @@
        		width: 200px;
        		height: 200px;
        }
+       	#comment-area {
+			margin-bottom: 100px;
+		}
     </style>
 
 
@@ -568,19 +576,26 @@
 				 	            
 								if(item.memberNo != loginMemberNo && loginMemberGrade != 'A'){ //  일반회원인데 본인이 아닐 때
 				 	               
-				 	             	 if(item.reportNo != ""){ // 신고댓글일 때
-					 	            	 var cContent = $("<p>").addClass("cContent").addClass("reportedComment").html("신고된 댓글입니다.");
-				 	             	 		li.addClass("reportedContent");
+									if(item.memberGrade != 'A'){
+										
+					 	             	 if(item.reportNo != ""){ // 신고댓글일 때
+						 	            	 var cContent = $("<p>").addClass("cContent").addClass("reportedComment").html("신고된 댓글입니다.");
+					 	             	 		li.addClass("reportedContent");
+						 	            	} else{
+						 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
+						 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
+						 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
+						 	               
+						 	               reportBtn.append(reportLink);
+						 	               commentBtnArea.append(reportBtn);
+						 	               
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
+											}
 					 	            } else{
-					 	               // ** 추가되는 댓글에 onclick 이벤트를 부여하여 버튼 클릭 시 수정, 삭제를 수행할 수 있는 함수를 이벤트 핸들러로 추가함. 
-					 	               var reportBtn = $("<button>").addClass("btn btn-primary btn-sm ml-1");
-					 	               var reportLink = $("<a>").text("신고").attr("href", "${contextPath }/report/reportCmForm?type=0&no="+item.reviewNo+"&cno="+item.commentNo).addClass("reportBtn2");
-					 	               
-					 	               reportBtn.append(reportLink);
-					 	               commentBtnArea.append(reportBtn);
-					 	               
-					 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 					 	            	
+					 	            	
+						 	               
+						 	              var cContent = $("<p>").addClass("cContent").html(item.commentContent);
 					 	            }
 				 	            }
 								

@@ -121,7 +121,7 @@
 			
 			.complainDetail__main {
 			 margin-bottom: 100px;
-			 margin-top: 100px;
+
 			 }
 			 
 			 .AdminreportBtn-area {
