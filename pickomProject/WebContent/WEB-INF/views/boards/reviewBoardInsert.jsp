@@ -235,9 +235,9 @@
 										<option value="1" selected>일반</option>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${categoryList}" var="c">
-										<option value="${c.categoryCode }">${c.categoryName }</option>
-									</c:forEach>
+								
+									<option value="2" selected>공지</option>
+									
 								</c:otherwise>
 							</c:choose>
 						</select>
