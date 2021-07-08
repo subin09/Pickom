@@ -23,7 +23,6 @@
 	<!-- 메인 화면 이미지 -->
 
 	<div class="container">
-	
         <div class="swiper-container main-poster">
             <h2 class="main-title">액션</h2>
             <div class="swiper-wrapper">

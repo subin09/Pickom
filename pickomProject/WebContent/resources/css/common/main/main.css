@@ -1,21 +1,25 @@
-html{
-    position: relative;
+  .movie-container {
+   	position: relative;
     height: 100%;
-  }
-
-  .container {
     background-size: cover;
     background: #eee;
     color: #000;
-    margin-top: 20px;
     padding: 20px;
+    margin-bottom:40px
+  
+  }
+  
+    .main-title{
+    margin-top:40px;
+  	color: #292a32;
+  	font-size: 22px;
   }
 
- 
  .swiper-container {
     width: 100%;
     height: auto;
     margin-bottom: 30px;
+    margin:20px;
   }
 
   .swiper-slide {
