@@ -169,7 +169,7 @@
 		<c:set var="next" value="cp=${pagination.nextPage}" />
 
 
-		<div class="my-5" style="width:500px; margin-left: 50%">
+		<div class="my-5" style="width:500px; margin-left: 25%">
 			<ul class="pagination">
 
 				<c:if test="${pagination.currentPage > 10}">

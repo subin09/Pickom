@@ -69,7 +69,7 @@ public class EventBoardDAO {
 
 		} finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}
 
 		return listCount;
