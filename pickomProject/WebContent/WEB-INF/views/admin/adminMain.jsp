@@ -329,7 +329,22 @@
     </pre>
     </div>
   </div>
-    
+  
+    <c:if test="${!empty title }">
+		<script>
+			swal({
+				"icon" : "${icon}",
+				"title" : "${title}",
+				"text" : "${text}"
+			});
+		</script>
+
+
+		<c:remove var="icon" />
+		<c:remove var="title" />
+		<c:remove var="text" />
+	</c:if>
+	
   <script>
     var date = new Date();
     var year = date.getFullYear(date);
