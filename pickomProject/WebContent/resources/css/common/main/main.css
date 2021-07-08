@@ -3,7 +3,7 @@
    	position: relative;
     height: 100%;
     background-size: cover;
-    background:#0D0000;
+    background:white;
     padding: 10px;
     margin-bottom:40px
   
@@ -11,7 +11,7 @@
   
     .main-title{
     margin-top:40px;
-  	color: #fff;
+  	color: balck;
   	font-weight:bold;
   	font-size: 22px;
   	margin-left:40px;
@@ -27,7 +27,7 @@
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #0D0000;
+    background: white;
 
     
     display: -webkit-box;

@@ -1,7 +1,7 @@
 
 		.d-container{
 			margin:30px;
-			background:#0D0000;
+			background:white;
 			position: relative;
         	height: 100%;
          	
@@ -10,7 +10,7 @@
         
         .detail-container{
             padding-top: 30px;
-            background:#0D0000;
+            background:white;
            
         }
 
@@ -18,7 +18,7 @@
            box-sizing: border-box;
            display: flex;
            justify-content: left;
-           color: #fff;
+           color: black;
            margin-left:50px;
        }
 
@@ -30,12 +30,12 @@
        }
 
        .movie-info-detail{
-        color: #fff;
+        color: black;
        }
 
        .movie-detail{
            text-align: center;
-           color: #fff;
+           color: black;
            font:15px;
        }
 
@@ -49,7 +49,7 @@
        
        #items actor{
        	font-size:15px;
-       	color: #fff;
+       	color: black;
        	
        }
 
@@ -60,7 +60,7 @@
       
    
       .img-content{
-      	color: #fff;
+      	color: black;
       }
       
       
@@ -72,7 +72,7 @@
       .swiper-slide {
         text-align: center;
         font-size: 18px;
-        background: #0D0000;
+        background: white;
 
         /* Center slide text vertically */
         display: -webkit-box;
