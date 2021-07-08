@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 댓글 작성</title>
+    <title>신고글 확인</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 <!-- Bootstrap core JS -->
@@ -20,46 +20,7 @@
     <style>
 
 		    
-		}
- 		div {
-            border: 1px solid red;
-        }
-
-        div#mainlog,
-        div#mainmypage {
-            text-align: center;
-        }
-
-        #mainlog-div {
-            margin-left: 10%;
-        }
-
-        #mainmypage-div {
-            margin-right: 10%;
-        }
-
-        input#mainsearch {
-            width: 500px;
-        }
-
-        #mainheader {
-            background-color: beige;
-        }
-
-        #mainmenutitle {
-            font-weight: bold;
-            color: black;
-            text-align: center;
-            width: 10em;
-        }
-
-        #mainmenutitle:hover {
-            color: orange;
-        }
-
-        #maincustomerservice {
-            margin-left: 10%;
-        }
+		
 
 
         #normal-board-content {
@@ -81,9 +42,7 @@
 			height: 100px;
 		}
 
-        body {
-            padding-top: 210px;
-        }
+       
         
         #contentImg0, 
         #contentImg1, 
@@ -116,7 +75,82 @@
 			border-top : 1px solid #ccc;
 			padding : 15px 0;
 		}
+		
+		.admin-a {
+			text-decoration: none;
+			color: white;
+			
+		}
+		
+		.admin-a:hover {
+			text-decoration: none;
+			color: white;
+			
+		}
+      
        
+       
+       .commentWrite>table {	margin-top: 10px; }
+		.cWriter {
+			display: inline-block;
+			vertical-align: top;
+			font-size : 1.2em;
+			font-weight: bold;
+			margin-right: 1rem;
+		}
+		.cDate { display: inline-block; }
+		.cContent, .commentBtnArea {
+			height: 100%;
+			width: 100%;
+		}
+		.commentBtnArea { text-align: right; }
+		.commentUpdateContent {
+			resize: none;
+			width: 100%;
+		}
+		.comment-row{
+			border-top : 1px solid #ccc;
+			padding : 15px 15px;
+		}
+		
+		.comment-row div:first-child{
+			display: flex;
+			align-items: center;
+			}
+			
+			
+			.complainDetail__main {
+			 margin-bottom: 100px;
+			 margin-top: 100px;
+			 }
+			 
+			 .AdminreportBtn-area {
+			 	margin-top: 20px;
+			 }
+			 
+			  .genreContainer {
+            display: flex;
+
+            height: 30%;
+        }
+
+        .genreContainer span {
+            margin-right: 1rem;
+            background-color: rgb(61, 61, 105);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 1rem;
+ 
+        }
+        
+        
+		.complainDetail__main h1:last-child {
+       		margin: 70px 0px 20px 0px;
+       }
+       
+       .reportTitle-title {
+       	margin: 70px 0px;
+       }
     </style>
 
 
@@ -128,20 +162,24 @@
 	<jsp:include page="../common/header.jsp" />
 
 
+<main class="container report__main">
 
-
-    <div class="container">
+    <div class="container complainDetail__main">
     
         
-            <div> <h1>리뷰게시판</h1></div>
+            <div class="reportTitle-title"> <h1>리뷰게시판 - 신고게시글</h1></div>
             
 
             
-          	<!-- Category -->
-			<h6 class="mt-4">카테고리 : [${board.categoryName }]</h6>
+            
+          	
+			
+			
+			
             
             <hr>                        
-            <h2><span id="event-bod-title">${board.reviewTitle }</span></h2>
+            <h2><span id="event-bod-title">제목 : ${board.reviewTitle }</span></h2>
+            <hr>                        
             
         	<!-- Date -->
 			<p>
@@ -153,16 +191,21 @@
 		 		<span class="float-right">조회수 ${board.readCount } </span>
 			</p>
 			
+            <hr>                        
+
 			<div>
 				<h1>${board.movieTitleEn }</h1>
 			</div>
-             <div>
+			
+             <div class="genreContainer">
+             
 	             <c:forEach items="${board.gnList }" var="gn">         
-	             	<span>${gn.movieGenreNM}</span>
+	             <span> # ${gn.movieGenreNM}</span>
 	             </c:forEach>
              </div>
      
-
+				<br>
+				
             <!-- 회원이 글 쓴 내용 -->
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -170,23 +213,9 @@
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
             </svg>
-
             <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
-            <i class="bi bi-chat" id="comment-count">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
-                </svg>
 
-                <span>댓글 단 횟수</span>
-            </i>
-
-
-
-            <br>
-            <br>
 					<!-- 이미지 출력 -->	
 					<c:forEach items="${board.atList }" var="at">
 						<c:choose>
@@ -208,47 +237,51 @@
 					
 
 	
-					<div class="form-inline mb-2">
+					<div class="form-inline mb-2 title-area">
 						<label class="input-group-addon mr-3 insert-label">업로드<br>이미지</label>
 						<div class="mr-2 boardImg" id="contentImgArea0">
 								
 								<!-- img0 변수가 만들어진 경우 -->
 								<c:if test="${!empty img0 }">
+								<a href="${img0}" data-lightbox="example-set">
 									<img id="contentImg0" src="${img0 }">
-									
+								</a>
 								</c:if>
 						</div>
 						<div class="mr-2 boardImg" id="contentImgArea1">
 								<c:if test="${!empty img1 }">
+								<a href="${img1}" data-lightbox="example-set">
 									<img id="contentImg1" src="${img1 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea2">
 								<c:if test="${!empty img2 }">
+								<a href="${img2}" data-lightbox="example-set">
 									<img id="contentImg2" src="${img2 }">
+								</a>
 								</c:if>
 						</div>
 	
 						<div class="mr-2 boardImg" id="contentImgArea3">
 								<c:if test="${!empty img3 }">
+								<a href="${img3}" data-lightbox="example-set">
 									<img id="contentImg3" src="${img3 }">
+								</a>
 								</c:if>
 						</div>
 					</div>	
 					
             <!-- 글 쓴 내용  -->
-            <div id="normal-board-contnent">
+            <div id="normal-board-contnent" style="border: 1px solid black; width: 100%;  height: 400px;">
               ${board.reviewContent }
             </div>
-
-
-            <hr>
 			
 			
 
 
-			<div>
+			<div class="AdminreportBtn-area">
 			
 						
 					<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
@@ -265,58 +298,10 @@
 			</div>
 		
 		<form action="#" method="post" name="requestForm"></form>
-			
+	
+	</div>
 		
-		
-		<div id="comment-area ">
-				<!-- 댓글 작성 부분 -->
-				<div class="commentWrite">
-					<table align="center">
-						<tr>
-							<td id="commentContentArea">
-								<textArea rows="3" id="commentContent"></textArea>
-							</td>
-							<td id="commentBtnArea">
-								<button class="btn btn-primary" id="addComment" onclick="addComment();">
-									댓글<br>등록
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-			
-			
-				<!-- 댓글 출력 부분 -->
-				<div class="commentList mt-5 pt-2">
-					<ul id="commentListArea">
-						<c:forEach items="${cList}" var="comment">
-							<li class="comment-row">
-								<div>
-									<p class="cWriter">${comment.memberNickNm}</p>
-									<p class="cDate">작성일 : <fmt:formatDate value="${comment.commentDt }" pattern="yyyy년 MM월 dd일 HH:mm"/></p>
-								</div>
-				
-								<p class="cContent">${comment.commentContent }</p>
-								
-								<c:if test="${!empty loginMember }">
-									<c:if test="${comment.memberNo == loginMember.memberNo || comment.memberGrade == 'A'}">
-										<div class="commentBtnArea">
-											<button class="btn btn-primary btn-sm ml-1" id="updateComment" onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
-											<button class="btn btn-primary btn-sm ml-1" id="deleteComment" onclick="deleteComment(${comment.commentNo})">삭제</button>
-										
-										</div>
-									</c:if>
-								
-								</c:if>	
-								
-								
-								
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			
-			</div>
+</main>
 			
 			
 

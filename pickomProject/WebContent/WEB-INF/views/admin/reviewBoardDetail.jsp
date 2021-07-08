@@ -64,8 +64,8 @@
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 200px;
-        height: 200px;
+        width : 100px;
+        height: 100px;
         }
         
         
@@ -97,16 +97,9 @@
 			display: flex;
 			align-items: center;
 		}
-		.complainDetail__main h1:first-child {
+		.complainDetail__main h1 {
        		margin: 70px 0px;
        }
-		.complainDetail__main h1:last-child {
-       		margin: 70px 0px 20px 0px;
-       }
-       
-       #normal-board-contnent {
-      		margin-top: 30px;
-      	}
        
        .reportBtn2{
        	text-decoration: none;
@@ -120,7 +113,7 @@
        }
        
        .title-area{
-       	margin:30px 0px;
+       	margin-bottom: 2rem;
        	height: 200px;
        }
        
@@ -137,30 +130,6 @@
        
        .reportAdmin {
        	background-color: #FFD8D4;
-       }
-       
-       	 .genreContainer {
-            display: flex;
-
-            height: 30%;
-        }
-
-        .genreContainer span {
-            margin-right: 1rem;
-            background-color: rgb(61, 61, 105);
-            color: white;
-            padding: 0.5rem 2rem;
-            border-radius: 1rem;
- 
-        }
-        
-        .reviewDetailBtn-area {
-        	margin-top: 20px;
-        }
-        
-        .title-area div{
-       		width: 200px;
-       		height: 200px;
        }
     </style>
 
@@ -208,12 +177,10 @@
 				<h1>${board.movieTitleEn }</h1>
 			</div>
 			
-			
-		
-             <div class="genreContainer">
-             
+             <div>
+             <label>영화 장르 :</label>
 	             <c:forEach items="${board.gnList }" var="gn">         
-	             <span> # ${gn.movieGenreNM}</span>
+	             <span> [${gn.movieGenreNM}]</span>
 	             </c:forEach>
              </div>
      
@@ -226,7 +193,7 @@
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
             </svg>
-            
+            <!-- 댓글 단 횟수 count -->
             <i class="bi bi-person-circle">닉네임 : ${board.memberNickNm }</i>
 
 					<!-- 이미지 출력 -->	
@@ -296,7 +263,7 @@
 			
 
 
-			<div class="reviewDetailBtn-area">
+			<div>
 				<c:if test="${!empty loginMember }">
 						
 					<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
