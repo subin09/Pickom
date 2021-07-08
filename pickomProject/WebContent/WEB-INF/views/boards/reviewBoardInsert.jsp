@@ -268,7 +268,7 @@
 			
 				        <div class="movieContainer">
 				             <select name="movieNo" id="movieCategory">
-				                <option selected>검색된 영화가 없습니다.</option>
+				                <option disabled value="default">검색된 영화가 없습니다.</option>
 				
 				            </select>
 				        </div>
@@ -384,6 +384,12 @@
 				$("#content").focus();
 				return false;
 			}
+			
+			if($("#movieCategory").val() == null) {
+				alert("영화를 선택해주세요.");
+				$("#keyword").focus();
+				return false;
+			}
 		}
 
 		// 이미지 영역을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
@@ -435,8 +441,11 @@
 
 						$("#movieCategory").html(""); // 기존 정보 초기화
 			 	         
+			 	        var button1 = $("<option>").addClass("movie").text("검색된 영화를 확인").attr("value", "0").attr("disabled", true).attr("selected", true);
+						
+						console.log(button1.val());
+			 	       	$("#movieCategory").append(button1);
 			 	         $.each(movieList, function(index, item){
-
 
 			 	            var button = $("<option>").addClass("movie").text(item.movieTitleKo).attr("value", item.movieNo);
 			 	         	
@@ -445,6 +454,7 @@
 				 	          
 				 	            
 			 	         });
+			 	         
 					}, 
 					error : function() {
 						swal("검색하신 영화가 존재하지 않습니다.");
@@ -474,7 +484,7 @@
 		 	         	
 		 	           $(".genreContainer").append(span);
 		 	      
-			 	          
+			 	    
 			 	            
 		 	         });
 				}, 
@@ -484,6 +494,9 @@
 					
 			})
 		});
+		
+		
+		
 	</script>
 </body>
 
