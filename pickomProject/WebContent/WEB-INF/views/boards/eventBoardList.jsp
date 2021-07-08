@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,6 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title></title>
+<link rel="stylesheet" type="text/css" href="css/01_header.css">
+<link rel="stylesheet" type="text/css" href="css/02_footer.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
 
@@ -35,7 +38,7 @@
  display : flex;
  padding-top: 80px;
  padding-right: 25px;
- padding-bottom: 20px;
+ padding-bottom: 40px;
  padding-left: 25px;
  
  }
@@ -87,9 +90,9 @@
 
 
 		<div id="board-list-area">
-			<table class="table table-hover"
+			<table class="table table-hover table-striped my-5"
 				id="event-list-table">
-				<thead>
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">NO</th>
 						<th scope="col">제목</th>
@@ -123,7 +126,7 @@
 									<td>${board.eventBodNo}</td>
 									<%-- 게시판 제목 --%>
 									<td class ="boardTitle">
-										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}" style="font-weight: bold;">
+										<a href="view?no=${board.eventBodNo}&cp=${pagination.currentPage}" id="boardTitle">
 										${board.eventBodTitle}
 										</a>
 									</td>
@@ -166,7 +169,7 @@
 		<c:set var="next" value="cp=${pagination.nextPage}" />
 
 
-		<div class="my-5" style="width:500px; margin-left: 45%">
+		<div class="my-5" style="width:500px; margin-left: 50%">
 			<ul class="pagination">
 
 				<c:if test="${pagination.currentPage > 10}">

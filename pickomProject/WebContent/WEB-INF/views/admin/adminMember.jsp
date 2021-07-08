@@ -40,9 +40,9 @@
   
         </section>
         <section class="admin-member__searchForm-container admin-section">
-            <form action="${contextPath }/admin/adminMember/list?type=1" class="admin-member__searchForm" method="post">
-                <input class="admin-member__radio" type="radio" id="memberId" name="search" value="1">
-                <label for="searchId" class="admin-member__margin-right admin-member__label" >아이디</label>
+            <form action="${contextPath }/admin/adminMember/list?type=1" class="admin-member__searchForm" method="post" onsubmit="return boardValidate();">
+                <input class="admin-member__radio" type="radio" id="memberId" name="search" value="1" checked>
+                <label for="searchId" class="admin-member__margin-right admin-member__label">아이디</label>
                 <input class="admin-member__radio" type="radio" id="memberNickname" name="search" value="2">
                 <label for="searchNickname" class="admin-member__margin-right admin-member__label">닉네임</label>
                 <input class="admin-member__search-input admin-member__margin-right" type="text" name="searchInput" placeholder="검색할 아이디/닉네임 입력" >
@@ -259,5 +259,28 @@
       <c:remove var="title" />
       <c:remove var="text" />
    </c:if>
+   <script>
+	// 유효성 검사 
+		function boardValidate() {
+			if ($(".admin-member__search-input").val().trim().length == 0) {
+				alert("회원 정보를 입력해 주세요.");
+				$(".admin-member__search-input").focus();
+				return false;
+			}
+	
+			if ($("#boardContent").val().trim().length == 0) {
+				alert("내용을 입력해 주세요.");
+				$("#content").focus();
+				return false;
+			}
+			
+			if($("#movieCategory").val() == null) {
+				alert("영화를 선택해주세요.");
+				$("#keyword").focus();
+				return false;
+			}
+		}
+   
+   </script>
 </body>
 </html>

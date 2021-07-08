@@ -16,7 +16,7 @@ import edu.kh.semi.movie.model.vo.Movie;
 import edu.kh.semi.movie.model.vo.MovieLink;
 
 
-@WebServlet("/movieMain")
+@WebServlet("/main")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
 	       		 request.setAttribute("mainList", mainList);
 	       		 
 	       		 RequestDispatcher view 
-	       		 = request.getRequestDispatcher("/WEB-INF/views/movie/movieMain.jsp");
+	       		 = request.getRequestDispatcher("/WEB-INF/views/movie/main.jsp");
 	       		 
 	       		 
 	       		 view.forward(request, response);
