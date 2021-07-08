@@ -62,8 +62,8 @@
         #contentImg1, 
         #contentImg2, 
         #contentImg3 {
-        width : 150px;
-        height: 150px;
+        width : 200px;
+        height: 200px;
         }
         
         
@@ -123,10 +123,15 @@
        	height: 200px;
        }
        
-       .mokrokeuro {
-       	margin: 2rem 0;
+       .complainDetailBtn-area {
+       	margin-top: 20px;
        }
        
+       
+       .title-area div{
+       		width: 200px;
+       		height: 200px;
+       }
      
     </style>
 
@@ -252,14 +257,14 @@
             </div>
 
 
-			<div>
+			<div class="complainDetailBtn-area">
 				<%-- 로그인된 회원과 해당 글 작성자가 같은 경우에만 버튼 노출--%>
 				<c:if test="${loginMember.memberGrade == 'A' || loginMember.memberNo == board.memberNo}">
 					<button id="deleteBtn" class="btn btn-primary float-right mr-2" onclick="deleteRequest();">삭제</button> 
 					<button id="updateBtn" class="btn btn-primary float-right mr-2" onclick="updateRequest('updateForm');">수정</button> 
 				</c:if>
 				
-				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2 mokrokeuro">목록으로</a>
+				<a href="list?type=${boardType }&cp=${cp}" class="btn btn-primary float-right mr-2 ">목록으로</a>
 			</div>
 			
 			
