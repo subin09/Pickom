@@ -252,7 +252,7 @@
                             <tr>
 
                                 <th scope="col">No</th>
-                                <th scope="col">카테고리</th>
+                                <th scope="col">영화명</th>
                                 <th scope="col">제목</th>
                                 <th scope="col">작성자</th>
                                 <th scope="col">날짜</th>
