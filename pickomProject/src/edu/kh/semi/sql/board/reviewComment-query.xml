@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 댓글 목록 조회 -->
+	<entry key="selectList">
+	SELECT REVIEW_COMMENT_NO, REVIEW_COMMENT_CONTENT, REVIEW_COMMENT_DT, REVIEW_BOARD_NO, MEMBER_NICKNAME,
+ 	REVIEW_COMMENT_MODIF, REVIEW_COMMENT_STATUS, MEMBER_NO, MEMBER_NM, MEMBER_GRADE, REPORT_NO
+	FROM REVIEW_COMMENT
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE REVIEW_COMMENT_STATUS = 'Y'
+      AND REVIEW_BOARD_NO = ?
+      AND MEMBER_STATUS = 'Y'
+	ORDER BY REVIEW_COMMENT_NO DESC
+	</entry>
+	
+	<!-- 댓글 삽입 -->
+	<entry key="insertComment">
+		INSERT INTO REVIEW_COMMENT
+		VALUES(SEQ_RCNO.NEXTVAL, ?, DEFAULT, DEFAULT, DEFAULT, ?, NULL, ?)
+	</entry>
+	
+	<!-- 댓글 수정 -->
+	<entry key="updateComment">
+		UPDATE REVIEW_COMMENT SET
+		REVIEW_COMMENT_CONTENT = ?, 
+		REVIEW_COMMENT_DT = DEFAULT
+		WHERE REVIEW_COMMENT_NO = ?
+	</entry>
+
+	<!-- 댓글 삭제 -->
+	<entry key="deleteComment">
+		UPDATE REVIEW_COMMENT SET
+		REVIEW_COMMENT_STATUS = 'N'
+		WHERE REVIEW_COMMENT_NO = ?
+	</entry>
+
+
+</properties>

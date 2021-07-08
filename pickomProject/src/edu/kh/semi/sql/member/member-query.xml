@@ -28,4 +28,91 @@
 			MEMBER_ADDR = ?
 		WHERE MEMBER_NO = ?
 	</entry>
+	
+	<!-- 회원 닉네임 수정 SQL -->
+	<entry key="updateNickNm">
+		UPDATE MEMBER SET
+		MEMBER_NICKNAME = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 프로필 테이블 수정 SQL -->
+	<entry key="updateProfile">
+		UPDATE MEMBER_PROFILE SET
+		PROFILE_PICTURE = ?,
+		PROFILE_PICTURE_NAME = ?
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 프로필 테이블 삽입 SQL -->
+	<entry key="insertProfile">
+		INSERT INTO MEMBER_PROFILE
+		VALUES(
+		(SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_ID = ?),
+		DEFAULT, DEFAULT)
+	</entry>
+	
+	<!-- 프로필 검색 SQL -->
+	<entry key="memberPreProfile">
+		SELECT MEMBER_NO, PROFILE_PICTURE,
+		PROFILE_PICTURE_NAME, MEMBER_NICKNAME
+		FROM MEMBER_PROFILE JOIN MEMBER USING (MEMBER_NO)
+		WHERE MEMBER_NO = ?
+	</entry>
+	
+	<!-- 비밀번호 변경 SQL -->
+	<entry key="changePw">
+		UPDATE MEMBER SET MEMBER_PW = ?
+		WHERE MEMBER_PW = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 비밀번호 확인 SQL -->
+	<entry key="checkPw">
+		SELECT MEMBER_NO FROM MEMBER
+		WHERE MEMBER_PW = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+	<!-- 회원 탈퇴 확인 SQL -->
+	<entry key="secession">
+		UPDATE MEMBER SET MEMBER_STATUS = 'N'
+		WHERE MEMBER_NO= ?
+	</entry>
+	
+	<!-- 회원 탈퇴 테이블 입력 SQL -->
+	<entry key="insertDropTable">
+		INSERT INTO MEMBER_DROP
+		VALUES(?, DEFAULT, ?, ?)
+	</entry>
+	
+		<!-- 아이디 중복검사 -->
+	<entry key="idDupCheck">
+	SELECT COUNT(*) FROM MEMBER
+	WHERE MEMBER_STATUS = 'Y'
+	AND MEMBER_ID = ?
+	</entry>
+	
+	<!-- 비밀번호찾기 SQL  -->
+	<entry key="searchPw">
+	SELECT*FROM MEMBER
+	WHERE MEMBER_EMAIL=?
+	AND MEMBER_ID=?
+	</entry>
+	
+	<!-- 아이디찾기 SQL  -->
+	<entry key="searchId">
+	SELECT*FROM MEMBER
+	WHERE MEMBER_NM =?
+	AND MEMBER_EMAIL=?
+	
+	</entry>
+	
+	
+	<!-- 비밀번호찾기 비밀번호변경  -->
+	<entry key="newPw">
+	UPDATE MEMBER SET MEMBER_PW=?
+	WHERE MEMBER_ID=?
+	</entry>
 </properties>

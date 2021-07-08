@@ -37,7 +37,7 @@ public class CrawlerService {
 		result = dao.insertMovie(conn, movieNo, arrMovieTitleKo, arrMovieTitleEn, arrMovieDirector, arrMovieSummary,
 				arrMovieCountry, arrMovieOpenDt, arrRuntime );
 
-		if(result>1) commit(conn);
+		if(result>0) commit(conn);
 		else rollback(conn);
 
 		close(conn);
@@ -63,6 +63,7 @@ public class CrawlerService {
 		boolean flag = true;
 		String poster = arrPoster.get(0);
 		String fileType = "P";
+		
 		while(flag) {
 			// 포스터
 			if(fileType=="P") {
@@ -192,6 +193,38 @@ public class CrawlerService {
 		close(conn);
 		
 		return result;
+	}
+
+
+	/** 영화 등록여부 확인 service
+	 * @param movieNo
+	 * @return
+	 */
+	public int searchMovie(int movieNo) throws Exception{
+		int search = 0;
+		
+		Connection conn = getConnection();		
+		search = dao.searchMovie(conn, movieNo);
+		
+		close(conn);
+		
+		return search;
+	}
+
+
+	/** 장르 등록여부 확인 service
+	 * @param checkGenreCd2
+	 * @return
+	 */
+	public int seachGenre(String checkGenreCd2) throws Exception {
+		int search = 0;
+		
+		Connection conn = getConnection();		
+		search = dao.seachGenre(conn, checkGenreCd2);
+		
+		close(conn);
+		
+		return search;
 	}
 
 

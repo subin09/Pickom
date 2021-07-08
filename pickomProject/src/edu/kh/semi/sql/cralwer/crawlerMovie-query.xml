@@ -41,6 +41,16 @@
 		)
 	</entry>
 	
+	<!-- Movie 테이블 search SQL  -->
+	<entry key="searchMovie">
+		SELECT * FROM MOVIE WHERE MOVIE_NO = ?
+	</entry>
+	
+	<!-- Genre 테이블 search SQL  -->
+	<entry key="seachGenre">
+		SELECT * FROM MOVIE_GENRE WHERE MOVIE_GENRE_CD = ?
+	</entry>
+	
 
 
 	

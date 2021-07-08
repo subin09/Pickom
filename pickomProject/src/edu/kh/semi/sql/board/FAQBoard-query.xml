@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 고객센터 게시글 목록 -->
+	<entry key ="getMemberListCount">
+	SELECT COUNT(*) FROM FAQ
+	WHERE FAQ_STATUS = 'Y'
+	</entry>
+	
+	
+	<!-- 회원리스트 조회(페이징 처리 적용) -->
+	<entry key="selectFAQBoardList">
+	SELECT * FROM
+	(SELECT ROWNUM RNUM, A.* FROM 
+    (SELECT * FROM FAQ_BOARD_DETAIL
+    ORDER BY FAQ_NO DESC) A )
+	WHERE RNUM BETWEEN ? AND ?
+	AND FAQ_STATUS = 'Y'
+	</entry>
+	
+	
+	<!-- 게시글 상세 조회 -->
+	<entry key="selectBoard">
+	SELECT * FROM FAQ_BOARD_DETAIL 
+	WHERE FAQ_NO = ?
+	AND FAQ_STATUS ='Y'
+	</entry>
+	
+</properties>

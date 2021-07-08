@@ -38,7 +38,7 @@
             <div class="col-sm-8">
 
                 <div class="bg-white rounded shadow-sm container p-3">
-                    <form method="POST" action="memberUpdatefn" onsubmit="return memberUpdateValidate();" class="form-horizontal" role="form">
+                    <form method="POST" action="memberUpdate" onsubmit="return memberUpdateValidate();" class="form-horizontal" role="form">
                     
                         <div class="row mb-3 form-row">
                             <div class="col-md-3">

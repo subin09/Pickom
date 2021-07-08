@@ -69,10 +69,16 @@ public class CrawlerVo {
 		// 영화 영어 제목
 		String delTitleEn = ", 0000";
 		String movieTitleEn = elMovieTitleEn.text();
+		
+		System.out.println(movieTitleEn);
+		
 		movieTitleEn = movieTitleEn.substring
-				(0,movieTitleEn.length()-delTitleEn.length());
+				(0, movieTitleEn.length()-delTitleEn.length());
+		
+		System.out.println(movieTitleEn);
+		
 		this.arrMovieTitleEn.add(movieTitleEn);
-
+		
 		// 감독
 		Element elDirector1 = elDirector.first();
 		String director = elDirector1.text();
